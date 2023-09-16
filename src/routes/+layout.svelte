@@ -8,6 +8,5 @@
 	{#if $page.url.pathname !== '/'}
 		<Navbar />
 	{/if}
-
 	<slot />
 </div>

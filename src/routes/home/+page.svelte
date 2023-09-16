@@ -29,7 +29,7 @@
 	};
 </script>
 
-<div class="w-full text-green max-h-[90vh]">
+<div class="w-full text-green">
 	<!-- top-logo -->
 	<div class="top-section flex justify-center items-center py-12">
 		<LogoMain />
@@ -39,7 +39,7 @@
 		disabled={openPopup}
 		href="/create-vessel"
 		classProp="flex w-full"
-		message="My Fleet"
+		message="My Vessel"
 		chooseType="primary"
 		icon="plus"
 		size="lg"

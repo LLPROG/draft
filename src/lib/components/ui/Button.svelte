@@ -4,6 +4,7 @@
 	import PlusIcon from './PlusIcon.svelte';
 	import StarIcon from './StarIcon.svelte';
 	import ArrowIcon from './ArrowIcon.svelte';
+	import LessIcon from './LessIcon.svelte';
 	export let message = '';
 	export let chooseType = '';
 	export let classProp = '';
@@ -38,6 +39,9 @@
 			{#if icon === 'arrow'}
 				<span class="ms-auto"><ArrowIcon /></span>
 			{/if}
+			{#if icon === 'less'}
+				<span class="ms-auto"><LessIcon /></span>
+			{/if}
 		</a>
 	{:else}
 		<button
@@ -58,6 +62,9 @@
 			{/if}
 			{#if icon === 'arrow'}
 				<span class="ms-auto"><ArrowIcon /></span>
+			{/if}
+			{#if icon === 'less'}
+				<span class="ms-auto"><LessIcon /></span>
 			{/if}
 		</button>
 	{/if}

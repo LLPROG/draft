@@ -21,7 +21,7 @@
 			on:focus={() => dispatch('focus')}
 			{id}
 			name={id}
-			class={clsx('p-4 rounded-md bg-green bg-opacity-[10%] shadoww', {
+			class={clsx('p-4 rounded-md bg-green bg-opacity-[10%] shadoww text-center', {
 				'border-2 border-red-400': isError && !wasfocused
 			})}
 			bind:value={valueT}
@@ -33,7 +33,7 @@
 			on:focus={() => dispatch('focus')}
 			{id}
 			name={id}
-			class={clsx('p-4 rounded-md bg-green bg-opacity-[10%] shadoww', {
+			class={clsx('p-4 rounded-md bg-green bg-opacity-[10%] shadoww text-center', {
 				'border-2 border-red-400': isError && !wasfocused
 			})}
 			bind:value={valueN}
