@@ -15,6 +15,8 @@
 				Vessels.set(JSON.parse(storage));
 			}
 		}
+
+		console.log($Vessels);
 	});
 
 	export let openPopup = false;
@@ -32,19 +34,21 @@
 		message="My Fleet"
 		chooseType="primary"
 		icon="plus"
+		size="lg"
 	/>
 
 	<div
-		class="w-full overflow-y-scroll max-h-[37vh] px-5 flex flex-col gap-2 justify-start shadow-inner shadow-gray-500"
+		class="w-full overflow-y-scroll max-h-[37vh] px-5 flex flex-col justify-start shadow-inner shadow-gray-500"
 	>
-		{#each $Vessels as { name }}
-			{#if name !== 'defaultValue'}
+		{#each $Vessels as vessel}
+			{#if vessel.name !== 'defaultValue'}
 				<Button
-					href={`/vessel/${name}`}
+					href={`/vessel/${vessel.name}`}
 					isButton={false}
 					chooseType="primary"
 					icon="star"
-					message={name}
+					size="md"
+					message={vessel.name}
 					classProp="border-b border-b-white w-full"
 				/>
 			{/if}

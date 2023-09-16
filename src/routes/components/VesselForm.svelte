@@ -1,10 +1,10 @@
 <script>
 	import Input from '../components/ui/Input.svelte';
 	import Button from './ui/Button.svelte';
-	import { Vessel, Vessels, VesselsStorage } from '../../store/store';
-	import { goto } from '$app/navigation';
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 
-	$: vessel = {
+	export let vessel = {
 		name: '',
 		wasNameFocused: false,
 		start_value: [
@@ -18,62 +18,60 @@
 		]
 	};
 
-	let homeRoute = '/home';
-	let isError = false;
-
-	const handleClick = () => {
-		let print = vessel.start_value.every((v) => v.wasfocusedCount === true);
-
-		if (!print) {
-			isError = true;
-			console.log(isError);
-			return;
-		}
-
-		console.log(vessel);
-		Vessel.set(vessel);
-		VesselsStorage.update((old) => {
-			return [...old, vessel];
-		});
-
-		goto(homeRoute);
-	};
+	export let isError = false;
+	export let vesselName = '';
+	export let wasNameFocused = false;
+	export let isCreate = false;
+	export let redirect = '';
+	export let disabled = false;
 </script>
 
 <form class="w-full p-4" on:submit|preventDefault>
 	<Input
-		bind:wasfocused={$Vessel.wasNameFocused}
+		{disabled}
+		bind:wasfocused={wasNameFocused}
 		bind:isError
 		id="name"
 		label="Vessel Name"
 		type="text"
-		bind:valueT={$Vessel.name}
-		on:focus={() => {
-			$Vessel.wasNameFocused = true;
-		}}
+		bind:valueT={vesselName}
+		on:focus={() => (wasNameFocused = true)}
 	/>
 	<div class="relative grid grid-cols-2 gap-4 pt-2">
 		{#each vessel.start_value as { name, value, wasfocusedCount }}
 			<Input
+				{disabled}
 				bind:wasfocused={wasfocusedCount}
 				bind:isError
 				type="number"
 				id={name}
 				label={name}
 				bind:valueN={value}
-				on:focus={() => {
-					wasfocusedCount = true;
-				}}
+				on:focus={() => (wasfocusedCount = true)}
 			/>
 		{/each}
 
-		<Button
-			classProp="absolute right-0 bottom-0"
-			chooseType="secondary"
-			message="save"
-			icon=""
-			isButton={true}
-			on:button:click={handleClick}
-		/>
+		{#if isCreate}
+			<Button
+				classProp="absolute right-0 bottom-0"
+				chooseType="secondary"
+				message="save"
+				icon=""
+				isButton={true}
+				on:button:click={() => dispatch('click')}
+			/>
+		{/if}
+
+		{#if redirect}
+			<Button
+				classProp="absolute right-0 bottom-0"
+				href={redirect}
+				chooseType="secondary"
+				message="go back"
+				icon=""
+				isButton={false}
+				on:button:click={() => dispatch('click')}
+			/>
+		{/if}
 	</div>
 </form>

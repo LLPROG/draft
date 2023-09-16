@@ -8,6 +8,7 @@
 	export let classProp = '';
 	export let href = '';
 	export let icon = '';
+	export let size = 'sm';
 	export let isButton = false;
 	const dispatch = createEventDispatcher();
 </script>
@@ -17,14 +18,12 @@
 		<a
 			on:click={() => dispatch('button:click')}
 			{href}
-			class={clsx(
-				'py-2 px-4 rounded-[12px] text-[2.5rem] text-grayPrimary flex items-center',
-				classProp,
-				{
-					'primary-btn': chooseType == 'primary',
-					'secondary-btn': chooseType == 'secondary'
-				}
-			)}
+			class={clsx('px-4 rounded-[12px] flex items-center py-3', classProp, {
+				'text-grayPrimary ': chooseType == 'primary',
+				'bg-greenAccent text-black': chooseType == 'secondary',
+				'text-[1.5em]': size == 'md',
+				'text-[2.5em]': size == 'lg'
+			})}
 		>
 			<span>{message}</span>
 			{#if icon === 'plus'}
@@ -37,9 +36,11 @@
 	{:else}
 		<button
 			on:click={() => dispatch('button:click')}
-			class={clsx('px-4 rounded-[12px] text-[2.5rem] flex items-center', classProp, {
+			class={clsx('px-4 rounded-[12px] flex items-center py-3', classProp, {
 				'text-grayPrimary ': chooseType == 'primary',
-				'bg-greenAccent text-black': chooseType == 'secondary'
+				'bg-greenAccent text-black': chooseType == 'secondary',
+				'text-[1.5em]': size == 'md',
+				'text-[2.5em]': size == 'lg'
 			})}
 		>
 			<span>{message}</span>
