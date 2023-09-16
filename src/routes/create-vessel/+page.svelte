@@ -1,5 +1,5 @@
 <script>
-	import VesselForm from '../components/VesselForm.svelte';
+	import VesselForm from '@components/VesselForm.svelte';
 	import { goto } from '$app/navigation';
 	import { VesselsStorage, Vessel } from '../../store/store';
 

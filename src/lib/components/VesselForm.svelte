@@ -1,5 +1,5 @@
 <script>
-	import Input from '../components/ui/Input.svelte';
+	import Input from '@components/ui/Input.svelte';
 	import Button from './ui/Button.svelte';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();

@@ -1,4 +1,4 @@
 <div>
-	<a href="/">Back</a>
+	<a href="/home">Back</a>
 	<slot />
 </div>
