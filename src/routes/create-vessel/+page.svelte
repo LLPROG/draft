@@ -1,11 +1,10 @@
 <script>
 	import VesselForm from '@components/VesselForm.svelte';
-	import { goto } from '$app/navigation';
 	import { VesselsStorage, Vessel } from '../../store/store';
+	import { goto } from '$app/navigation';
 
 	let vesselName = '';
 	let isError = false;
-	let homeRoute = '/home';
 	$: vessel = {
 		name: '',
 		wasNameFocused: false,
@@ -33,7 +32,9 @@
 		$Vessel = vessel;
 		$VesselsStorage = [...$VesselsStorage, vessel];
 
-		goto(homeRoute);
+		goto('/home');
+
+		console.log('save');
 	};
 </script>
 

@@ -31,13 +31,7 @@
 	<!-- WATER DENSITY -->
 	<h2 class="text-[2em] py-4">Water Density</h2>
 	<div class="w-full flex justify-around items-center">
-		<Button
-			on:button:click={() => waterDensityValue--}
-			isButton={true}
-			chooseType="primary"
-			icon="less"
-			size="md"
-		/>
+		<Button on:click={() => waterDensityValue--} chooseType="primary" icon="less" size="md" />
 		<Input
 			className="w-[8rem]"
 			disabled={true}
@@ -45,13 +39,7 @@
 			type="number"
 			bind:valueN={waterDensityValue}
 		/>
-		<Button
-			on:button:click={() => waterDensityValue++}
-			isButton={true}
-			chooseType="primary"
-			icon="plus"
-			size="md"
-		/>
+		<Button on:click={() => waterDensityValue++} chooseType="primary" icon="plus" size="md" />
 	</div>
 
 	<!-- WEIGHT -->
@@ -71,12 +59,15 @@
 	<h2 class="text-[2em] py-4">Survey</h2>
 
 	<Button
-		on:button:click={() => (openMean = true)}
+		on:click={() => (openMean = true)}
 		message="Quarter Mean"
-		isButton={true}
 		chooseType="primary"
 		icon="arrow"
 		size="md"
 		classProp="w-full"
 	/>
+
+	{#if openMean}
+		<span>list</span>
+	{/if}
 </div>

@@ -1,7 +1,8 @@
 <script>
 	import Input from '@components/ui/Input.svelte';
-	import Button from './ui/Button.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import Link from './ui/Link.svelte';
+	import Button from './ui/Button.svelte';
 	const dispatch = createEventDispatcher();
 
 	export let vessel = {
@@ -57,20 +58,17 @@
 				chooseType="secondary"
 				message="save"
 				icon=""
-				isButton={true}
-				on:button:click={() => dispatch('click')}
+				on:click={() => dispatch('click')}
 			/>
 		{/if}
 
 		{#if redirect}
-			<Button
+			<Link
 				classProp="absolute right-0 bottom-0"
 				href={redirect}
 				chooseType="secondary"
 				message="go back"
 				icon=""
-				isButton={false}
-				on:button:click={() => dispatch('click')}
 			/>
 		{/if}
 	</div>
