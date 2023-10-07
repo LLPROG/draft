@@ -4,18 +4,16 @@
 	import LogoMain from '@components/ui/LogoMain.svelte';
 	import { browser } from '$app/environment';
 	import Popup from '@components/Popup.svelte';
-	import Link from '@components/ui/Link.svelte';
-	import { onMount } from 'svelte';
-	import clsx from 'clsx';
+	import { onMount, getContext } from 'svelte';
 
 	export let openPopup = false;
 
-	let selectedVessel = {
-		name: 'defaultValue'
-	};
+	let indexVelles = getContext('indexVelles');
+	let selectedVessel = getContext('selectedVessel');
 
 	const handleDelete = () => {
-		$Vessels = $Vessels.filter((v) => v.name !== selectedVessel.name);
+		$Vessels.splice($indexVelles, 1);
+		$Vessels = $Vessels;
 		$VesselsStorage = $Vessels;
 		openPopup = false;
 	};
@@ -38,7 +36,7 @@
 		<LogoMain />
 	</div>
 
-	<Link
+	<Button
 		disabled={openPopup}
 		href="/create-vessel"
 		classProp="flex w-full"
@@ -46,24 +44,23 @@
 		chooseType="primary"
 		icon="plus"
 		size="lg"
+		isButton={false}
 	/>
 
-	<div
-		class="w-full overflow-y-scroll max-h-[40vh] px-5 flex flex-col justify-start shadow-inner shadow-gray-500"
-	>
-		{#each $Vessels as vessel}
+	<div class="w-full overflow-y-scroll max-h-[40vh] py-6 gap-2 px-5 flex flex-col justify-start">
+		{#each $Vessels as vessel, i}
 			{#if vessel.name !== 'defaultValue'}
 				<Button
 					on:click={() => {
-						selectedVessel = vessel;
-						console.log(selectedVessel);
+						$indexVelles = i;
+						$selectedVessel = vessel;
+						console.log($selectedVessel);
 						openPopup = true;
 					}}
-					chooseType="primary"
+					chooseType="secondary"
 					icon="arrow"
 					size="md"
 					message={vessel?.name}
-					classProp="border-b border-b-white w-full"
 				/>
 			{/if}
 		{/each}
@@ -72,21 +69,20 @@
 	{#if openPopup && selectedVessel}
 		<Popup bind:isOpen={openPopup}>
 			<div class="w-full" slot="body">
-				<Link
-					href={`/vessel/${selectedVessel?.name}`}
-					chooseType="secondary"
+				<Button
+					href={`/vessel/${$selectedVessel?.name}`}
+					isButton={false}
+					chooseType="tertiary"
 					icon="arrowBlack"
 					size="md"
 					message="Open"
-					classProp={clsx('border-b border-b-black w-full')}
 				/>
 				<Button
 					on:click={() => handleDelete()}
-					chooseType="secondary"
+					chooseType="tertiary"
 					icon="arrowBlack"
 					size="md"
 					message="Delete"
-					classProp="border-b border-b-black w-full"
 				/>
 			</div>
 		</Popup>

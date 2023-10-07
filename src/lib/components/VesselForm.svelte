@@ -1,7 +1,6 @@
 <script>
 	import Input from '@components/ui/Input.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import Link from './ui/Link.svelte';
 	import Button from './ui/Button.svelte';
 	const dispatch = createEventDispatcher();
 
@@ -52,24 +51,27 @@
 			/>
 		{/each}
 
-		{#if isCreate}
-			<Button
-				classProp="absolute right-0 bottom-0"
-				chooseType="secondary"
-				message="save"
-				icon=""
-				on:click={() => dispatch('click')}
-			/>
-		{/if}
+		<div class="w-full relative">
+			{#if isCreate}
+				<Button
+					spaceAll={false}
+					chooseType="for-form"
+					message="Save"
+					icon=""
+					on:click={() => dispatch('click')}
+				/>
+			{/if}
 
-		{#if redirect}
-			<Link
-				classProp="absolute right-0 bottom-0"
-				href={redirect}
-				chooseType="secondary"
-				message="go back"
-				icon=""
-			/>
-		{/if}
+			{#if redirect}
+				<Button
+					isButton={false}
+					spaceAll={false}
+					href={redirect}
+					chooseType="for-form"
+					message="Go back"
+					icon=""
+				/>
+			{/if}
+		</div>
 	</div>
 </form>

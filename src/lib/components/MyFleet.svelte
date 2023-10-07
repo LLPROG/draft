@@ -1,9 +1,10 @@
 <script>
-	import Link from './ui/Link.svelte';
+	import Button from './ui/Button.svelte';
 </script>
 
 <div>
-	<Link
+	<Button
+		isButton={false}
 		href="/create-fleet"
 		classProp="flex w-full"
 		message="My Fleet"
