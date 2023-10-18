@@ -13,7 +13,7 @@
 	export let wasfocused = false;
 
 	let style = {
-		'p-4 rounded-md bg-green bg-opacity-[10%] shadoww text-center border-0 focus:outline focus:outline-[1px]': true,
+		'p-4 inner-sh rounded-xl bg-green bg-opacity-[10%] shadoww text-center border-0 focus:outline focus:outline-[1px] outline-white': true,
 		'border-2 border-red-400': isError && !wasfocused,
 		'fix-value': disabled
 	};
@@ -31,7 +31,6 @@
 			on:change={(e) => {
 				valueT = e.currentTarget.value;
 				dispatch('change', valueT);
-				console.log(valueT);
 			}}
 			{id}
 			name={id}
@@ -41,14 +40,12 @@
 		/>
 	{:else}
 		<input
-			pattern="[0-9]+"
 			placeholder=""
 			{disabled}
 			on:focus={() => dispatch('focus')}
 			on:change={(e) => {
-				valueN = parseInt(e.currentTarget.value);
+				valueN = parseFloat(e.currentTarget.value);
 				dispatch('change', valueN);
-				console.log(valueN);
 			}}
 			{id}
 			name={id}
@@ -63,5 +60,10 @@
 	.fix-value {
 		background: #e0e7f108;
 		backdrop-filter: blur(10px);
+	}
+
+	.inner-sh {
+		-webkit-box-shadow: inset 5px 5px 15px -4px #ffffff;
+		box-shadow: inset 5px 5px 8px -4px #00000070;
 	}
 </style>

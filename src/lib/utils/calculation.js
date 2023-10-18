@@ -11,13 +11,21 @@ export const trimmingNegative = (A, D, trimApparente, LBM) => {
 };
 
 export const calcResult = (AB1, AB2, AB3, D, trimApparente, LBM, callback) => {
-	let Ifwd = callback(AB1, D, trimApparente, LBM);
-	let Imid = callback(AB2, D, trimApparente, LBM);
-	let Iaft = callback(AB3, D, trimApparente, LBM);
-	let result = [Ifwd, Imid, Iaft];
-	console.log('result', result);
+	let Dfwd = D[0];
+	let Dmid = D[1];
+	let Daft = D[2];
 
-	let trim = Iaft - Ifwd;
+	let Ifwd = callback(AB1, Dfwd, trimApparente, LBM);
+	let Imid = callback(AB2, Dmid, trimApparente, LBM);
+	let Iaft = callback(AB3, Daft, trimApparente, LBM);
+
+	let result = {
+		Ifwd: Ifwd,
+		Imid: Imid,
+		Iaft: Iaft
+	};
+
+	let trim = Iaft - Ifwd >= 0 ? true : false;
 	let flessione = Imid - [(Iaft + Ifwd) / 2];
 
 	return {

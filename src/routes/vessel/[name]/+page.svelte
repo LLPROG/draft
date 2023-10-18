@@ -3,16 +3,26 @@
 	import { page } from '$app/stores';
 	import { VesselsStorage } from '../../../store/store';
 	import { browser } from '$app/environment';
-	import MyFleet from '@components/MyFleet.svelte';
+	import Button from '@components/ui/Button.svelte';
 
-	let vesselName = $page.url.pathname.split('/')[2];
+	let vesselName = $page.params.name;
 	let vessel = $VesselsStorage.find((v) => v.name === vesselName);
+
+	console.log('vesselName', vesselName);
 </script>
 
 <div class="w-full h-fit bg-blackPrimary">
 	{#if browser && $page}
 		<VesselForm bind:vesselName bind:vessel redirect="/home" disabled={true} />
-		<MyFleet />
+		<Button
+			isButton={false}
+			href={`/vessel/${$page.params.name}/survey`}
+			classProp="flex w-full"
+			message="Survey"
+			chooseType="primary"
+			icon="plus"
+			size="lg"
+		/>
 	{:else}
 		<p>Loading...</p>
 	{/if}

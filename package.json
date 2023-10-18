@@ -32,6 +32,8 @@
 	"type": "module",
 	"dependencies": {
 		"@furudean/svelte-persistent-store": "^0.8.0",
-		"clsx": "^2.0.0"
+		"clsx": "^2.0.0",
+		"d3": "^7.8.5",
+		"papaparse": "^5.4.1"
 	}
 }

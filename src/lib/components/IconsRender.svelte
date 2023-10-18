@@ -3,6 +3,7 @@
 	import ArrowIconBlack from './ui/ArrowIconBlack.svelte';
 	import LessIcon from './ui/LessIcon.svelte';
 	import PlusIcon from './ui/PlusIcon.svelte';
+	import SaveIcon from './ui/SaveIcon.svelte';
 	import StarIcon from './ui/StarIcon.svelte';
 
 	export let icon = 'plus';
@@ -22,4 +23,7 @@
 {/if}
 {#if icon === 'less'}
 	<span class="ms-auto"><LessIcon /></span>
+{/if}
+{#if icon === 'save'}
+	<span class="ms-auto"><SaveIcon /></span>
 {/if}

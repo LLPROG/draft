@@ -1,4 +1,6 @@
 <script>
+	// @ts-nocheck
+
 	export let isOption = 1;
 
 	let options1 = [
@@ -45,7 +47,6 @@
 
 	let options = [{ label: 'Displacement', value: 0 }];
 
-	// @ts-ignore
 	$: {
 		if (isOption === 1) options = options1;
 		if (isOption === 2) options = options2;
@@ -55,9 +56,7 @@
 		if (isOption === 6) options = options6;
 	}
 
-	// @ts-ignore
 	const addCaracter = (cha, value) => {
-		console.log(typeof value);
 		let result = `${value} ${cha}`;
 		return result;
 	};

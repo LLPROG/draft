@@ -3,7 +3,8 @@
 	import { createEventDispatcher } from 'svelte';
 	import IconsRender from '@components/IconsRender.svelte';
 	export let message = '';
-	export let chooseType = '';
+	/** @types {(primary | secondary | tertiary | for-form | only-icon)} */
+	export let chooseType = 'primary';
 	export let classProp = '';
 	export let icon = '';
 	export let size = 'sm';
@@ -60,5 +61,7 @@
 		);
 		/* vetro */
 		backdrop-filter: blur(10px);
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset -4px -4px 4px rgba(0, 0, 0, 0.25),
+			inset 4px 4px 4px rgba(255, 255, 255, 0.25);
 	}
 </style>
