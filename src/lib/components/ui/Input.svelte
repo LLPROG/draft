@@ -58,7 +58,7 @@
 
 <style>
 	.fix-value {
-		background: #e0e7f108;
+		background: #e0e7f129;
 		backdrop-filter: blur(10px);
 	}
 

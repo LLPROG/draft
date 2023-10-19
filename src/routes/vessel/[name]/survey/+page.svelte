@@ -5,7 +5,14 @@
 	import Input from '@components/ui/Input.svelte';
 	import LogoBigSheep from '@components/ui/LogoBigSheep.svelte';
 	import { calc } from '@lib/utils/calculation';
-	import { VesselsStorage } from '../../../../store/store';
+	import {
+		VesselsStorage,
+		defaultCategories,
+		defaultDraftsA,
+		defaultDraftsB,
+		defaultInitialData,
+		defaultWeight
+	} from '../../../../store/store';
 	import { page } from '$app/stores';
 	import InitSurvey from '@components/InitSurvey.svelte';
 	import { browser } from '$app/environment';
@@ -14,116 +21,11 @@
 	let openMean = false;
 	let selectedOption = 'Quarter Mean';
 
-	let defaultCategories = [
-		{
-			name: 'Mean Corrected',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: 'Displacement',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: 'TPC',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: 'LCF',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: '1° MTC (Mean + 0.5m)',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: '2° MTC (Mean - 0.5m)',
-			total: 0,
-			left: NaN,
-			right: NaN
-		}
-	];
-
-	let defaultDraftsA = [
-		{
-			name: 'Fwd',
-			value: NaN
-		},
-		{
-			name: 'Mid',
-			value: NaN
-		},
-		{
-			name: 'Aft',
-			value: NaN
-		}
-	];
-
-	let defaultDraftsB = [
-		{
-			name: 'Fwd',
-			value: NaN
-		},
-		{
-			name: 'Mid',
-			value: NaN
-		},
-		{
-			name: 'Aft',
-			value: NaN
-		}
-	];
-
-	let defaultWeight = [
-		{
-			name: 'Ballast',
-			value: NaN
-		},
-		{
-			name: 'Fresh water',
-			value: NaN
-		},
-		{
-			name: 'Fuel Oil',
-			value: NaN
-		},
-		{
-			name: 'Diesel Oil',
-			value: NaN
-		},
-		{
-			name: 'Lube Oil',
-			value: NaN
-		},
-		{
-			name: 'Other',
-			value: NaN
-		},
-		{
-			name: 'Other Cargo',
-			value: NaN
-		},
-		{
-			name: 'Constant',
-			value: NaN
-		}
-	];
-
 	const calculation = () => {
 		let result = calc(
 			draftsA[0].value,
 			draftsA[1].value,
 			draftsA[2].value,
-
 			draftsB[0].value,
 			draftsB[1].value,
 			draftsB[2].value,
@@ -138,8 +40,7 @@
 				draftsA,
 				draftsB,
 				weight,
-				waterDensityValue,
-				isNew
+				waterDensityValue
 			};
 
 			console.log('result', result);
@@ -149,7 +50,6 @@
 	};
 
 	let vesselName = $page.params.name;
-
 	$: vessel = $VesselsStorage.find((v) => v.name === vesselName) || undefined;
 
 	$: D = [
@@ -158,21 +58,18 @@
 		vessel?.start_value[5]?.value // Daft
 	];
 
+	$: initialData = vessel?.initialData || defaultInitialData;
 	$: categories = vessel?.categories || defaultCategories;
 	$: draftsA = vessel?.draftsA || defaultDraftsA;
 	$: draftsB = vessel?.draftsB || defaultDraftsB;
 	$: weight = vessel?.weight || defaultWeight;
 	$: waterDensityValue = vessel?.waterDensityValue || 0;
-	$: isNew = vessel?.isNew ?? true;
-
-	const handleNext = () => {
-		if (vessel) vessel.isNew = false;
-	};
+	$: stage = vessel?.stage ?? '';
 </script>
 
 {#if browser}
-	{#if isNew}
-		<InitSurvey on:click:next={handleNext} />
+	{#if stage === 'new'}
+		<InitSurvey bind:data={initialData} />
 	{:else}
 		<div class="w-full text-center text-whitePrimary bg-blackPrimary px-4 pb-56">
 			<button

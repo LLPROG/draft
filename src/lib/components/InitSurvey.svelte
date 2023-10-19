@@ -24,6 +24,7 @@
 		if (vessel) {
 			$VesselsStorage[$VesselsStorage.findIndex((v) => v.name === vesselName)] = {
 				...vessel,
+				stage: 'draft',
 				status: selectedOption,
 				initialData: data
 			};
