@@ -12,6 +12,7 @@
 
 	const handleDelete = () => {
 		$VesselsStorage.splice($indexVelles, 1);
+		$VesselsStorage = $VesselsStorage;
 		openPopup = false;
 	};
 </script>

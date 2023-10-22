@@ -5,15 +5,30 @@
 
 	let vesselName = '';
 	let isError = false;
+	let isErrorName = false;
+	let errors = [''];
+
+	let error1 = 'please fill all fields';
+	let errorName = 'please fill vessel name';
 
 	let vessel = defaultValue;
 
 	const handleClick = () => {
+		errors = [''];
+		isError = false;
+		isErrorName = false;
+
 		let print = vessel.start_value.every((v) => v.wasfocusedCount === true);
 
-		if (!print) {
+		if (!print || vesselName === '') {
+			errors = [...errors, error1];
+
+			if (vesselName === '') {
+				errors = [...errors, errorName];
+				isErrorName = true;
+			}
+
 			isError = true;
-			console.log(isError);
 			return;
 		}
 
@@ -26,4 +41,12 @@
 	};
 </script>
 
-<VesselForm on:click={handleClick} bind:isError bind:vesselName bind:vessel isCreate={true} />
+<VesselForm
+	on:click={handleClick}
+	bind:isError
+	bind:isErrorName
+	bind:vesselName
+	bind:vessel
+	bind:errors
+	isCreate={true}
+/>
