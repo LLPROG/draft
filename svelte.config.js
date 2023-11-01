@@ -8,9 +8,7 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: '200.html', // may differ from host to host,
-			precompress: false,
-			strict: true
+			fallback: '200.html' // may differ from host to host,
 		}),
 		paths: {
 			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
