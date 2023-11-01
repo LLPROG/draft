@@ -12,6 +12,9 @@ const config = {
 			precompress: false,
 			strict: true
 		}),
+		paths: {
+			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
+		},
 		alias: {
 			'@components': path.resolve('./src/lib/components'),
 			'@lib': path.resolve('./src/lib')
