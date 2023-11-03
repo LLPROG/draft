@@ -1,139 +1,33 @@
 <script>
 	import VesselForm from '@components/VesselForm.svelte';
-	import { VesselsStorage } from '../../store/store';
+	import { VesselsStorage, defaultValue } from '../../store/store';
 	import { goto } from '$app/navigation';
 
 	let vesselName = '';
 	let isError = false;
-	let categories = [
-		{
-			name: 'Mean Corrected',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: 'Displacement',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: 'TPC',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: 'LCF',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: '1° MTC (Mean + 0.5m)',
-			total: 0,
-			left: NaN,
-			right: NaN
-		},
-		{
-			name: '2° MTC (Mean - 0.5m)',
-			total: 0,
-			left: NaN,
-			right: NaN
-		}
-	];
+	let isErrorName = false;
+	let errors = [''];
 
-	let draftsA = [
-		{
-			name: 'Fwd',
-			value: NaN
-		},
-		{
-			name: 'Mid',
-			value: NaN
-		},
-		{
-			name: 'Aft',
-			value: NaN
-		}
-	];
-
-	let draftsB = [
-		{
-			name: 'Fwd',
-			value: NaN
-		},
-		{
-			name: 'Mid',
-			value: NaN
-		},
-		{
-			name: 'Aft',
-			value: NaN
-		}
-	];
-
-	let weight = [
-		{
-			name: 'Ballast',
-			value: NaN
-		},
-		{
-			name: 'Fresh water',
-			value: NaN
-		},
-		{
-			name: 'Fuel Oil',
-			value: NaN
-		},
-		{
-			name: 'Diesel Oil',
-			value: NaN
-		},
-		{
-			name: 'Lube Oil',
-			value: NaN
-		},
-		{
-			name: 'Other',
-			value: NaN
-		},
-		{
-			name: 'Other Cargo',
-			value: NaN
-		},
-		{
-			name: 'Constant',
-			value: NaN
-		}
-	];
-
-	$: vessel = {
-		name: 'defaultValue',
-		wasNameFocused: false,
-		start_value: [
-			{ name: 'light-ship', value: 0, wasfocusedCount: false },
-			{ name: 'd-fwd-pp', value: 0, wasfocusedCount: false },
-			{ name: 'lbp', value: 0, wasfocusedCount: false },
-			{ name: 'd-mid-pp', value: 0, wasfocusedCount: false },
-			{ name: 'lbm', value: 0, wasfocusedCount: false },
-			{ name: 'd-aft-pp', value: 0, wasfocusedCount: false },
-			{ name: 'keel-thk', value: 0, wasfocusedCount: false }
-		],
-		categories: [...categories],
-		draftsA: [...draftsA],
-		draftsB: [...draftsB],
-		weight: [...weight],
-		waterDensityValue: 0
-	};
+	let error1 = 'please fill all fields';
+	let errorName = 'please fill vessel name';
+	let vessel = defaultValue;
 
 	const handleClick = () => {
+		errors = [''];
+		isError = false;
+		isErrorName = false;
+
 		let print = vessel.start_value.every((v) => v.wasfocusedCount === true);
 
-		if (!print) {
+		if (!print || vesselName === '') {
+			errors = [...errors, error1];
+
+			if (vesselName === '') {
+				errors = [...errors, errorName];
+				isErrorName = true;
+			}
+
 			isError = true;
-			console.log(isError);
 			return;
 		}
 
@@ -146,4 +40,12 @@
 	};
 </script>
 
-<VesselForm on:click={handleClick} bind:isError bind:vesselName bind:vessel isCreate={true} />
+<VesselForm
+	on:click={handleClick}
+	bind:isError
+	bind:isErrorName
+	bind:vesselName
+	bind:vessel
+	bind:errors
+	isCreate={true}
+/>
