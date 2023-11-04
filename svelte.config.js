@@ -6,9 +6,7 @@ import path from 'path';
 const config = {
 	kit: {
 		adapter: adapter({
-			pages: 'build',
-			assets: 'build',
-			fallback: '200.html' // may differ from host to host,
+			fallback: 'index.html'
 		}),
 		paths: {
 			base: process.argv.includes('main') ? '' : process.env.BASE_PATH
