@@ -154,16 +154,16 @@ const defaultValue = {
   name: "defaultValue",
   wasNameFocused: false,
   start_value: [
-    { name: "light-ship", value: NaN, wasfocusedCount: false },
-    { name: "d-fwd-pp", value: NaN, wasfocusedCount: false },
-    { name: "lbp", value: NaN, wasfocusedCount: false },
-    { name: "d-mid-pp", value: NaN, wasfocusedCount: false },
-    { name: "lbm", value: NaN, wasfocusedCount: false },
-    { name: "d-aft-pp", value: NaN, wasfocusedCount: false },
-    { name: "keel-thk", value: NaN, wasfocusedCount: false }
+    { name: "light-ship", value: 0, wasfocusedCount: false },
+    { name: "d-fwd-pp", value: 0, wasfocusedCount: false },
+    { name: "lbp", value: 0, wasfocusedCount: false },
+    { name: "d-mid-pp", value: 0, wasfocusedCount: false },
+    { name: "lbm", value: 0, wasfocusedCount: false },
+    { name: "d-aft-pp", value: 0, wasfocusedCount: false },
+    { name: "keel-thk", value: 0, wasfocusedCount: false }
   ],
   status: "Initial",
-  stage: "new",
+  isNew: true,
   initialData: { ...defaultInitialData },
   categories: [...defaultCategories],
   draftsA: [...defaultDraftsA],
@@ -172,7 +172,7 @@ const defaultValue = {
   waterDensityValue: 0
 };
 const VesselsStorage = persistent({
-  start_value: [defaultValue],
+  start_value: [],
   key: "Vessels",
   // key to save as in Storage
   storage_type: "sessionStorage"
@@ -180,10 +180,5 @@ const VesselsStorage = persistent({
 });
 export {
   VesselsStorage as V,
-  defaultInitialData as a,
-  defaultCategories as b,
-  defaultDraftsA as c,
-  defaultValue as d,
-  defaultDraftsB as e,
-  defaultWeight as f
+  defaultValue as d
 };

@@ -12,11 +12,6 @@ function run_all(fns) {
 function safe_not_equal(a, b) {
   return a != a ? b == b : a !== b || (a && typeof a === "object" || typeof a === "function");
 }
-function validate_store(store, name) {
-  if (store != null && typeof store.subscribe !== "function") {
-    throw new Error(`'${name}' is not a store with a 'subscribe' method`);
-  }
-}
 function subscribe(store, ...callbacks) {
   if (store == null) {
     return noop;
@@ -140,16 +135,15 @@ function add_attribute(name, value, boolean) {
   return ` ${name}${assignment}`;
 }
 export {
-  validate_store as a,
-  subscribe as b,
+  subscribe as a,
+  createEventDispatcher as b,
   create_ssr_component as c,
-  createEventDispatcher as d,
+  each as d,
   escape as e,
   add_attribute as f,
-  each as g,
-  getContext as h,
-  noop as i,
-  safe_not_equal as j,
+  getContext as g,
+  noop as h,
+  safe_not_equal as i,
   missing_component as m,
   null_to_empty as n,
   setContext as s,
