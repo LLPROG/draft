@@ -4,19 +4,17 @@
 	import Button from './ui/Button.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	const dispatch = createEventDispatcher();
 
 	$: route = $page.url.pathname;
 
-	console.log('route', route);
-
 	const goBackPage = () => {
 		if (route.includes('/survey')) {
-			goto(`/vessel/${$page.params.name}`);
+			goto(`${base}/vessel/${$page.params.name}`);
 			return;
 		}
-
 		goto('/home');
 	};
 </script>
