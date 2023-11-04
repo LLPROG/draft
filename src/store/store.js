@@ -1,16 +1,12 @@
-// import { writable } from 'svelte/store';
 import { persistent } from '@furudean/svelte-persistent-store';
-// import { browser } from '$app/environment';
 
-// export let storage = '';
-
-let initialData = {
+export let defaultInitialData = {
 	voy: NaN,
 	year: NaN,
 	Port: ''
 };
 
-let categories = [
+export let defaultCategories = [
 	{
 		name: 'Mean Corrected',
 		total: 0,
@@ -49,7 +45,7 @@ let categories = [
 	}
 ];
 
-let draftsA = [
+export let defaultDraftsA = [
 	{
 		name: 'Fwd',
 		value: NaN
@@ -64,7 +60,7 @@ let draftsA = [
 	}
 ];
 
-let draftsB = [
+export let defaultDraftsB = [
 	{
 		name: 'Fwd',
 		value: NaN
@@ -79,7 +75,7 @@ let draftsB = [
 	}
 ];
 
-let weight = [
+export let defaultWeight = [
 	{
 		name: 'Ballast',
 		value: NaN
@@ -117,7 +113,6 @@ let weight = [
 export const defaultValue = {
 	name: 'defaultValue',
 	wasNameFocused: false,
-	isNew: true,
 	start_value: [
 		{ name: 'light-ship', value: 0, wasfocusedCount: false },
 		{ name: 'd-fwd-pp', value: 0, wasfocusedCount: false },
@@ -128,33 +123,17 @@ export const defaultValue = {
 		{ name: 'keel-thk', value: 0, wasfocusedCount: false }
 	],
 	status: 'Initial',
-	initialData: { ...initialData },
-	categories: [...categories],
-	draftsA: [...draftsA],
-	draftsB: [...draftsB],
-	weight: [...weight],
+	isNew: true,
+	initialData: { ...defaultInitialData },
+	categories: [...defaultCategories],
+	draftsA: [...defaultDraftsA],
+	draftsB: [...defaultDraftsB],
+	weight: [...defaultWeight],
 	waterDensityValue: 0
 };
-// export const Vessel = writable(defaultValue);
-// export const Vessels = writable([defaultValue]);
-// export const isStorage = writable(false);
-
-// if (browser) {
-// 	const storage = localStorage.getItem('vessels') || '[]';
-// 	console.log(storage);
-
-// 	if (storage?.length > 1) {
-// 		Vessels.set(JSON.parse(storage));
-// 		console.log('Vessels', Vessels);
-// 	}
-// }
 
 export const VesselsStorage = persistent({
-	start_value: [defaultValue],
+	start_value: [],
 	key: 'Vessels', // key to save as in Storage
 	storage_type: 'sessionStorage' // Storage object to use
 });
-
-// VesselsStorage.subscribe((value) => {
-// 	console.log('VesselsStorage', value);
-// });

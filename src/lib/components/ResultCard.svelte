@@ -15,8 +15,8 @@
 		{ label: 'Displacement', value: 92 },
 		{ label: 'TPC', value: 5 },
 		{ label: 'LCF', value: 6 },
-		{ label: '1° MTC (Mean + 0.5m)', value: 94 },
-		{ label: '2° MTC (Mean - 0.5m)', value: 30 },
+		{ label: '1°MTC(Mean + 0.5m)', value: 94 },
+		{ label: '2°MTC(Mean - 0.5m)', value: 30 },
 		{ label: 'Mean Corrected', value: 0 }
 	];
 
@@ -65,18 +65,16 @@
 <div class="w-full rounded-2xl result py-4">
 	<ul class="w-full">
 		{#each options as option}
-			<li class="w-full flex justify-center items-center gap-2 text-[rgba(235,255,229,0.8)]">
-				<input
-					value={addCaracter(':', option.label)}
-					class="text-end bg-transparent"
-					id="name"
-					type="text"
-				/>
+			<li class="w-full grid grid-cols-2 gap-2 text-[rgba(235,255,229,0.8)]">
+				<label class="text-end w-full max-w-[11rem] truncate" for="name"
+					>{addCaracter(':', option.label)}</label
+				>
 				<input
 					value={addCaracter(' M', option.value)}
 					class="text-start bg-transparent"
 					id="name"
 					type="text"
+					disabled={true}
 				/>
 			</li>
 		{/each}

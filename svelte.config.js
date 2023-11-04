@@ -11,7 +11,7 @@ const config = {
 			fallback: '200.html' // may differ from host to host,
 		}),
 		paths: {
-			base: process.argv.includes('mian') ? '' : process.env.BASE_PATH
+			base: process.argv.includes('main') ? '' : process.env.BASE_PATH
 		},
 		alias: {
 			'@components': path.resolve('./src/lib/components'),
