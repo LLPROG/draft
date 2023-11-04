@@ -1,4 +1,4 @@
-import { c as create_ssr_component, d as each, e as escape, b as createEventDispatcher, v as validate_component, a as subscribe } from "../../../chunks/index2.js";
+import { c as create_ssr_component, f as each, e as escape, b as createEventDispatcher, v as validate_component, a as subscribe } from "../../../chunks/index2.js";
 import { I as Input } from "../../../chunks/Input.js";
 import { B as Button } from "../../../chunks/Button.js";
 import { d as defaultValue, V as VesselsStorage } from "../../../chunks/store.js";

@@ -9,18 +9,19 @@ export const nodes = [
 	() => import('./nodes/5'),
 	() => import('./nodes/6'),
 	() => import('./nodes/7'),
-	() => import('./nodes/8')
+	() => import('./nodes/8'),
+	() => import('./nodes/9')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
-		"/": [3],
-		"/create-vessel": [4,[2]],
-		"/home": [5],
-		"/upload": [6],
-		"/vessel/[name]": [7],
-		"/vessel/[name]/survey": [8]
+		"/": [4],
+		"/create-vessel": [5,[2]],
+		"/home": [6],
+		"/upload": [7],
+		"/vessel/[name]": [8,[3]],
+		"/vessel/[name]/survey": [9,[3]]
 	};
 
 export const hooks = {
