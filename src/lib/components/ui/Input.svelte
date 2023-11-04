@@ -40,7 +40,7 @@
 				valueT = e.currentTarget.value;
 				dispatch('change', valueT);
 			}}
-			bind:value={valueT}
+			value={valueT}
 			class={clsx(style)}
 			type="text"
 		/>
@@ -59,7 +59,7 @@
 				valueN = parseFloat(e.currentTarget.value);
 				dispatch('change', valueN);
 			}}
-			bind:value={valueN}
+			value={valueN}
 			class={clsx(style)}
 			type="number"
 		/>

@@ -1,6 +1,6 @@
 <script>
 	import Input from '@components/ui/Input.svelte';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import Button from './ui/Button.svelte';
 	import { defaultValue } from '../../store/store';
 	import VesselFormErrors from './VesselFormErrors.svelte';
@@ -66,7 +66,7 @@
 		</div>
 	</div>
 
-	{#if isError}
+	{#if isError || isErrorName}
 		<VesselFormErrors bind:errors />
 	{/if}
 </form>

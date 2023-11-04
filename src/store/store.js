@@ -1,8 +1,4 @@
-// import { writable } from 'svelte/store';
 import { persistent } from '@furudean/svelte-persistent-store';
-// import { browser } from '$app/environment';
-
-// export let storage = '';
 
 export let defaultInitialData = {
 	voy: NaN,
@@ -118,16 +114,16 @@ export const defaultValue = {
 	name: 'defaultValue',
 	wasNameFocused: false,
 	start_value: [
-		{ name: 'light-ship', value: NaN, wasfocusedCount: false },
-		{ name: 'd-fwd-pp', value: NaN, wasfocusedCount: false },
-		{ name: 'lbp', value: NaN, wasfocusedCount: false },
-		{ name: 'd-mid-pp', value: NaN, wasfocusedCount: false },
-		{ name: 'lbm', value: NaN, wasfocusedCount: false },
-		{ name: 'd-aft-pp', value: NaN, wasfocusedCount: false },
-		{ name: 'keel-thk', value: NaN, wasfocusedCount: false }
+		{ name: 'light-ship', value: 0, wasfocusedCount: false },
+		{ name: 'd-fwd-pp', value: 0, wasfocusedCount: false },
+		{ name: 'lbp', value: 0, wasfocusedCount: false },
+		{ name: 'd-mid-pp', value: 0, wasfocusedCount: false },
+		{ name: 'lbm', value: 0, wasfocusedCount: false },
+		{ name: 'd-aft-pp', value: 0, wasfocusedCount: false },
+		{ name: 'keel-thk', value: 0, wasfocusedCount: false }
 	],
 	status: 'Initial',
-	stage: 'new',
+	isNew: true,
 	initialData: { ...defaultInitialData },
 	categories: [...defaultCategories],
 	draftsA: [...defaultDraftsA],

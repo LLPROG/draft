@@ -8,7 +8,6 @@
 	import { VesselsStorage, defaultValue } from '../../../../store/store';
 	import { page } from '$app/stores';
 	import InitSurvey from '@components/InitSurvey.svelte';
-	import { browser } from '$app/environment';
 
 	let waterDensityValue = 0;
 	let openMean = false;
@@ -58,7 +57,6 @@
 	$: draftsB = vessel?.draftsB || defaultValue.draftsB;
 	$: weight = vessel?.weight || defaultValue.weight;
 	$: waterDensityValue = defaultValue.waterDensityValue || 0;
-	$: if (vessel) isNew = vessel.isNew;
 
 	const handleNext = () => {
 		isNew = false;
