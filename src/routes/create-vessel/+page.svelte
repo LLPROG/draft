@@ -2,6 +2,7 @@
 	import VesselForm from '@components/VesselForm.svelte';
 	import { VesselsStorage, defaultValue } from '../../store/store';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	let vesselName = '';
 	let isError = false;
@@ -29,7 +30,7 @@
 		$VesselsStorage = [...$VesselsStorage, vessel];
 
 		resetData();
-		goto('/home');
+		goto(`${base}/home`);
 	};
 
 	function chechErrors() {
