@@ -10,12 +10,13 @@
 	export let disabled = false;
 	export let type = 'text';
 	export let isError = false;
+	export let isErrorName = false;
 	export let wasfocused = false;
 
-	let style = {
-		'p-4 inner-sh rounded-xl bg-green bg-opacity-[10%] shadoww text-center border-0 focus:outline focus:outline-[1px] outline-white': true,
-		'border-2 border-red-400': isError && !wasfocused,
-		'fix-value': disabled
+	$: style = {
+		'p-4 inner-sh rounded-xl bg-green bg-opacity-[10%] shadoww text-center border-0 focus:outline focus:outline-[2px] outline-greenAccent': true,
+		'outline outline-[2px] outline-red-400': (isError && !wasfocused) || isErrorName,
+		'disabled-custom': disabled
 	};
 </script>
 
@@ -26,39 +27,48 @@
 	{#if type === 'text'}
 		<input
 			placeholder=""
+			{id}
+			name={id}
 			{disabled}
-			on:focus={() => dispatch('focus')}
+			on:focus={() => {
+				wasfocused = true;
+				isError = false;
+				isErrorName = false;
+				dispatch('focus');
+			}}
 			on:change={(e) => {
 				valueT = e.currentTarget.value;
 				dispatch('change', valueT);
 			}}
-			{id}
-			name={id}
-			class={clsx(style)}
 			bind:value={valueT}
+			class={clsx(style)}
 			type="text"
 		/>
 	{:else}
 		<input
 			placeholder=""
+			{id}
+			name={id}
 			{disabled}
-			on:focus={() => dispatch('focus')}
+			on:focus={() => {
+				wasfocused = true;
+				isError = false;
+				dispatch('focus');
+			}}
 			on:change={(e) => {
 				valueN = parseFloat(e.currentTarget.value);
 				dispatch('change', valueN);
 			}}
-			{id}
-			name={id}
-			class={clsx(style)}
 			bind:value={valueN}
+			class={clsx(style)}
 			type="number"
 		/>
 	{/if}
 </div>
 
 <style>
-	.fix-value {
-		background: #e0e7f108;
+	.disabled-custom {
+		background: #e0e7f129;
 		backdrop-filter: blur(10px);
 	}
 

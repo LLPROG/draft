@@ -119,13 +119,13 @@ export const defaultValue = {
 	wasNameFocused: false,
 	isNew: true,
 	start_value: [
-		{ name: 'light-ship', value: 0, wasfocusedCount: false },
-		{ name: 'd-fwd-pp', value: 0, wasfocusedCount: false },
-		{ name: 'lbp', value: 0, wasfocusedCount: false },
-		{ name: 'd-mid-pp', value: 0, wasfocusedCount: false },
-		{ name: 'lbm', value: 0, wasfocusedCount: false },
-		{ name: 'd-aft-pp', value: 0, wasfocusedCount: false },
-		{ name: 'keel-thk', value: 0, wasfocusedCount: false }
+		{ name: 'light-ship', value: NaN, wasfocusedCount: false },
+		{ name: 'd-fwd-pp', value: NaN, wasfocusedCount: false },
+		{ name: 'lbp', value: NaN, wasfocusedCount: false },
+		{ name: 'd-mid-pp', value: NaN, wasfocusedCount: false },
+		{ name: 'lbm', value: NaN, wasfocusedCount: false },
+		{ name: 'd-aft-pp', value: NaN, wasfocusedCount: false },
+		{ name: 'keel-thk', value: NaN, wasfocusedCount: false }
 	],
 	status: 'Initial',
 	initialData: { ...initialData },
@@ -135,22 +135,9 @@ export const defaultValue = {
 	weight: [...weight],
 	waterDensityValue: 0
 };
-// export const Vessel = writable(defaultValue);
-// export const Vessels = writable([defaultValue]);
-// export const isStorage = writable(false);
-
-// if (browser) {
-// 	const storage = localStorage.getItem('vessels') || '[]';
-// 	console.log(storage);
-
-// 	if (storage?.length > 1) {
-// 		Vessels.set(JSON.parse(storage));
-// 		console.log('Vessels', Vessels);
-// 	}
-// }
 
 export const VesselsStorage = persistent({
-	start_value: [defaultValue],
+	start_value: [],
 	key: 'Vessels', // key to save as in Storage
 	storage_type: 'sessionStorage' // Storage object to use
 });

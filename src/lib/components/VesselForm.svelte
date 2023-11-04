@@ -1,6 +1,6 @@
 <script>
 	import Input from '@components/ui/Input.svelte';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import Button from './ui/Button.svelte';
 	import { defaultValue } from '../../store/store';
 	const dispatch = createEventDispatcher();
@@ -9,34 +9,34 @@
 
 	export let isError = false;
 	export let isErrorName = false;
-	export let errors = [''];
 	export let vesselName = '';
 	export let wasNameFocused = false;
 	export let isCreate = false;
 	export let redirect = '';
 	export let disabled = false;
+	export let errors = [''];
 </script>
 
 <form class="w-full p-4" on:submit|preventDefault>
 	<Input
-		{disabled}
-		bind:wasfocused={wasNameFocused}
-		bind:isError={isErrorName}
 		id="name"
 		label="Vessel Name"
 		type="text"
+		{disabled}
+		bind:wasfocused={wasNameFocused}
+		bind:isError={isErrorName}
 		bind:valueT={vesselName}
 		on:focus={() => (wasNameFocused = true)}
 	/>
 	<div class="relative grid grid-cols-2 gap-4 pt-2">
 		{#each vessel.start_value as { name, value, wasfocusedCount }}
 			<Input
+				id={name}
+				label={name}
+				type="number"
 				{disabled}
 				bind:wasfocused={wasfocusedCount}
 				bind:isError
-				type="number"
-				id={name}
-				label={name}
 				bind:valueN={value}
 				on:focus={() => (wasfocusedCount = true)}
 			/>
@@ -64,5 +64,10 @@
 				/>
 			{/if}
 		</div>
+	</div>
+	<div>
+		{#each errors as error}
+			<p class="text-red-500 text-center">{error}</p>
+		{/each}
 	</div>
 </form>

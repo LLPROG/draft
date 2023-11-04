@@ -2,6 +2,7 @@
 	import VesselForm from '@components/VesselForm.svelte';
 	import { VesselsStorage, defaultValue } from '../../store/store';
 	import { goto } from '$app/navigation';
+	import { afterUpdate } from 'svelte';
 
 	let vesselName = '';
 	let isError = false;
@@ -35,9 +36,13 @@
 		$VesselsStorage = [...$VesselsStorage, vessel];
 
 		goto('/home');
-
-		console.log('save');
 	};
+
+	afterUpdate(() => {
+		//reset values
+		vessel = defaultValue;
+		vesselName = '';
+	});
 </script>
 
 <VesselForm
