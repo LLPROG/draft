@@ -4,13 +4,13 @@ import { persistent } from '@furudean/svelte-persistent-store';
 
 // export let storage = '';
 
-let initialData = {
+export let defaultInitialData = {
 	voy: NaN,
 	year: NaN,
 	Port: ''
 };
 
-let categories = [
+export let defaultCategories = [
 	{
 		name: 'Mean Corrected',
 		total: 0,
@@ -49,7 +49,7 @@ let categories = [
 	}
 ];
 
-let draftsA = [
+export let defaultDraftsA = [
 	{
 		name: 'Fwd',
 		value: NaN
@@ -64,7 +64,7 @@ let draftsA = [
 	}
 ];
 
-let draftsB = [
+export let defaultDraftsB = [
 	{
 		name: 'Fwd',
 		value: NaN
@@ -79,7 +79,7 @@ let draftsB = [
 	}
 ];
 
-let weight = [
+export let defaultWeight = [
 	{
 		name: 'Ballast',
 		value: NaN
@@ -117,7 +117,6 @@ let weight = [
 export const defaultValue = {
 	name: 'defaultValue',
 	wasNameFocused: false,
-	isNew: true,
 	start_value: [
 		{ name: 'light-ship', value: NaN, wasfocusedCount: false },
 		{ name: 'd-fwd-pp', value: NaN, wasfocusedCount: false },
@@ -128,11 +127,12 @@ export const defaultValue = {
 		{ name: 'keel-thk', value: NaN, wasfocusedCount: false }
 	],
 	status: 'Initial',
-	initialData: { ...initialData },
-	categories: [...categories],
-	draftsA: [...draftsA],
-	draftsB: [...draftsB],
-	weight: [...weight],
+	stage: 'new',
+	initialData: { ...defaultInitialData },
+	categories: [...defaultCategories],
+	draftsA: [...defaultDraftsA],
+	draftsB: [...defaultDraftsB],
+	weight: [...defaultWeight],
 	waterDensityValue: 0
 };
 
@@ -141,7 +141,3 @@ export const VesselsStorage = persistent({
 	key: 'Vessels', // key to save as in Storage
 	storage_type: 'sessionStorage' // Storage object to use
 });
-
-// VesselsStorage.subscribe((value) => {
-// 	console.log('VesselsStorage', value);
-// });

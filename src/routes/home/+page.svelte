@@ -4,6 +4,7 @@
 	import LogoMain from '@components/ui/LogoMain.svelte';
 	import Popup from '@components/Popup.svelte';
 	import { getContext } from 'svelte';
+	import { base } from '$app/paths';
 
 	export let openPopup = false;
 
@@ -25,7 +26,7 @@
 
 	<Button
 		disabled={openPopup}
-		href="/create-vessel"
+		href={`${base}/create-vessel`}
 		classProp="flex w-full"
 		message="My Fleet"
 		chooseType="primary"
@@ -57,7 +58,7 @@
 		<Popup bind:isOpen={openPopup}>
 			<div class="w-full" slot="body">
 				<Button
-					href={`/vessel/${$selectedVessel?.name}`}
+					href={`${base}/vessel/${$selectedVessel?.name}`}
 					isButton={false}
 					chooseType="tertiary"
 					icon="arrowBlack"

@@ -4,6 +4,7 @@
 	import { VesselsStorage } from '../../../store/store';
 	import { browser } from '$app/environment';
 	import Button from '@components/ui/Button.svelte';
+	import { base } from '$app/paths';
 
 	let vesselName = $page.params.name;
 	let vessel = $VesselsStorage.find((v) => v.name === vesselName);
@@ -16,7 +17,7 @@
 		<VesselForm bind:vesselName bind:vessel redirect="/home" disabled={true} />
 		<Button
 			isButton={false}
-			href={`/vessel/${$page.params.name}/survey`}
+			href={`${base}/vessel/${$page.params.name}/survey`}
 			classProp="flex w-full"
 			message="Survey"
 			chooseType="primary"

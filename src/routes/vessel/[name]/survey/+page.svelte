@@ -19,7 +19,6 @@
 			draftsA[0].value,
 			draftsA[1].value,
 			draftsA[2].value,
-
 			draftsB[0].value,
 			draftsB[1].value,
 			draftsB[2].value,
@@ -34,8 +33,7 @@
 				draftsA,
 				draftsB,
 				weight,
-				waterDensityValue,
-				isNew
+				waterDensityValue
 			};
 
 			console.log('result', result);
@@ -45,7 +43,6 @@
 	};
 
 	let vesselName = $page.params.name;
-
 	$: vessel = $VesselsStorage.find((v) => v.name === vesselName) || undefined;
 
 	let isNew = vessel?.isNew || defaultValue.isNew;

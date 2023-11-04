@@ -3,6 +3,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import Button from './ui/Button.svelte';
 	import { defaultValue } from '../../store/store';
+	import VesselFormErrors from './VesselFormErrors.svelte';
 	const dispatch = createEventDispatcher();
 
 	export let vessel = defaultValue;
@@ -20,7 +21,7 @@
 <form class="w-full p-4" on:submit|preventDefault>
 	<Input
 		id="name"
-		label="Vessel Name"
+		label="Vessel"
 		type="text"
 		{disabled}
 		bind:wasfocused={wasNameFocused}
@@ -38,7 +39,6 @@
 				bind:wasfocused={wasfocusedCount}
 				bind:isError
 				bind:valueN={value}
-				on:focus={() => (wasfocusedCount = true)}
 			/>
 		{/each}
 
@@ -65,9 +65,8 @@
 			{/if}
 		</div>
 	</div>
-	<div>
-		{#each errors as error}
-			<p class="text-red-500 text-center">{error}</p>
-		{/each}
-	</div>
+
+	{#if isError}
+		<VesselFormErrors bind:errors />
+	{/if}
 </form>

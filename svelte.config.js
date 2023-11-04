@@ -1,17 +1,16 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
-import path from 'path';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+	preprocess: vitePreprocess(),
+
 	kit: {
 		adapter: adapter(),
-		alias: {
-			'@components': path.resolve('./src/lib/components'),
-			'@lib': path.resolve('./src/lib')
+		paths: {
+			base: process.env.NODE_ENV === 'production' ? '/draft' : ''
 		}
-	},
-	preprocess: vitePreprocess()
+	}
 };
 
 export default config;
