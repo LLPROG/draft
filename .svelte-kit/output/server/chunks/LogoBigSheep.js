@@ -1,4 +1,4 @@
-import { c as create_ssr_component, f as add_attribute } from "./index2.js";
+import { c as create_ssr_component, d as add_attribute } from "./index2.js";
 const LogoBigSheep = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { divisor = 1 } = $$props;
   if ($$props.divisor === void 0 && $$bindings.divisor && divisor !== void 0)

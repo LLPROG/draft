@@ -1,4 +1,4 @@
-import { c as create_ssr_component, a as subscribe, g as getContext, v as validate_component, d as each } from "../../../chunks/index2.js";
+import { c as create_ssr_component, a as subscribe, g as getContext, v as validate_component, f as each } from "../../../chunks/index2.js";
 import { V as VesselsStorage } from "../../../chunks/store.js";
 import { B as Button } from "../../../chunks/Button.js";
 import { L as LogoMain } from "../../../chunks/LogoMain.js";

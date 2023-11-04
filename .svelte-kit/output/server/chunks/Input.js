@@ -1,4 +1,4 @@
-import { c as create_ssr_component, b as createEventDispatcher, e as escape, n as null_to_empty, f as add_attribute } from "./index2.js";
+import { c as create_ssr_component, b as createEventDispatcher, e as escape, n as null_to_empty, d as add_attribute } from "./index2.js";
 import clsx from "clsx";
 /* empty css                                     */const css = {
   code: ".disabled-custom.svelte-4stq26{background:#e0e7f129;backdrop-filter:blur(10px)}.inner-sh.svelte-4stq26{-webkit-box-shadow:inset 5px 5px 15px -4px #ffffff;box-shadow:inset 5px 5px 8px -4px #00000070}",

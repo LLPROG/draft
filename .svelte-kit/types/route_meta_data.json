@@ -1,8 +1,26 @@
 {
-	"/": [],
-	"/create-vessel": [],
-	"/home": [],
-	"/upload": [],
-	"/vessel/[name]": [],
-	"/vessel/[name]/survey": []
+	"/": [
+		"src/routes/+layout.js",
+		"src/routes/+layout.js"
+	],
+	"/create-vessel": [
+		"src/routes/+layout.js",
+		"src/routes/+layout.js"
+	],
+	"/home": [
+		"src/routes/+layout.js"
+	],
+	"/upload": [
+		"src/routes/+layout.js"
+	],
+	"/vessel/[name]": [
+		"src/routes/vessel/[name]/+layout.js",
+		"src/routes/+layout.js",
+		"src/routes/vessel/[name]/+layout.js",
+		"src/routes/+layout.js"
+	],
+	"/vessel/[name]/survey": [
+		"src/routes/vessel/[name]/+layout.js",
+		"src/routes/+layout.js"
+	]
 }
