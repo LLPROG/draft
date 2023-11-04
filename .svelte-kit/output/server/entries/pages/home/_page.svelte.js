@@ -1,10 +1,11 @@
-import { c as create_ssr_component, a as validate_store, b as subscribe, h as getContext, v as validate_component, g as each } from "../../../chunks/index2.js";
+import { c as create_ssr_component, a as subscribe, g as getContext, v as validate_component, d as each } from "../../../chunks/index2.js";
 import { V as VesselsStorage } from "../../../chunks/store.js";
 import { B as Button } from "../../../chunks/Button.js";
 import { L as LogoMain } from "../../../chunks/LogoMain.js";
+import { b as base } from "../../../chunks/paths.js";
 const Popup_svelte_svelte_type_style_lang = "";
 const css = {
-  code: ".popup.s-AfDz4RO5HvPi{background:linear-gradient(\r\n			95.14deg,\r\n			rgba(133, 233, 108, 0.7) 0%,\r\n			rgba(61, 186, 111, 0.7) 100%\r\n		);backdrop-filter:blur(10px)}",
+  code: ".popup.svelte-372hok{background:linear-gradient(\r\n			95.14deg,\r\n			rgba(133, 233, 108, 0.7) 0%,\r\n			rgba(61, 186, 111, 0.7) 100%\r\n		);backdrop-filter:blur(10px)}",
   map: null
 };
 const Popup = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -12,7 +13,7 @@ const Popup = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   if ($$props.isOpen === void 0 && $$bindings.isOpen && isOpen !== void 0)
     $$bindings.isOpen(isOpen);
   $$result.css.add(css);
-  return `<div class="w-full fixed top-0 right-0 left-0 bottom-0"><div class="fixed px-4 w-full min-h-[50vh] bottom-0 left-0 rounded-t-3xl popup s-AfDz4RO5HvPi"><div class="w-full py-4">${slots.header ? slots.header({}) : ``}</div>
+  return `<div class="w-full fixed top-0 right-0 left-0 bottom-0"><div class="fixed px-4 w-full min-h-[50vh] bottom-0 left-0 rounded-t-3xl popup svelte-372hok"><div class="w-full py-4">${slots.header ? slots.header({}) : ``}</div>
 		<div class="w-full py-2">${slots.body ? slots.body({}) : ``}</div></div>
 </div>`;
 });
@@ -20,14 +21,11 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $VesselsStorage, $$unsubscribe_VesselsStorage;
   let $$unsubscribe_indexVelles;
   let $selectedVessel, $$unsubscribe_selectedVessel;
-  validate_store(VesselsStorage, "VesselsStorage");
   $$unsubscribe_VesselsStorage = subscribe(VesselsStorage, (value) => $VesselsStorage = value);
   let { openPopup = false } = $$props;
   let indexVelles = getContext("indexVelles");
-  validate_store(indexVelles, "indexVelles");
   $$unsubscribe_indexVelles = subscribe(indexVelles, (value) => value);
   let selectedVessel = getContext("selectedVessel");
-  validate_store(selectedVessel, "selectedVessel");
   $$unsubscribe_selectedVessel = subscribe(selectedVessel, (value) => $selectedVessel = value);
   if ($$props.openPopup === void 0 && $$bindings.openPopup && openPopup !== void 0)
     $$bindings.openPopup(openPopup);
@@ -42,7 +40,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result,
       {
         disabled: openPopup,
-        href: "/create-vessel",
+        href: `${base}/create-vessel`,
         classProp: "flex w-full",
         message: "My Fleet",
         chooseType: "primary",
@@ -82,7 +80,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           return `<div class="w-full" slot="body">${validate_component(Button, "Button").$$render(
             $$result,
             {
-              href: `/vessel/${$selectedVessel?.name}`,
+              href: `${base}/vessel/${$selectedVessel?.name}`,
               isButton: false,
               chooseType: "tertiary",
               icon: "arrowBlack",

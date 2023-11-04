@@ -1,4 +1,4 @@
-import { c as create_ssr_component, a as validate_store, b as subscribe, d as createEventDispatcher, v as validate_component, s as setContext } from "../../chunks/index2.js";
+import { c as create_ssr_component, a as subscribe, b as createEventDispatcher, v as validate_component, s as setContext } from "../../chunks/index2.js";
 import { p as page } from "../../chunks/stores.js";
 import { B as Button } from "../../chunks/Button.js";
 import { w as writable } from "../../chunks/index.js";
@@ -9,7 +9,6 @@ const LogoNavbar = create_ssr_component(($$result, $$props, $$bindings, slots) =
 const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let route;
   let $page, $$unsubscribe_page;
-  validate_store(page, "page");
   $$unsubscribe_page = subscribe(page, (value) => $page = value);
   createEventDispatcher();
   console.log("route", route);
@@ -31,7 +30,6 @@ const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $page, $$unsubscribe_page;
-  validate_store(page, "page");
   $$unsubscribe_page = subscribe(page, (value) => $page = value);
   let indexVelles = writable(0);
   let selectedVessel = writable({ name: "defaultValue" });
