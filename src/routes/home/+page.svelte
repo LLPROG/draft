@@ -58,7 +58,7 @@
 		<Popup bind:isOpen={openPopup}>
 			<div class="w-full" slot="body">
 				<Button
-					href={`${base}/vessel/${$selectedVessel?.name}`}
+					href={`${base}/vessel/${$selectedVessel?.id}`}
 					isButton={false}
 					chooseType="tertiary"
 					icon="arrowBlack"

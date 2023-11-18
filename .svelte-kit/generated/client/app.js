@@ -20,8 +20,8 @@ export const dictionary = {
 		"/create-vessel": [5,[2]],
 		"/home": [6],
 		"/upload": [7],
-		"/vessel/[name]": [8,[3]],
-		"/vessel/[name]/survey": [9,[3]]
+		"/vessel/[id]": [8,[3]],
+		"/vessel/[id]/survey": [9,[3]]
 	};
 
 export const hooks = {

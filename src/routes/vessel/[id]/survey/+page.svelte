@@ -26,7 +26,7 @@
 		);
 
 		if (vessel) {
-			$VesselsStorage[$VesselsStorage.findIndex((v) => v.name === vesselName)] = {
+			$VesselsStorage[vesselIndex] = {
 				...vessel,
 				categories,
 				draftsA,
@@ -41,10 +41,10 @@
 		}
 	};
 
-	let vesselName = $page.params.name;
-	$: vessel = $VesselsStorage.find((v) => v.name === vesselName) || undefined;
+	let vesselId = $page.params.id;
+	let vesselIndex = $VesselsStorage.findIndex((v) => v.id === vesselId);
 
-	let isNew = vessel?.isNew || defaultValue.isNew;
+	$: vessel = $VesselsStorage.find((v) => v.id === vesselId) || undefined;
 
 	$: D = [
 		vessel?.start_value[1]?.value, //Dfwd
@@ -57,15 +57,11 @@
 	$: draftsB = vessel?.draftsB || defaultValue.draftsB;
 	$: weight = vessel?.weight || defaultValue.weight;
 	$: waterDensityValue = defaultValue.waterDensityValue || 0;
-
-	const handleNext = () => {
-		isNew = false;
-		console.log('isNew', isNew);
-	};
+	$: vesselStatus = vessel?.status || 'undefined';
 </script>
 
-{#if isNew}
-	<InitSurvey on:click:next={() => handleNext()} />
+{#if vesselStatus === 'undefined'}
+	<InitSurvey />
 {:else}
 	<div class="w-full text-center text-whitePrimary bg-blackPrimary px-4 pb-56">
 		<button

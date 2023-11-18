@@ -12,7 +12,7 @@
 
 	const goBackPage = () => {
 		if (route.includes('/survey')) {
-			goto(`${base}/vessel/${$page.params.name}`);
+			goto(`${base}/vessel/${$page.params.id}`);
 			return;
 		}
 		goto('/home');
