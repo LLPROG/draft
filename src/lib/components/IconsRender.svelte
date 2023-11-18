@@ -7,6 +7,8 @@
 	import StarIcon from './ui/StarIcon.svelte';
 	import SaveIcon from './ui/SaveIcon.svelte';
 	import HambIcon from './ui/HambIcon.svelte';
+	import UncheckIcon from './ui/UncheckIcon.svelte';
+	import CheckIcon from './ui/CheckIcon.svelte';
 
 	export let icon = 'plus';
 </script>
@@ -34,4 +36,10 @@
 {/if}
 {#if icon === 'hamb'}
 	<span class="ms-auto"><HambIcon /></span>
+{/if}
+{#if icon === 'check'}
+	<span><CheckIcon /></span>
+{/if}
+{#if icon === 'uncheck'}
+	<span><UncheckIcon /></span>
 {/if}

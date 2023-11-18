@@ -3,6 +3,9 @@
 		"src/routes/+layout.js",
 		"src/routes/+layout.js"
 	],
+	"/bot-plan": [
+		"src/routes/+layout.js"
+	],
 	"/create-vessel": [
 		"src/routes/+layout.js",
 		"src/routes/+layout.js"
