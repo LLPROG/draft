@@ -15,7 +15,7 @@
 
 	$: style = {
 		'p-4 inner-sh rounded-xl bg-green bg-opacity-[10%] shadoww text-center border-0 focus:outline focus:outline-[2px] outline-greenAccent': true,
-		'outline outline-[2px] outline-red-400': (isError && !wasfocused) || isErrorName,
+		'outline outline-[2px] outline-red-400': isError || isErrorName,
 		'disabled-custom': disabled
 	};
 </script>

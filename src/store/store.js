@@ -32,7 +32,19 @@ export let defaultCategories = [
 		right: NaN
 	},
 	{
+		name: 'Mean Corrected',
+		total: 0,
+		left: NaN,
+		right: NaN
+	},
+	{
 		name: '1° MTC (Mean + 0.5m)',
+		total: 0,
+		left: NaN,
+		right: NaN
+	},
+	{
+		name: 'Mean Corrected',
 		total: 0,
 		left: NaN,
 		right: NaN
@@ -111,6 +123,7 @@ export let defaultWeight = [
 ];
 
 export const defaultValue = {
+	id: 0,
 	name: 'defaultValue',
 	wasNameFocused: false,
 	start_value: [
@@ -122,8 +135,7 @@ export const defaultValue = {
 		{ name: 'd-aft-pp', value: 0, wasfocusedCount: false },
 		{ name: 'keel-thk', value: 0, wasfocusedCount: false }
 	],
-	status: 'Initial',
-	isNew: true,
+	status: 'undefined',
 	initialData: { ...defaultInitialData },
 	categories: [...defaultCategories],
 	draftsA: [...defaultDraftsA],

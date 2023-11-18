@@ -5,31 +5,41 @@
 	import Input from './ui/Input.svelte';
 	import LogoBigSheep from './ui/LogoBigSheep.svelte';
 	import RadioList from './ui/RadioList.svelte';
-	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
 
 	export let options = ['Initial', 'Intermediate', 'Final'];
 	export let selectedOption = 'Initial';
-
 	export let data = {
 		voy: NaN,
 		year: NaN,
 		Port: ''
 	};
 
-	let vesselName = $page.params.name;
-	$: vessel = $VesselsStorage.find((v) => v.name === vesselName) || undefined;
+	let isError = false;
+	let vesselId = $page.params.id;
+	let vesselIndex = $VesselsStorage.findIndex((v) => v.id === vesselId);
+
+	$: vessel = $VesselsStorage.find((v) => v.id === vesselId) || undefined;
 
 	const handleClick = () => {
+		let error = catchErrors();
+		if (error) {
+			isError = true;
+			return;
+		}
+		console.log('error passed', isError);
+		console.log(vesselId);
 		if (vessel) {
-			$VesselsStorage[$VesselsStorage.findIndex((v) => v.name === vesselName)] = {
+			$VesselsStorage[vesselIndex] = {
 				...vessel,
-				stage: 'draft',
 				status: selectedOption,
 				initialData: data
 			};
 		}
-		dispatch('click:next');
+	};
+
+	const catchErrors = () => {
+		if (isNaN(data.voy) || isNaN(data.year) || data.Port === '') return true;
+		return false;
 	};
 </script>
 
@@ -40,11 +50,26 @@
 		<div class="basis-2/3 flex flex-col gap-8">
 			<!-- FORM -->
 			<div class="form grid grid-cols-2 gap-4 text-start">
-				<Input label="Voy Nr" bind:valueN={data.voy} className="w-full" id="name" type="number" />
-				<Input label="Year" bind:valueN={data.year} className="w-full" id="name" type="number" />
+				<Input
+					label="Voy Nr"
+					bind:valueN={data.voy}
+					bind:isError
+					className="w-full"
+					id="name"
+					type="number"
+				/>
+				<Input
+					label="Year"
+					bind:valueN={data.year}
+					bind:isError
+					className="w-full"
+					id="name"
+					type="number"
+				/>
 				<Input
 					label="Port"
 					bind:valueT={data.Port}
+					bind:isError
 					className="w-full col-span-2"
 					id="name"
 					type="text"

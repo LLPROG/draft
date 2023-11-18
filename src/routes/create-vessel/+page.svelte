@@ -3,6 +3,7 @@
 	import { VesselsStorage, defaultValue } from '../../store/store';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import { v4 as uuidv4 } from 'uuid';
 
 	let vesselName = '';
 	let isError = false;
@@ -11,23 +12,23 @@
 
 	let error1 = 'please fill all fields';
 	let errorName = 'please fill vessel name';
+	let errorDuplicateName = 'vessel name already exists';
 
 	let vessel = defaultValue;
-
 	$: pass = vessel.start_value.every((v) => v.wasfocusedCount === true);
 
 	const handleClick = () => {
 		resetErrors();
+		let error = chechErrors();
+		if (error) return;
 
-		if (!pass || vesselName === '') {
-			chechErrors();
-			return;
-		} else {
-			resetErrors();
-		}
+		vessel = {
+			...vessel,
+			id: uuidv4(),
+			name: vesselName
+		};
 
-		vessel.name = vesselName;
-		$VesselsStorage = [...$VesselsStorage, vessel];
+		$VesselsStorage = [vessel, ...$VesselsStorage];
 
 		resetData();
 		goto(`${base}/home`);
@@ -37,20 +38,19 @@
 		if (!pass) {
 			errors = [...errors, error1];
 			isError = true;
-		} else {
-			errors.splice(errors.indexOf(error1), 1);
-			errors = errors;
-			isError = false;
 		}
 
 		if (vesselName === '') {
 			errors = [...errors, errorName];
 			isErrorName = true;
-		} else {
-			errors.splice(errors.indexOf(errorName), 1);
-			errors = errors;
-			isErrorName = false;
 		}
+
+		if ($VesselsStorage.some((v) => v.name === vesselName)) {
+			errors = [...errors, errorDuplicateName];
+			isErrorName = true;
+		}
+
+		if (isError || isErrorName) return true;
 	}
 
 	function resetData() {
