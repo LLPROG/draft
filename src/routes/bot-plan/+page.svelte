@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import BotPlanCard from '@components/BotPlanCard.svelte';
 	let selectedIndex = 0;
 	let features = [
@@ -29,7 +30,7 @@
 	class="w-full flex flex-col justify-center items-center gap-4 text-grayPrimary text-center px-12 bg-blackPrimary"
 >
 	<h1>Surveyor Plans</h1>
-	<img src="/images/bot-icon.png" alt="bot-icon" />
+	<img src={`${base}/images/bot-icon.png`} alt="bot-icon" />
 	<p>Enter the hydrostatic tables datas and calculate any draft survey quickly and easily.</p>
 	<h2>Plans</h2>
 	<div class="w-full flex flex-col gap-10 py-6 mb-20">
