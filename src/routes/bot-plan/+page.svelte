@@ -1,7 +1,6 @@
 <script>
 	import { base } from '$app/paths';
 	import BotPlanCard from '@components/BotPlanCard.svelte';
-	let selectedIndex = 0;
 	let features = [
 		{
 			title: '3rd MATE PLAN',
@@ -41,8 +40,8 @@
 				isSecondActive={feature.isSecondActive}
 				isThirdActive={feature.isThirdActive}
 				limitation={feature.limitation}
-				isActive={selectedIndex === index}
-				on:click={() => (selectedIndex = index)}
+				isActive={index === 1}
+				on:click={() => {}}
 			/>
 		{/each}
 	</div>

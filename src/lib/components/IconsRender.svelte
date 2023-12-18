@@ -9,6 +9,10 @@
 	import HambIcon from './ui/HambIcon.svelte';
 	import UncheckIcon from './ui/UncheckIcon.svelte';
 	import CheckIcon from './ui/CheckIcon.svelte';
+	import EditRowIcon from './ui/EditRowIcon.svelte';
+	import DeleteRowIcon from './ui/DeleteRowIcon.svelte';
+	import LoadCsvIcon from './ui/LoadCsvIcon.svelte';
+	import AddRowIcon from './ui/AddRowIcon.svelte';
 
 	export let icon = 'plus';
 </script>
@@ -36,6 +40,18 @@
 {/if}
 {#if icon === 'hamb'}
 	<span class="ms-auto"><HambIcon /></span>
+{/if}
+{#if icon === 'edit-row'}
+	<span class="ms-auto"><EditRowIcon /></span>
+{/if}
+{#if icon === 'delete-row'}
+	<span class="ms-auto"><DeleteRowIcon /></span>
+{/if}
+{#if icon === 'add-row'}
+	<span class="ms-auto"><AddRowIcon /></span>
+{/if}
+{#if icon === 'load-csv'}
+	<span class="ms-auto"><LoadCsvIcon /></span>
 {/if}
 {#if icon === 'check'}
 	<span><CheckIcon /></span>

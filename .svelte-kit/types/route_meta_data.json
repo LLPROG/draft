@@ -13,6 +13,9 @@
 	"/home": [
 		"src/routes/+layout.js"
 	],
+	"/tables": [
+		"src/routes/+layout.js"
+	],
 	"/upload": [
 		"src/routes/+layout.js"
 	],
