@@ -14,7 +14,11 @@
 
 				Papa.parse(csvContent, {
 					complete: function (results) {
-						csvData = results.data;
+						csvData = results.data.map((r) => r.map((c) => Number(c)));
+
+						// CHANGE TYPE OF DATA TO NUMBER
+
+						console.log(csvData);
 						$VesselsStorage[0] = {
 							...$VesselsStorage[0],
 							tables: csvData

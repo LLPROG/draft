@@ -1,13 +1,15 @@
 <script>
+	import clsx from 'clsx';
 	import Button from './ui/Button.svelte';
 	import Select from './ui/Select.svelte';
 
 	export let selectedOption = 'Quarter Mean';
 	export let openMean = false;
 	export let array = ['Quarter Mean', 'Mean of Mean', 'Mean of Mean of mean'];
+	export let customClass = '';
 </script>
 
-<div class="w-full relative">
+<div class={clsx('w-full relative', customClass)}>
 	<Button
 		on:click={() => (openMean = !openMean)}
 		message={selectedOption}

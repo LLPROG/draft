@@ -122,6 +122,46 @@ export let defaultWeight = [
 	}
 ];
 
+export let trimR = [
+	{ label: 'True Trim', value: 0 },
+	{ label: 'Hoggin', value: 0 },
+	{ label: 'Mean', value: 0 },
+	{ label: 'Keel THK', value: 0 },
+	{ label: 'Mean Corrected', value: 0 }
+];
+
+export let displacementR = [
+	{ label: 'Displacement', value: 0 },
+	{ label: 'TPC', value: 0 },
+	{ label: 'LCF', value: 0 },
+	{ label: '1°MTC', value: 0 },
+	{ label: '2°MTC', value: 0 },
+	{ label: 'Mean Corrected', value: 0 }
+];
+
+export let correctionsR = [
+	{ label: '1° Trim Correction', value: 0 },
+	{ label: '2° Trim Correction', value: 0 },
+	{ label: 'Density Correction', value: 0 }
+];
+
+export let finalDisplacementR = [
+	{ label: 'Final Displacement', value: 0 },
+	{ label: 'Light Ship', value: 0 },
+	{ label: 'DWT', value: 0 }
+];
+
+export let weigthR = [
+	{ label: 'Ballast', value: 0 },
+	{ label: 'Fresh Water', value: 0 },
+	{ label: 'Fuel Oil', value: 0 },
+	{ label: 'Diesel Oil', value: 0 },
+	{ label: 'Lube Oil', value: 0 },
+	{ label: 'Other Tanks', value: 0 },
+	{ label: 'Other Cargo', value: 0 },
+	{ label: 'Deductions', value: 0 }
+];
+
 export const defaultValue = {
 	id: 0,
 	name: 'defaultValue',
@@ -142,7 +182,15 @@ export const defaultValue = {
 	draftsRight: [...defaultDraftsRight],
 	weight: [...defaultWeight],
 	waterDensityValue: 0,
-	tables: []
+	tables: [],
+	results: {
+		trimResult: [...trimR],
+		displacementResult: [...displacementR],
+		correctionsResult: [...correctionsR],
+		finalDisplacementResult: [...finalDisplacementR],
+		weightResult: [...weigthR],
+		constantR: [{ label: 'Costant', value: 0 }]
+	}
 };
 
 export const VesselsStorage = persistent({
