@@ -65,6 +65,19 @@ export const getMeanCorrected = (mean, selectedMean, keelThx) => {
 	}
 };
 
+export const getMean = (selectedMean, mean) => {
+	switch (selectedMean) {
+		case 'Quarter Mean':
+			return mean.quarterMean;
+		case 'Mean of Mean':
+			return mean.meanOfMean;
+		case 'Mean of Mean of mean':
+			return mean.meanOfMeanOfMean;
+		default:
+			throw console.error('Error: Mean not found');
+	}
+};
+
 export const getTableValues = (tableValue, meanCorrected, lessRow, moreRow, draft, index) => {
 	let D_Draft = tableValue / draft;
 	let D_Mean = meanCorrected - lessRow[0];
@@ -81,15 +94,9 @@ export const getTableValues = (tableValue, meanCorrected, lessRow, moreRow, draf
 export const getTableResult = (vessel, meanCorrected, isMtc) => {
 	let DRAFT_COLUMN = vessel.tables.map((t) => t[0]).flat();
 	console.log(vessel.tables);
-	console.log('DRAFT_COLUMN:', DRAFT_COLUMN);
 
 	let lessIndex = DRAFT_COLUMN.indexOf(DRAFT_COLUMN.filter((t) => t < meanCorrected).slice(-1)[0]);
 	let moreIndex = DRAFT_COLUMN.indexOf(DRAFT_COLUMN.filter((t) => t > meanCorrected)[0]);
-
-	console.log('bu:', DRAFT_COLUMN.filter((t) => t < meanCorrected).slice(-1)[0]);
-	// console.log('meanCorrected:', meanCorrected);
-	// console.log('lessIndex:', lessIndex);
-	// console.log('moreIndex:', moreIndex);
 
 	// let absoluteRow = vessel?.tables[absoluteIndex];
 	let lessRow = vessel.tables[lessIndex];
@@ -111,4 +118,44 @@ export const getTableResult = (vessel, meanCorrected, isMtc) => {
 			LCF: getTableValues(LCF, meanCorrected, lessRow, moreRow, DRAFT, 4)
 		};
 	}
+};
+
+export const getFinalsFormule = (trim, TPC, LCF, LBP, MTC1, MTC2, DISPLACEMENT, waterDensity) => {
+	let TRIM_CORRECTION_1 = (trim * TPC * LCF * 100) / LBP;
+	let TRIM_CORRECTION_2 = (trim * trim * (MTC1 - MTC2) * 50) / LBP;
+
+	let FINAL_DISPLACEMENT =
+		((DISPLACEMENT + TRIM_CORRECTION_1 + TRIM_CORRECTION_2) * waterDensity) / 1.025;
+	let DENSITY_CORRECTION =
+		FINAL_DISPLACEMENT - (DISPLACEMENT + TRIM_CORRECTION_1 + TRIM_CORRECTION_2);
+
+	return {
+		TRIM_CORRECTION_1: TRIM_CORRECTION_1,
+		TRIM_CORRECTION_2: TRIM_CORRECTION_2,
+		FINAL_DISPLACEMENT: FINAL_DISPLACEMENT,
+		DENSITY_CORRECTION: DENSITY_CORRECTION
+	};
+};
+
+export const getFinals = (FINAL_DISPLACEMENT, LIGHTSHIP, COSTANT_USER, array) => {
+	let DWT = FINAL_DISPLACEMENT - LIGHTSHIP;
+	let DEDUCTIONS = getDeductions(array);
+
+	let CARGO = DWT - DEDUCTIONS;
+	let COSTANT = DWT - DEDUCTIONS;
+
+	if (COSTANT_USER) CARGO = COSTANT - COSTANT_USER;
+
+	return {
+		DWT: DWT,
+		CARGO: CARGO,
+		COSTANT: COSTANT,
+		DEDUCTIONS: DEDUCTIONS
+	};
+};
+
+export const getDeductions = (array) => {
+	return array.reduce((accumulator, current) => {
+		return accumulator + current.value;
+	}, 0);
 };
