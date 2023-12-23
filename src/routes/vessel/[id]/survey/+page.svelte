@@ -26,6 +26,8 @@
 			waterDensityValue
 		};
 
+		vessel = $VesselsStorage[vesselIndex];
+
 		let result = calc(
 			draftLeft[0].value,
 			draftLeft[1].value,

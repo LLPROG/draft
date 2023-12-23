@@ -67,37 +67,40 @@ export const getMeanCorrected = (mean, selectedMean, keelThx) => {
 
 export const getTableValues = (tableValue, meanCorrected, lessRow, moreRow, draft, index) => {
 	let D_Draft = tableValue / draft;
-	let D_Mean = meanCorrected - parseFloat(lessRow[0]);
+	let D_Mean = meanCorrected - lessRow[0];
 
 	let res = D_Draft * D_Mean;
 
 	if (lessRow[index] < moreRow[index]) {
-		return res + parseFloat(lessRow[index]);
+		return res + lessRow[index];
 	} else {
-		return parseFloat(lessRow[index]) - res;
+		return lessRow[index] - res;
 	}
 };
 
 export const getTableResult = (vessel, meanCorrected, isMtc) => {
-	let DRAFT_COLUMN = vessel?.tables.map((t) => t[0]).flat();
-	let lessIndex = DRAFT_COLUMN.indexOf(
-		DRAFT_COLUMN.filter((t) => parseFloat(t) < meanCorrected).slice(-1)[0]
-	);
-	let moreIndex = DRAFT_COLUMN.indexOf(
-		DRAFT_COLUMN.filter((t) => parseFloat(t) > meanCorrected)[0]
-	);
-	console.log('meanCorrected:', meanCorrected);
+	let DRAFT_COLUMN = vessel.tables.map((t) => t[0]).flat();
+	console.log(vessel.tables);
+	console.log('DRAFT_COLUMN:', DRAFT_COLUMN);
+
+	let lessIndex = DRAFT_COLUMN.indexOf(DRAFT_COLUMN.filter((t) => t < meanCorrected).slice(-1)[0]);
+	let moreIndex = DRAFT_COLUMN.indexOf(DRAFT_COLUMN.filter((t) => t > meanCorrected)[0]);
+
+	console.log('bu:', DRAFT_COLUMN.filter((t) => t < meanCorrected).slice(-1)[0]);
+	// console.log('meanCorrected:', meanCorrected);
+	// console.log('lessIndex:', lessIndex);
+	// console.log('moreIndex:', moreIndex);
 
 	// let absoluteRow = vessel?.tables[absoluteIndex];
-	let lessRow = vessel?.tables[lessIndex];
-	let moreRow = vessel?.tables[moreIndex];
+	let lessRow = vessel.tables[lessIndex];
+	let moreRow = vessel.tables[moreIndex];
 
-	let DRAFT = parseFloat(moreRow[0]) - parseFloat(lessRow[0]);
+	let DRAFT = moreRow[0] - lessRow[0];
 
-	let DISPLACEMENT = parseFloat(moreRow[1]) - parseFloat(lessRow[1]);
-	let TPC = parseFloat(moreRow[2]) - parseFloat(lessRow[2]);
-	let MTC = parseFloat(moreRow[3]) - parseFloat(lessRow[3]);
-	let LCF = parseFloat(moreRow[4]) - parseFloat(lessRow[4]);
+	let DISPLACEMENT = moreRow[1] - lessRow[1];
+	let TPC = moreRow[2] - lessRow[2];
+	let MTC = moreRow[3] - lessRow[3];
+	let LCF = moreRow[4] - lessRow[4];
 
 	if (isMtc) {
 		return getTableValues(MTC, meanCorrected, lessRow, moreRow, DRAFT, 3);
