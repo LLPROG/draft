@@ -1,4 +1,5 @@
 import { persistent } from '@furudean/svelte-persistent-store';
+import { v4 as uuidv4 } from 'uuid';
 
 export let defaultInitialData = {
 	voy: NaN,
@@ -179,9 +180,99 @@ export const defaultValue = {
 	initialData: { ...defaultInitialData },
 	categories: [...defaultCategories],
 	draftLeft: [...defaultDraftsLeft],
-	draftsRight: [...defaultDraftsRight],
+	draftRight: [...defaultDraftsRight],
 	weight: [...defaultWeight],
 	waterDensityValue: 0,
+	tables: [],
+	results: {
+		trimResult: [...trimR],
+		displacementResult: [...displacementR],
+		correctionsResult: [...correctionsR],
+		finalDisplacementResult: [...finalDisplacementR],
+		weightResult: [...weigthR],
+		constantR: [{ label: 'Costant', value: 0 }]
+	}
+};
+
+export const mockData = {
+	id: uuidv4(),
+	name: 'mockData',
+	wasNameFocused: true,
+	start_value: [
+		{ name: 'light-ship', value: 12, wasfocusedCount: true },
+		{ name: 'd-fwd-pp', value: -1.3, wasfocusedCount: true },
+		{ name: 'lbp', value: 131, wasfocusedCount: true },
+		{ name: 'd-mid-pp', value: -0.1, wasfocusedCount: true },
+		{ name: 'lbm', value: 121, wasfocusedCount: true },
+		{ name: 'd-aft-pp', value: 8.7, wasfocusedCount: true },
+		{ name: 'keel-thk', value: 0.014, wasfocusedCount: true }
+	],
+	status: 'initial',
+	initialData: { ...defaultInitialData },
+	categories: [...defaultCategories],
+	draftLeft: [
+		{
+			name: 'Fwd',
+			value: 6.54
+		},
+		{
+			name: 'Mid',
+			value: 7.27
+		},
+		{
+			name: 'Aft',
+			value: 7.85
+		}
+	],
+	draftRight: [
+		{
+			name: 'Fwd',
+			value: 6.56
+		},
+		{
+			name: 'Mid',
+			value: 7.29
+		},
+		{
+			name: 'Aft',
+			value: 7.87
+		}
+	],
+	weight: [
+		{
+			name: 'Ballast',
+			value: 1374
+		},
+		{
+			name: 'Fresh water',
+			value: 55
+		},
+		{
+			name: 'Fuel Oil',
+			value: 88.5
+		},
+		{
+			name: 'Diesel Oil',
+			value: 21
+		},
+		{
+			name: 'Lube Oil',
+			value: 5.05
+		},
+		{
+			name: 'Other',
+			value: 34
+		},
+		{
+			name: 'Other Cargo',
+			value: 0
+		},
+		{
+			name: 'Constant',
+			value: 82
+		}
+	],
+	waterDensityValue: 1.025,
 	tables: [],
 	results: {
 		trimResult: [...trimR],

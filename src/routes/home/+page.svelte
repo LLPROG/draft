@@ -1,9 +1,9 @@
 <script>
-	import { VesselsStorage } from '../../store/store';
+	import { VesselsStorage, mockData } from '../../store/store';
 	import Button from '@components/ui/Button.svelte';
 	import LogoMain from '@components/ui/LogoMain.svelte';
 	import Popup from '@components/Popup.svelte';
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import { base } from '$app/paths';
 
 	export let openPopup = false;
@@ -15,6 +15,11 @@
 		$VesselsStorage.splice($indexVelles, 1);
 		$VesselsStorage = $VesselsStorage;
 		openPopup = false;
+	};
+
+	const addMock = () => {
+		$VesselsStorage.push(mockData);
+		$VesselsStorage = $VesselsStorage;
 	};
 </script>
 
@@ -33,6 +38,16 @@
 		icon="plus"
 		size="lg"
 		isButton={false}
+	/>
+
+	<Button
+		classProp="flex w-full"
+		message="ADD MOCK"
+		chooseType="secondary"
+		icon=""
+		size="lg"
+		isButton={true}
+		on:click={() => addMock()}
 	/>
 
 	<div class="w-full overflow-y-scroll max-h-[40vh] py-6 gap-2 px-5 flex flex-col justify-start">

@@ -93,7 +93,7 @@ export const getTableValues = (tableValue, meanCorrected, lessRow, moreRow, draf
 
 export const getTableResult = (vessel, meanCorrected, isMtc) => {
 	let DRAFT_COLUMN = vessel.tables.map((t) => t[0]).flat();
-	console.log(vessel.tables);
+	// console.log('tables:', vessel.tables);
 
 	let lessIndex = DRAFT_COLUMN.indexOf(DRAFT_COLUMN.filter((t) => t < meanCorrected).slice(-1)[0]);
 	let moreIndex = DRAFT_COLUMN.indexOf(DRAFT_COLUMN.filter((t) => t > meanCorrected)[0]);
@@ -102,8 +102,9 @@ export const getTableResult = (vessel, meanCorrected, isMtc) => {
 	let lessRow = vessel.tables[lessIndex];
 	let moreRow = vessel.tables[moreIndex];
 
-	console.log(lessRow, moreRow);
-	console.log(meanCorrected);
+	console.log('lessRow:', lessRow);
+	console.log('moreRow:', moreRow);
+	console.log('meanCorrected:', meanCorrected);
 
 	let DRAFT = moreRow[0] - lessRow[0];
 
