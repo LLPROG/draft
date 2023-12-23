@@ -15,6 +15,7 @@
 	import { VesselsStorage, defaultValue } from '../../../../store/store';
 	import { page } from '$app/stores';
 	import InitSurvey from '@components/InitSurvey.svelte';
+	import { uploadCVS } from '@lib/utils/uploadCSV';
 
 	let waterDensityValue = 0;
 	let openMean = false;
@@ -33,8 +34,6 @@
 			weight,
 			waterDensityValue
 		};
-
-		vessel = $VesselsStorage[vesselIndex];
 
 		let LIGHTSHIP = vessel.start_value[0].value;
 		let LBP = vessel.start_value[2].value;
@@ -156,7 +155,7 @@
 
 	$: categories = vessel?.categories || defaultValue.categories;
 	$: draftLeft = vessel?.draftLeft || defaultValue.draftLeft;
-	$: draftRight = vessel?.draftRight || defaultValue.draftsRight;
+	$: draftRight = vessel?.draftRight || defaultValue.draftRight;
 	$: weight = vessel?.weight || defaultValue.weight;
 	$: waterDensityValue = defaultValue.waterDensityValue || 0;
 	$: vesselStatus = vessel?.status || 'undefined';
@@ -176,18 +175,28 @@
 	<InitSurvey />
 {:else}
 	<div class="w-full text-center text-whitePrimary bg-blackPrimary px-4 pb-56">
-		<button
-			on:click={calculation}
-			class="w-[6rem] py-1 font-bold bg-white rounded-xl text-black text-[1.5rem]"
-		>
-			calc
-		</button>
+		<!-- FOR TESTING -->
+		<div class="w-full flex justify-around items-center">
+			<button
+				on:click={calculation}
+				class="w-[6rem] py-1 font-bold bg-white rounded-xl text-black text-[1.5rem]"
+			>
+				calc
+			</button>
+			<input
+				placeholder=""
+				type="file"
+				accept=".csv"
+				on:change={(e) => uploadCVS(e, $VesselsStorage, vesselIndex)}
+			/>
+		</div>
+
 		<!-- DRAFTS -->
 		<h2 class="text-[2em] py-4">Drafts</h2>
 		<div class="w-full flex justify-around">
 			<div class="flex flex-col gap-4">
 				{#each draftLeft as A}
-					<Input bind:valueN={A.value} className="w-[6rem]" id="name" type="number" />
+					<Input bind:valueN={A.value} className="w-[6rem]" type="number" />
 				{/each}
 			</div>
 
@@ -197,7 +206,7 @@
 
 			<div class="flex flex-col gap-4">
 				{#each draftRight as B}
-					<Input bind:valueN={B.value} className="w-[6rem]" id="name" type="number" />
+					<Input bind:valueN={B.value} className="w-[6rem]" type="number" />
 				{/each}
 			</div>
 		</div>
