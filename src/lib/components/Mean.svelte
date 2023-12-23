@@ -4,6 +4,7 @@
 
 	export let selectedOption = 'Quarter Mean';
 	export let openMean = false;
+	export let array = ['Quarter Mean', 'Mean of Mean', 'Mean of Mean of mean'];
 </script>
 
 <div class="w-full relative">
@@ -18,6 +19,8 @@
 
 	{#if openMean}
 		<Select
+			bind:array
+			bind:value={selectedOption}
 			classProps="absolute top-18 z-50"
 			on:click={(e) => {
 				selectedOption = e.detail;

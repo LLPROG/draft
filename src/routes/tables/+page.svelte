@@ -31,7 +31,6 @@
 		editable = true;
 		disabled = false;
 	};
-
 	const loadCsv = () => {
 		console.log('load csv');
 	};

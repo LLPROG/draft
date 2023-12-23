@@ -1,5 +1,7 @@
 <script>
 	import Papa from 'papaparse';
+	import { VesselsStorage } from '../../store/store';
+	import { page } from '$app/stores';
 
 	let csvData = null;
 
@@ -13,7 +15,10 @@
 				Papa.parse(csvContent, {
 					complete: function (results) {
 						csvData = results.data;
-						console.log('Finished:', results.data);
+						$VesselsStorage[0] = {
+							...$VesselsStorage[0],
+							tables: csvData
+						};
 					}
 				});
 			};
