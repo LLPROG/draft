@@ -102,6 +102,9 @@ export const getTableResult = (vessel, meanCorrected, isMtc) => {
 	let lessRow = vessel.tables[lessIndex];
 	let moreRow = vessel.tables[moreIndex];
 
+	console.log(lessRow, moreRow);
+	console.log(meanCorrected);
+
 	let DRAFT = moreRow[0] - lessRow[0];
 
 	let DISPLACEMENT = moreRow[1] - lessRow[1];
