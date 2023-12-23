@@ -17,7 +17,7 @@
 	<div class="w-full" slot="content">
 		<div class="w-full flex items-center">
 			<h3 class="pl-16">{title}</h3>
-			<p class="ml-auto text-[1.875em] font-bold">{price}</p>
+			<p class="pl-2 ml-auto text-[1.875em] font-bold">{price}</p>
 		</div>
 		<div class="flex flex-col gap-4">
 			<div class="flex items-center gap-2 text-[0.8125em]">

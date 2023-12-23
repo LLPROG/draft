@@ -4,7 +4,7 @@
 	import Button from '@components/ui/Button.svelte';
 	import Input from '@components/ui/Input.svelte';
 	import LogoBigSheep from '@components/ui/LogoBigSheep.svelte';
-	import { calc } from '@lib/utils/calculation';
+	import { calc, getMeanCorrected, getTableResult, getTableValues } from '@lib/utils/calculation';
 	import { VesselsStorage, defaultValue } from '../../../../store/store';
 	import { page } from '$app/stores';
 	import InitSurvey from '@components/InitSurvey.svelte';
@@ -14,31 +14,45 @@
 	let selectedOption = 'Quarter Mean';
 
 	const calculation = () => {
+		if (!vessel) return;
+
+		//salvo i dati su localstorage
+		$VesselsStorage[vesselIndex] = {
+			...vessel,
+			categories,
+			draftLeft,
+			draftRight,
+			weight,
+			waterDensityValue
+		};
+
 		let result = calc(
-			draftsA[0].value,
-			draftsA[1].value,
-			draftsA[2].value,
-			draftsB[0].value,
-			draftsB[1].value,
-			draftsB[2].value,
+			draftLeft[0].value,
+			draftLeft[1].value,
+			draftLeft[2].value,
+			draftRight[0].value,
+			draftRight[1].value,
+			draftRight[2].value,
 			D,
-			vessel?.start_value[4]?.value
+			vessel.start_value[4].value
 		);
 
-		if (vessel) {
-			$VesselsStorage[vesselIndex] = {
-				...vessel,
-				categories,
-				draftsA,
-				draftsB,
-				weight,
-				waterDensityValue
-			};
+		let meanCorrected = getMeanCorrected(
+			result.mean,
+			selectedOption,
+			vessel?.start_value[6]?.value
+		);
 
-			console.log('result', result);
-			console.log('storage', $VesselsStorage);
-			console.log('vessel', vessel);
-		}
+		let meanCorrectedMajor = meanCorrected + 0.5;
+		let meanCorrectedMinor = meanCorrected - 0.5;
+
+		let TABLE = getTableResult(vessel, meanCorrected, false);
+		let MTC1 = getTableResult(vessel, meanCorrectedMajor, true);
+		let MTC2 = getTableResult(vessel, meanCorrectedMinor, true);
+
+		console.log('TABLE', TABLE);
+		console.log('MTC1', MTC1);
+		console.log('MTC2', MTC2);
 	};
 
 	let vesselId = $page.params.id;
@@ -53,8 +67,8 @@
 	];
 
 	$: categories = vessel?.categories || defaultValue.categories;
-	$: draftsA = vessel?.draftsA || defaultValue.draftsA;
-	$: draftsB = vessel?.draftsB || defaultValue.draftsB;
+	$: draftLeft = vessel?.draftLeft || defaultValue.draftLeft;
+	$: draftRight = vessel?.draftRight || defaultValue.draftsRight;
 	$: weight = vessel?.weight || defaultValue.weight;
 	$: waterDensityValue = defaultValue.waterDensityValue || 0;
 	$: vesselStatus = vessel?.status || 'undefined';
@@ -74,7 +88,7 @@
 		<h2 class="text-[2em] py-4">Drafts</h2>
 		<div class="w-full flex justify-around">
 			<div class="flex flex-col gap-4">
-				{#each draftsA as A}
+				{#each draftLeft as A}
 					<Input bind:valueN={A.value} className="w-[6rem]" id="name" type="number" />
 				{/each}
 			</div>
@@ -84,7 +98,7 @@
 			</div>
 
 			<div class="flex flex-col gap-4">
-				{#each draftsB as B}
+				{#each draftRight as B}
 					<Input bind:valueN={B.value} className="w-[6rem]" id="name" type="number" />
 				{/each}
 			</div>
@@ -127,7 +141,7 @@
 		<!-- HIDRO -->
 		<h2 class="text-[2em] py-8">HYDROSTATIC TABLE INTERPOLATOR</h2>
 
-		<Mean {openMean} {selectedOption} />
+		<Mean {openMean} bind:selectedOption />
 
 		<div class="w-full py-4">
 			{#each categories as category}
@@ -161,7 +175,7 @@
 		<!-- SURVEY -->
 		<h2 class="text-[2em] py-8">SURVEY</h2>
 
-		<Mean {openMean} {selectedOption} />
+		<Mean {openMean} bind:selectedOption />
 
 		<div class="w-full py-6 text-greenAccent">
 			<h1 class="text-[1.3em]">SURVEY</h1>

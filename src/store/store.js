@@ -57,7 +57,7 @@ export let defaultCategories = [
 	}
 ];
 
-export let defaultDraftsA = [
+export let defaultDraftsLeft = [
 	{
 		name: 'Fwd',
 		value: NaN
@@ -72,7 +72,7 @@ export let defaultDraftsA = [
 	}
 ];
 
-export let defaultDraftsB = [
+export let defaultDraftsRight = [
 	{
 		name: 'Fwd',
 		value: NaN
@@ -138,10 +138,11 @@ export const defaultValue = {
 	status: 'undefined',
 	initialData: { ...defaultInitialData },
 	categories: [...defaultCategories],
-	draftsA: [...defaultDraftsA],
-	draftsB: [...defaultDraftsB],
+	draftLeft: [...defaultDraftsLeft],
+	draftsRight: [...defaultDraftsRight],
 	weight: [...defaultWeight],
-	waterDensityValue: 0
+	waterDensityValue: 0,
+	tables: []
 };
 
 export const VesselsStorage = persistent({

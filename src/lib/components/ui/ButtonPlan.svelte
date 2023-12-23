@@ -19,7 +19,7 @@
 	<div class="absolute left-4 -top-5">
 		<BotPlanIcon />
 	</div>
-	<div>
+	<div class="w-full">
 		<slot name="content" />
 	</div>
 	<IconsRender icon="arrow" />
@@ -40,5 +40,6 @@
 		);
 		/* vetro */
 		backdrop-filter: blur(10px);
+		scale: 1.08;
 	}
 </style>

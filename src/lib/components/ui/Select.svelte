@@ -8,7 +8,7 @@
 	export let classProps = '';
 	export let value = '';
 
-	let array = ['Quarter Mean', 'Mean of Mean', 'Mean of Mean of mean'];
+	export let array = [''];
 </script>
 
 <div
@@ -24,7 +24,6 @@
 		<Button
 			on:click={() => {
 				value = el;
-				console.log(value);
 				dispatch('click', value);
 			}}
 			message={el}
