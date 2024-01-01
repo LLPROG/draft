@@ -14,7 +14,7 @@
 	export let wasfocused = false;
 
 	$: style = {
-		'p-4 inner-sh rounded-xl bg-green bg-opacity-[10%] shadoww text-center border-0 focus:outline focus:outline-[2px] outline-greenAccent': true,
+		input: true,
 		'outline outline-[2px] outline-red-400': isError || isErrorName,
 		'disabled-custom': disabled
 	};
@@ -46,6 +46,8 @@
 		/>
 	{:else}
 		<input
+			step="0.0001"
+			pattern={'d{(1, 10)}(?:.d{(1, 3)})?$'}
 			placeholder=""
 			{id}
 			name={id}
@@ -72,8 +74,13 @@
 		backdrop-filter: blur(10px);
 	}
 
-	.inner-sh {
-		-webkit-box-shadow: inset 5px 5px 15px -4px #ffffff;
-		box-shadow: inset 5px 5px 8px -4px #00000070;
+	.input {
+		border-radius: 12px;
+		border: 1px solid rgba(224, 231, 241, 0.5);
+		background: rgba(224, 231, 241, 0.03);
+		backdrop-filter: blur(10px);
+		padding: 20px 20px;
+		text-align: center;
+		font-size: 20px;
 	}
 </style>

@@ -5,7 +5,7 @@
 	export let isOpen = false;
 </script>
 
-<div class="w-full fixed top-0 right-0 left-0 bottom-0">
+<div class="w-full fixed top-0 right-0 left-0 bottom-0 z-50">
 	<div
 		transition:fly={{ duration: 300, y: 500 }}
 		class="fixed px-4 w-full min-h-[50vh] bottom-0 left-0 rounded-t-3xl popup"

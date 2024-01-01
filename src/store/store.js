@@ -164,7 +164,7 @@ export let weigthR = [
 ];
 
 export const defaultValue = {
-	id: 0,
+	id: '0',
 	name: 'defaultValue',
 	wasNameFocused: false,
 	start_value: [

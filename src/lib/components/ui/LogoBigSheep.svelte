@@ -2,7 +2,7 @@
 	export let divisor = 1;
 </script>
 
-<div class="h-full">
+<div class="h-full m-auto w-fit">
 	<svg
 		width={107 / divisor}
 		height={400 / divisor}
