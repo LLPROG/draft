@@ -13,7 +13,7 @@
 		}, 3000);
 
 		setTimeout(() => {
-			goto(`${base}/home`);
+			goto(`/home`);
 		}, 4000);
 	});
 </script>
