@@ -19,7 +19,7 @@
 </script>
 
 <Transition key={data.url}>
-	{#if $page.url.pathname !== `${base}/home`}
+	{#if $page.url.pathname !== `/${base}/`}
 		<Navbar />
 	{/if}
 	<slot />
