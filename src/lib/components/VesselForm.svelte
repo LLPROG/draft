@@ -7,10 +7,8 @@
 	const dispatch = createEventDispatcher();
 
 	export let vessel = defaultValue;
-
 	export let isError = false;
 	export let isErrorName = false;
-	export let vesselName = '';
 	export let wasNameFocused = false;
 	export let isCreate = false;
 	export let redirect = '';
@@ -26,7 +24,7 @@
 		{disabled}
 		bind:wasfocused={wasNameFocused}
 		bind:isError={isErrorName}
-		bind:valueT={vesselName}
+		bind:valueT={vessel.name}
 		on:focus={() => (wasNameFocused = true)}
 	/>
 	<div class="relative grid grid-cols-2 gap-4 pt-2">

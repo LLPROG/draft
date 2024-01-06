@@ -27,7 +27,7 @@
 			<li class="w-full border-2 px-2 py-1 border-greenAccent">LCF</li>
 		</ul>
 	</div>
-	<div class="py-2 space-y-2">
+	<div class="py-4 space-y-2 max-h-[60vh] overflow-y-scroll">
 		{#each rowContainer as row, index}
 			<button on:click={() => dispatch('select:row', { index })} class="w-full">
 				<ul

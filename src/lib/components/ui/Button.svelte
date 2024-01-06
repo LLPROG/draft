@@ -16,7 +16,7 @@
 	const dispatch = createEventDispatcher();
 
 	const style = {
-		'px-4 flex justify-center items-center': true,
+		'px-4 flex justify-center items-center z-20': true,
 		'w-full': spaceAll,
 		'text-grayPrimary rounded-[12px] py-8': chooseType == 'primary',
 		'text-white secondary rounded-[12px] py-8': chooseType == 'secondary',
@@ -24,6 +24,7 @@
 		'h-[56px] w-full absolute bottom-0 p-4 rounded-md bg-green bg-opacity-[10%] shadoww text-center text-white for-form':
 			chooseType == 'for-form',
 		'w-fit': chooseType == 'only-icon',
+		'text-[1em]': size == 'sm',
 		'text-[1.5em]': size == 'md',
 		'text-[2.5em]': size == 'lg',
 		'pointer-events-none': disabled,

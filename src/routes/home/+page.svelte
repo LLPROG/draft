@@ -23,9 +23,9 @@
 	};
 </script>
 
-<div class="w-full text-green">
+<div class="w-full text-green px-10">
 	<!-- top-logo -->
-	<div class="top-section flex justify-center items-center py-12">
+	<div class="top-section flex justify-center items-center py-7">
 		<LogoMain />
 	</div>
 
@@ -36,7 +36,7 @@
 		message="My Fleet"
 		chooseType="primary"
 		icon="plus"
-		size="lg"
+		size="md"
 		isButton={false}
 	/>
 
@@ -45,7 +45,7 @@
 		message="ADD MOCK"
 		chooseType="secondary"
 		icon=""
-		size="lg"
+		size="md"
 		isButton={true}
 		on:click={() => addMock()}
 	/>

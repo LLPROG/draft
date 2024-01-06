@@ -1,6 +1,8 @@
 <script>
 	import CtaTable from '@components/CtaTable.svelte';
 	import Table from '@components/Table.svelte';
+	import { uploadCVS } from '@lib/utils/uploadCSV';
+	import { VesselsStorage } from '../../store/store';
 
 	let selectedRow = 0;
 	let editable = false;
@@ -12,7 +14,10 @@
 		mtc: 0,
 		lcf: 0
 	};
-	let rowContainer = [row];
+	/**
+	 * @type {typeof row[]}
+	 */
+	let rowContainer = [];
 
 	const addRow = () => {
 		rowContainer = [row, ...rowContainer];
@@ -31,10 +36,6 @@
 		editable = true;
 		disabled = false;
 	};
-	const loadCsv = () => {
-		console.log('load csv');
-	};
-
 	const selectRow = (/** @type {{ detail: { index: number; }; } | undefined} */ e) => {
 		if (selectedRow === e?.detail.index) return;
 		disabled = true;
@@ -54,11 +55,27 @@
 		bind:disabled
 	/>
 	<div>
-		<CtaTable
-			on:add:row={addRow}
-			on:delete:row={deleteRow}
-			on:edit:row={editRow}
-			on:load:csv={loadCsv}
-		/>
+		<CtaTable on:add:row={addRow} on:delete:row={deleteRow} on:edit:row={editRow} on:load:csv />
 	</div>
+	<input
+		placeholder=""
+		type="file"
+		accept=".csv"
+		on:change={(e) => {
+			uploadCVS(e, $VesselsStorage, 0);
+			console.log($VesselsStorage[0].tables);
+			$VesselsStorage[0].tables.forEach((r) => {
+				let newRow = {
+					draft: r[0],
+					displ: r[1],
+					tpc: r[2],
+					mtc: r[3],
+					lcf: r[4]
+				};
+				rowContainer = [...rowContainer, newRow];
+				console.log(rowContainer);
+			});
+			$VesselsStorage = $VesselsStorage;
+		}}
+	/>
 </div>

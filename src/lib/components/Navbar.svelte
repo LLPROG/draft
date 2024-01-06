@@ -5,9 +5,11 @@
 	import { createEventDispatcher } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import Menu from './Menu.svelte';
 	const dispatch = createEventDispatcher();
 
 	export let isEditable = false;
+	let openMenu = false;
 
 	$: route = $page.url.pathname;
 
@@ -28,7 +30,7 @@
 
 		{#if route.includes('/home')}
 			<Button
-				on:click={() => dispatch('modify')}
+				on:click={() => (openMenu = true)}
 				spaceAll={false}
 				chooseType="only-icon"
 				icon="hamb"
@@ -71,3 +73,5 @@
 		{/if}
 	</div>
 </nav>
+
+<Menu bind:openPopup={openMenu} />
