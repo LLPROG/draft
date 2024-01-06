@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import LogoBigSheep from '@components/ui/LogoBigSheep.svelte';
 	import clsx from 'clsx';
 	import { onMount } from 'svelte';
@@ -12,7 +13,7 @@
 		}, 3000);
 
 		setTimeout(() => {
-			goto('/home');
+			goto(`${base}/home`);
 		}, 4000);
 	});
 </script>

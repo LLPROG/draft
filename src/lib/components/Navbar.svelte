@@ -18,7 +18,7 @@
 			goto(`${base}/vessel/${$page.params.id}`);
 			return;
 		}
-		goto('/home');
+		goto(`${base}/home`);
 	};
 </script>
 
