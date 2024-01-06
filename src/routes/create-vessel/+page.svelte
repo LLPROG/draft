@@ -1,6 +1,6 @@
 <script lang="ts">
 	import VesselForm from '@components/VesselForm.svelte';
-	import { VesselsStorage } from '../../store/store';
+	import { VesselsStorage, defaultValue } from '../../store/store';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import { v4 as uuidv4 } from 'uuid';
@@ -14,7 +14,7 @@
 	let errorName = 'please fill vessel name';
 	let errorDuplicateName = 'vessel name already exists';
 
-	let vessel: Vessel;
+	let vessel: Vessel = defaultValue;
 	$: pass = vessel.start_value.every((v) => v.wasfocusedCount === true);
 
 	const handleClick = () => {

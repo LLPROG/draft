@@ -15,7 +15,6 @@ const VesselForm = create_ssr_component(($$result, $$props, $$bindings, slots) =
   let { vessel = defaultValue } = $$props;
   let { isError = false } = $$props;
   let { isErrorName = false } = $$props;
-  let { vesselName = "" } = $$props;
   let { wasNameFocused = false } = $$props;
   let { isCreate = false } = $$props;
   let { redirect = "" } = $$props;
@@ -27,8 +26,6 @@ const VesselForm = create_ssr_component(($$result, $$props, $$bindings, slots) =
     $$bindings.isError(isError);
   if ($$props.isErrorName === void 0 && $$bindings.isErrorName && isErrorName !== void 0)
     $$bindings.isErrorName(isErrorName);
-  if ($$props.vesselName === void 0 && $$bindings.vesselName && vesselName !== void 0)
-    $$bindings.vesselName(vesselName);
   if ($$props.wasNameFocused === void 0 && $$bindings.wasNameFocused && wasNameFocused !== void 0)
     $$bindings.wasNameFocused(wasNameFocused);
   if ($$props.isCreate === void 0 && $$bindings.isCreate && isCreate !== void 0)
@@ -52,7 +49,7 @@ const VesselForm = create_ssr_component(($$result, $$props, $$bindings, slots) =
         disabled,
         wasfocused: wasNameFocused,
         isError: isErrorName,
-        valueT: vesselName
+        valueT: vessel.name
       },
       {
         wasfocused: ($$value) => {
@@ -64,7 +61,7 @@ const VesselForm = create_ssr_component(($$result, $$props, $$bindings, slots) =
           $$settled = false;
         },
         valueT: ($$value) => {
-          vesselName = $$value;
+          vessel.name = $$value;
           $$settled = false;
         }
       },
@@ -143,7 +140,6 @@ const VesselForm = create_ssr_component(($$result, $$props, $$bindings, slots) =
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$unsubscribe_VesselsStorage;
   $$unsubscribe_VesselsStorage = subscribe(VesselsStorage, (value) => value);
-  let vesselName = "";
   let isError = false;
   let isErrorName = false;
   let errors = [""];
@@ -159,7 +155,6 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         isCreate: true,
         isError,
         isErrorName,
-        vesselName,
         vessel,
         errors
       },
@@ -170,10 +165,6 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         },
         isErrorName: ($$value) => {
           isErrorName = $$value;
-          $$settled = false;
-        },
-        vesselName: ($$value) => {
-          vesselName = $$value;
           $$settled = false;
         },
         vessel: ($$value) => {
