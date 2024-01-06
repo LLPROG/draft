@@ -6,9 +6,12 @@
 	import { writable } from 'svelte/store';
 	import Transition from '@lib/utils/transition/Transition.svelte';
 	import type { PageData } from './$types';
+	import { base } from '$app/paths';
+	import type { Vessel } from '../types/types';
 
 	let indexVelles = writable(0);
-	let selectedVessel = writable({ name: 'defaultValue' });
+	let selectedVessel = writable<{ name: Vessel['name'] }>({ name: 'defaultValue' });
+
 	setContext('indexVelles', indexVelles);
 	setContext('selectedVessel', selectedVessel);
 
@@ -16,7 +19,7 @@
 </script>
 
 <Transition key={data.url}>
-	{#if $page.url.pathname !== '/'}
+	{#if $page.url.pathname !== `${base}/home`}
 		<Navbar />
 	{/if}
 	<slot />
