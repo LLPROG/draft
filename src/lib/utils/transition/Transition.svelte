@@ -7,9 +7,9 @@
 </script>
 
 {#key key}
-	<main class="bg-blackPrimary h-[100svh] relative" transition:fly={{ duration: 300 }}>
+	<main class="bg-blackPrimary h-fit min-h-[100svh] relative" transition:fly={{ duration: 150 }}>
 		<BgVectorViolet className="absolute top-[20%] left-[20%] z-0 blur-[120px]" />
-		<BgVectorGreen className="absolute bottom-[20%] right-[20%] z-0 blur-[120px] cursor-none" />
+		<BgVectorGreen className="absolute bottom-[20%] right-[20%] z-0 blur-[120px]" />
 		<slot />
 	</main>
 {/key}

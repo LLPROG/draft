@@ -58,7 +58,8 @@
 				dispatch('focus');
 			}}
 			on:change={(e) => {
-				valueN = parseFloat(e.currentTarget.value);
+				let value = e.currentTarget.value.replace(',', '.');
+				valueN = parseFloat(value);
 				dispatch('change', valueN);
 			}}
 			value={valueN}

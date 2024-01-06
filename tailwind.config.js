@@ -9,6 +9,10 @@ export default {
 				whitePrimary: '#E0E7F1',
 				blackPrimary: '#414540',
 				grayPrimary: '#EBFFE5'
+			},
+			fontSize: {
+				base: '18px',
+				regular: '20px'
 			}
 		}
 	},

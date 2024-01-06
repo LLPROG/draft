@@ -13,6 +13,7 @@
 	import DeleteRowIcon from './ui/DeleteRowIcon.svelte';
 	import LoadCsvIcon from './ui/LoadCsvIcon.svelte';
 	import AddRowIcon from './ui/AddRowIcon.svelte';
+	import CloseIcon from './ui/CloseIcon.svelte';
 
 	export let icon = 'plus';
 </script>
@@ -58,4 +59,7 @@
 {/if}
 {#if icon === 'uncheck'}
 	<span><UncheckIcon /></span>
+{/if}
+{#if icon === 'close'}
+	<span><CloseIcon /></span>
 {/if}
