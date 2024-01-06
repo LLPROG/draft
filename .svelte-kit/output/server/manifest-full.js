@@ -1,10 +1,10 @@
 export const manifest = {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["favicon.png"]),
+	assets: new Set(["favicon.png","images/bot-icon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.ac3abbac.js","app":"_app/immutable/entry/app.8bf79c7b.js","imports":["_app/immutable/entry/start.ac3abbac.js","_app/immutable/chunks/index.3fc04f68.js","_app/immutable/chunks/singletons.d649963d.js","_app/immutable/chunks/index.0f40077f.js","_app/immutable/chunks/paths.6da3c254.js","_app/immutable/entry/app.8bf79c7b.js","_app/immutable/chunks/index.3fc04f68.js"],"stylesheets":[],"fonts":[]},
+		client: {"start":"_app/immutable/entry/start.7bd60464.js","app":"_app/immutable/entry/app.0717636e.js","imports":["_app/immutable/entry/start.7bd60464.js","_app/immutable/chunks/index.d0e80578.js","_app/immutable/chunks/singletons.5a4eddb9.js","_app/immutable/chunks/index.851888f7.js","_app/immutable/chunks/paths.596503a7.js","_app/immutable/entry/app.0717636e.js","_app/immutable/chunks/index.d0e80578.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
@@ -15,7 +15,9 @@ export const manifest = {
 			() => import('./nodes/6.js'),
 			() => import('./nodes/7.js'),
 			() => import('./nodes/8.js'),
-			() => import('./nodes/9.js')
+			() => import('./nodes/9.js'),
+			() => import('./nodes/10.js'),
+			() => import('./nodes/11.js')
 		],
 		routes: [
 			{
@@ -26,38 +28,52 @@ export const manifest = {
 				endpoint: null
 			},
 			{
+				id: "/bot-plan",
+				pattern: /^\/bot-plan\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 5 },
+				endpoint: null
+			},
+			{
 				id: "/create-vessel",
 				pattern: /^\/create-vessel\/?$/,
 				params: [],
-				page: { layouts: [0,2,], errors: [1,,], leaf: 5 },
+				page: { layouts: [0,2,], errors: [1,,], leaf: 6 },
 				endpoint: null
 			},
 			{
 				id: "/home",
 				pattern: /^\/home\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 6 },
+				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				endpoint: null
+			},
+			{
+				id: "/tables",
+				pattern: /^\/tables\/?$/,
+				params: [],
+				page: { layouts: [0,], errors: [1,], leaf: 8 },
 				endpoint: null
 			},
 			{
 				id: "/upload",
 				pattern: /^\/upload\/?$/,
 				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 7 },
+				page: { layouts: [0,], errors: [1,], leaf: 9 },
 				endpoint: null
 			},
 			{
-				id: "/vessel/[name]",
+				id: "/vessel/[id]",
 				pattern: /^\/vessel\/([^/]+?)\/?$/,
-				params: [{"name":"name","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,3,], errors: [1,,], leaf: 8 },
+				params: [{"name":"id","optional":false,"rest":false,"chained":false}],
+				page: { layouts: [0,3,], errors: [1,,], leaf: 10 },
 				endpoint: null
 			},
 			{
-				id: "/vessel/[name]/survey",
+				id: "/vessel/[id]/survey",
 				pattern: /^\/vessel\/([^/]+?)\/survey\/?$/,
-				params: [{"name":"name","optional":false,"rest":false,"chained":false}],
-				page: { layouts: [0,3,], errors: [1,,], leaf: 9 },
+				params: [{"name":"id","optional":false,"rest":false,"chained":false}],
+				page: { layouts: [0,3,], errors: [1,,], leaf: 11 },
 				endpoint: null
 			}
 		],

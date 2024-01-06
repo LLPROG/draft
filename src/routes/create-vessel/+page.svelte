@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	import VesselForm from '@components/VesselForm.svelte';
 	import { VesselsStorage, defaultValue } from '../../store/store';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import { v4 as uuidv4 } from 'uuid';
+	import type { Vessel } from '../../types/types';
 
-	let vesselName = '';
 	let isError = false;
 	let isErrorName = false;
 	let errors = [''];
@@ -14,7 +14,7 @@
 	let errorName = 'please fill vessel name';
 	let errorDuplicateName = 'vessel name already exists';
 
-	let vessel = defaultValue;
+	let vessel: Vessel = defaultValue;
 	$: pass = vessel.start_value.every((v) => v.wasfocusedCount === true);
 
 	const handleClick = () => {
@@ -25,10 +25,10 @@
 		vessel = {
 			...vessel,
 			id: uuidv4(),
-			name: vesselName
+			name: vessel.name
 		};
 
-		$VesselsStorage = [vessel, ...$VesselsStorage];
+		$VesselsStorage = [vessel, ...$VesselsStorage] as Vessel[];
 
 		resetData();
 		goto(`${base}/home`);
@@ -40,12 +40,12 @@
 			isError = true;
 		}
 
-		if (vesselName === '') {
+		if (vessel.name === '') {
 			errors = [...errors, errorName];
 			isErrorName = true;
 		}
 
-		if ($VesselsStorage.some((v) => v.name === vesselName)) {
+		if ($VesselsStorage.some((v) => v.name === vessel.name)) {
 			errors = [...errors, errorDuplicateName];
 			isErrorName = true;
 		}
@@ -59,8 +59,7 @@
 			v.wasfocusedCount = false;
 		});
 		vessel = vessel;
-		vesselName = '';
-		console.log('vessel', vessel);
+		vessel.name = '';
 	}
 
 	function resetErrors() {
@@ -74,7 +73,6 @@
 	on:click={() => handleClick()}
 	bind:isError
 	bind:isErrorName
-	bind:vesselName
 	bind:vessel
 	bind:errors
 	isCreate={true}

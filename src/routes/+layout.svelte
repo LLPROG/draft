@@ -10,7 +10,7 @@
 	import type { Vessel } from '../types/types';
 
 	let indexVelles = writable(0);
-	let selectedVessel = writable<{ name: Vessel['name'] }>({ name: 'defaultValue' });
+	let selectedVessel = writable({ name: 'defaultValue' });
 
 	setContext('indexVelles', indexVelles);
 	setContext('selectedVessel', selectedVessel);

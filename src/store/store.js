@@ -283,8 +283,11 @@ export const mockData = {
 		constantR: [{ label: 'Costant', value: 0 }]
 	}
 };
-
 export const VesselsStorage = persistent({
+	/**
+	 * Initial value to use when no value is found in Storage
+	 * @type {typeof defaultValue[]}
+	 */
 	start_value: [],
 	key: 'Vessels', // key to save as in Storage
 	storage_type: 'sessionStorage' // Storage object to use
