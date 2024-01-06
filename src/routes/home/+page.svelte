@@ -3,7 +3,7 @@
 	import Button from '@components/ui/Button.svelte';
 	import LogoMain from '@components/ui/LogoMain.svelte';
 	import Popup from '@components/Popup.svelte';
-	import { getContext, onMount } from 'svelte';
+	import { getContext } from 'svelte';
 	import { base } from '$app/paths';
 
 	export let openPopup = false;
