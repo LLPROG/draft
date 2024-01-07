@@ -1,20 +1,29 @@
 <script lang="ts">
-	import VesselForm from '@components/VesselForm.svelte';
-	import { page } from '$app/stores';
-	import { VesselsStorage, defaultValue } from '../../../store/store';
 	import { browser } from '$app/environment';
-	import Button from '@components/ui/Button.svelte';
 	import { base } from '$app/paths';
-	import type { Vessel } from '../../../types/types';
+	import { page } from '$app/stores';
+	import VesselForm from '@components/VesselForm.svelte';
+	import Button from '@components/ui/Button.svelte';
+	import { VesselsStorage, defaultValue } from '../../../store/store';
 
 	let vesselId = $page.params.id;
+	let isError = false;
+	let isErrorName = false;
+	let errors = [''];
 
-	let vessel = $VesselsStorage.find((v: Vessel) => v.id === vesselId);
+	$: vessel = $VesselsStorage.find((v) => v.id === vesselId) || defaultValue;
 </script>
 
 <div class="w-full h-fit bg-blackPrimary">
-	{#if browser && $page}
-		<VesselForm bind:vessel isCreate={true} />
+	{#if browser}
+		<VesselForm
+			bind:start_value={vessel.start_value}
+			bind:isError
+			bind:isErrorName
+			bind:vesselName={vessel.name}
+			bind:errors
+			isCreate={true}
+		/>
 		<Button
 			isButton={false}
 			href={`${base}/vessel/${vesselId}/survey`}

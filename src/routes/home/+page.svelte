@@ -52,20 +52,18 @@
 
 	<div class="w-full overflow-y-scroll max-h-[40vh] py-6 gap-2 px-5 flex flex-col justify-start">
 		{#each $VesselsStorage as vessel, i}
-			{#if vessel.name !== 'defaultValue'}
-				<Button
-					on:click={() => {
-						$indexVelles = i;
-						$selectedVessel = vessel;
-						console.log('selectedVessel', $selectedVessel);
-						openPopup = true;
-					}}
-					chooseType="secondary"
-					icon="arrow"
-					size="md"
-					message={vessel?.name}
-				/>
-			{/if}
+			<Button
+				on:click={() => {
+					$indexVelles = i;
+					$selectedVessel = vessel;
+					console.log('selectedVessel', $selectedVessel);
+					openPopup = true;
+				}}
+				chooseType="secondary"
+				icon="arrow"
+				size="md"
+				message={vessel?.name}
+			/>
 		{/each}
 	</div>
 
