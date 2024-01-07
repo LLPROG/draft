@@ -1,6 +1,6 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
 	import clsx from 'clsx';
+	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 	export let label = '';
 	export let className = '';
@@ -20,7 +20,7 @@
 	};
 </script>
 
-<div class={clsx('flex flex-col gap-0 justify-start text-whitePrimary', className)}>
+<div class={clsx('flex flex-col gap-0 justify-start text-whitePrimary input-class', className)}>
 	{#if label}
 		<label for={id}>{label}</label>
 	{/if}
@@ -70,18 +70,19 @@
 </div>
 
 <style>
-	.disabled-custom {
-		background: #e0e7f129;
-		backdrop-filter: blur(10px);
-	}
-
 	.input {
 		border-radius: 12px;
-		border: 1px solid rgba(224, 231, 241, 0.5);
+		border: 1px solid #e0e7f1;
 		background: rgba(224, 231, 241, 0.03);
 		backdrop-filter: blur(10px);
 		padding: 20px 20px;
 		text-align: center;
 		font-size: 20px;
+	}
+
+	.disabled-custom {
+		border: none;
+		outline: none;
+		opacity: 0.8;
 	}
 </style>

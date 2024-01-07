@@ -3,8 +3,8 @@
 </script>
 
 <svg
-	width="107"
-	height="400"
+	width={107 / divisor}
+	height={400 / divisor}
 	viewBox="0 0 107 400"
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"

@@ -27,6 +27,8 @@
 	],
 	"/vessel/[id]/survey": [
 		"src/routes/vessel/[id]/+layout.js",
+		"src/routes/+layout.js",
+		"src/routes/vessel/[id]/+layout.js",
 		"src/routes/+layout.js"
 	]
 }

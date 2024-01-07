@@ -1,4 +1,6 @@
 <script>
+	import { page } from '$app/stores';
+	import InitSurvey from '@components/InitSurvey.svelte';
 	import Mean from '@components/Mean.svelte';
 	import ResultCard from '@components/ResultCard.svelte';
 	import Button from '@components/ui/Button.svelte';
@@ -12,10 +14,8 @@
 		getMeanCorrected,
 		getTableResult
 	} from '@lib/utils/calculation';
-	import { VesselsStorage, defaultValue } from '../../../../store/store';
-	import { page } from '$app/stores';
-	import InitSurvey from '@components/InitSurvey.svelte';
 	import { uploadCVS } from '@lib/utils/uploadCSV';
+	import { VesselsStorage, defaultValue } from '../../../../store/store';
 
 	let waterDensityValue = 0;
 	let openMean = false;
@@ -35,9 +35,11 @@
 			waterDensityValue
 		};
 
-		let LIGHTSHIP = vessel.start_value[0].value;
-		let LBP = vessel.start_value[2].value;
-		let KILL_THK = vessel.start_value[6].value;
+		const LIGHTSHIP = vessel.start_value[0].value;
+		const LBP = vessel.start_value[2].value;
+		const KILL_THK = vessel.start_value[6].value;
+
+		const MEAN_VARIABLE_DELTA = 0.5;
 
 		let result = calc(
 			draftLeft[0].value,
@@ -50,14 +52,13 @@
 			vessel.start_value[4].value
 		);
 
-		let meanCorrected = getMeanCorrected(result.mean, selectedMean, KILL_THK);
+		const meanCorrected = getMeanCorrected(result.mean, selectedMean, KILL_THK);
+		const meanCorrectedMajor = meanCorrected + MEAN_VARIABLE_DELTA;
+		const meanCorrectedMinor = meanCorrected - MEAN_VARIABLE_DELTA;
 
-		let meanCorrectedMajor = meanCorrected + 0.5;
-		let meanCorrectedMinor = meanCorrected - 0.5;
-
-		let TABLE = getTableResult(vessel, meanCorrected, false);
-		let MTC1 = getTableResult(vessel, meanCorrectedMajor, true);
-		let MTC2 = getTableResult(vessel, meanCorrectedMinor, true);
+		const TABLE = getTableResult(vessel, meanCorrected, false);
+		const MTC1 = getTableResult(vessel, meanCorrectedMajor, true);
+		const MTC2 = getTableResult(vessel, meanCorrectedMinor, true);
 
 		const { DENSITY_CORRECTION, FINAL_DISPLACEMENT, TRIM_CORRECTION_1, TRIM_CORRECTION_2 } =
 			getFinalsFormule(
@@ -135,7 +136,7 @@
 				correctionsResult,
 				finalDisplacementResult,
 				weightResult: weightResult,
-				constantR: COSTANT_USER
+				constantR: [{ label: 'Costant', value: COSTANT_USER }]
 			}
 		};
 
@@ -174,7 +175,7 @@
 {#if vesselStatus === 'undefined'}
 	<InitSurvey />
 {:else}
-	<div class="w-full text-center text-whitePrimary bg-blackPrimary px-4 pb-56">
+	<div class="w-full text-center text-whitePrimary px-4 pb-56">
 		<!-- FOR TESTING -->
 		<div class="w-full flex justify-around items-center">
 			<button
@@ -192,7 +193,7 @@
 		</div>
 
 		<!-- DRAFTS -->
-		<h2 class="text-[2em] py-4">Drafts</h2>
+		<h2 class="text-[2em] font-bold py-4">Drafts</h2>
 		<div class="w-full flex justify-around">
 			<div class="flex flex-col gap-4">
 				{#each draftLeft as A}
@@ -201,7 +202,7 @@
 			</div>
 
 			<div>
-				<LogoBigSheep divisor={2} />
+				<LogoBigSheep divisor={1.5} />
 			</div>
 
 			<div class="flex flex-col gap-4">
@@ -212,7 +213,7 @@
 		</div>
 
 		<!-- WATER DENSITY -->
-		<h2 class="text-[2em] py-4">Water Density</h2>
+		<h2 class="text-[2em] font-bold py-4">Water Density</h2>
 		<div class="w-full flex justify-center items-center gap-4">
 			<Button
 				spaceAll={false}
@@ -238,7 +239,7 @@
 		</div>
 
 		<!-- WEIGHT -->
-		<h2 class="text-[2em]">Weight</h2>
+		<h2 class="text-[2em] font-bold">Weight</h2>
 		<div class="w-full grid grid-cols-2 gap-4 place-items-center pb-4">
 			{#each weight as w}
 				<Input label={w.name} bind:valueN={w.value} className="w-[8rem]" id="name" type="number" />

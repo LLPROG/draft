@@ -9,8 +9,9 @@
 
 	onMount(() => {
 		setTimeout(() => {
+			logoRef.classList.remove('animate-in');
 			logoRef.classList.add('animate-out');
-		}, 3000);
+		}, 2000);
 
 		setTimeout(() => {
 			goto(`${base}/home`);
@@ -18,8 +19,8 @@
 	});
 </script>
 
-<div class={clsx('z-50 w-full h-[100vh] relative bg-blackPrimary')}>
-	<div bind:this={logoRef} class="animate-in absolute origin-center left-[40%] top-[30%]">
+<div class={clsx('w-full h-[100vh] relative')}>
+	<div bind:this={logoRef} class="animate-in absolute origin-center left-[40%] top-[30%] z-50">
 		<LogoBigSheep />
 	</div>
 </div>

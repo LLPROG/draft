@@ -1,18 +1,23 @@
 <script lang="ts">
-	import BgVectorGreen from '@components/ui/BgVectorGreen.svelte';
-	import BgVectorViolet from '@components/ui/BgVectorViolet.svelte';
-	import { fly } from 'svelte/transition';
+	import clsx from 'clsx';
+	import { onMount } from 'svelte';
 
-	export let key: string;
+	let init = false;
+
+	onMount(() => {
+		setTimeout(() => {
+			init = true;
+		}, 300);
+	});
 </script>
 
-{#key key}
-	<main class="bg-blackPrimary h-fit min-h-[100svh] relative" transition:fly={{ duration: 150 }}>
-		<BgVectorViolet className="absolute top-[20%] left-[20%] z-0 blur-[120px]" />
-		<BgVectorGreen className="absolute bottom-[20%] right-[20%] z-0 blur-[120px]" />
-		<slot />
-	</main>
-{/key}
+<main
+	class={clsx('opacity-0 transition-opacity duration-500', {
+		'opacity-100': init
+	})}
+>
+	<slot />
+</main>
 
 <style>
 	:blobal(.box) {
