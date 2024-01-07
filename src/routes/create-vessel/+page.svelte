@@ -4,18 +4,31 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import { v4 as uuidv4 } from 'uuid';
+	import { onMount } from 'svelte';
 	import type { Vessel } from '../../types/types';
 
 	let isError = false;
 	let isErrorName = false;
 	let errors = [''];
+	let pass = false;
 
 	let error1 = 'please fill all fields';
 	let errorName = 'please fill vessel name';
 	let errorDuplicateName = 'vessel name already exists';
 
 	let vessel: Vessel = defaultValue;
-	$: pass = vessel.start_value.every((v) => v.wasfocusedCount === true);
+	let vesselName = '';
+	let start_value = [
+		{ name: 'light-ship', value: 0, wasfocusedCount: false },
+		{ name: 'd-fwd-pp', value: 0, wasfocusedCount: false },
+		{ name: 'lbp', value: 0, wasfocusedCount: false },
+		{ name: 'd-mid-pp', value: 0, wasfocusedCount: false },
+		{ name: 'lbm', value: 0, wasfocusedCount: false },
+		{ name: 'd-aft-pp', value: 0, wasfocusedCount: false },
+		{ name: 'keel-thk', value: 0, wasfocusedCount: false }
+	];
+
+	$: pass = start_value.every((v) => v.wasfocusedCount === true);
 
 	const handleClick = () => {
 		resetErrors();
@@ -25,12 +38,14 @@
 		vessel = {
 			...vessel,
 			id: uuidv4(),
-			name: vessel.name
+			name: vesselName,
+			start_value: start_value
 		};
 
-		$VesselsStorage = [vessel, ...$VesselsStorage] as Vessel[];
+		$VesselsStorage = [vessel, ...$VesselsStorage];
 
-		resetData();
+		console.log('vessel:', vessel);
+
 		goto(`${base}/home`);
 	};
 
@@ -40,12 +55,12 @@
 			isError = true;
 		}
 
-		if (vessel.name === '') {
+		if (vesselName === '') {
 			errors = [...errors, errorName];
 			isErrorName = true;
 		}
 
-		if ($VesselsStorage.some((v) => v.name === vessel.name)) {
+		if ($VesselsStorage.some((v) => v.name === vesselName)) {
 			errors = [...errors, errorDuplicateName];
 			isErrorName = true;
 		}
@@ -54,12 +69,11 @@
 	}
 
 	function resetData() {
-		vessel.start_value.forEach((v) => {
+		start_value.forEach((v) => {
 			v.value = 0;
 			v.wasfocusedCount = false;
 		});
-		vessel = vessel;
-		vessel.name = '';
+		vesselName = '';
 	}
 
 	function resetErrors() {
@@ -67,13 +81,20 @@
 		isErrorName = false;
 		errors = [''];
 	}
+
+	onMount(() => {
+		resetData();
+	});
 </script>
 
-<VesselForm
-	on:click={() => handleClick()}
-	bind:isError
-	bind:isErrorName
-	bind:vessel
-	bind:errors
-	isCreate={true}
-/>
+{#key vessel.id}
+	<VesselForm
+		on:click={() => handleClick()}
+		bind:isError
+		bind:isErrorName
+		bind:vesselName
+		bind:start_value
+		bind:errors
+		isCreate={true}
+	/>
+{/key}

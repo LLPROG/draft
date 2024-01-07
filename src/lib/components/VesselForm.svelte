@@ -1,12 +1,20 @@
-<script>
+<script lang="ts">
 	import Input from '@components/ui/Input.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import Button from './ui/Button.svelte';
 	import VesselFormErrors from './VesselFormErrors.svelte';
-	import { defaultValue } from '../../store/store';
+	import Button from './ui/Button.svelte';
 	const dispatch = createEventDispatcher();
 
-	export let vessel = defaultValue;
+	export let start_value = [
+		{ name: 'light-ship', value: 0, wasfocusedCount: false },
+		{ name: 'd-fwd-pp', value: 0, wasfocusedCount: false },
+		{ name: 'lbp', value: 0, wasfocusedCount: false },
+		{ name: 'd-mid-pp', value: 0, wasfocusedCount: false },
+		{ name: 'lbm', value: 0, wasfocusedCount: false },
+		{ name: 'd-aft-pp', value: 0, wasfocusedCount: false },
+		{ name: 'keel-thk', value: 0, wasfocusedCount: false }
+	];
+	export let vesselName = '';
 	export let isError = false;
 	export let isErrorName = false;
 	export let wasNameFocused = false;
@@ -24,18 +32,18 @@
 		{disabled}
 		bind:wasfocused={wasNameFocused}
 		bind:isError={isErrorName}
-		bind:valueT={vessel.name}
+		bind:valueT={vesselName}
 		on:focus={() => (wasNameFocused = true)}
 	/>
 	<div class="relative grid grid-cols-2 gap-4 pt-2">
-		{#each vessel.start_value as { name, value, wasfocusedCount }}
+		{#each start_value as { name, value, wasfocusedCount }}
 			<Input
 				id={name}
 				label={name}
 				type="number"
 				{disabled}
+				isError={!wasfocusedCount}
 				bind:wasfocused={wasfocusedCount}
-				bind:isError
 				bind:valueN={value}
 			/>
 		{/each}
