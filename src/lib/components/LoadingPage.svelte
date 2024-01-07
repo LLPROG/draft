@@ -20,7 +20,7 @@
 </script>
 
 <div class={clsx('w-full h-[100vh] relative')}>
-	<div bind:this={logoRef} class="animate-in absolute origin-center left-[40%] top-[30%] z-50">
+	<div bind:this={logoRef} class="animate-in absolute origin-center left-[40%] top-[20%] z-50">
 		<LogoBigSheep />
 	</div>
 </div>
