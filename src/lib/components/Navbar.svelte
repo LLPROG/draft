@@ -1,14 +1,16 @@
 <script>
-	import LogoNavbar from './ui/LogoNavbar.svelte';
-	import { page } from '$app/stores';
-	import Button from './ui/Button.svelte';
-	import { createEventDispatcher } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import { page } from '$app/stores';
+	import clsx from 'clsx';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import Menu from './Menu.svelte';
+	import Button from './ui/Button.svelte';
+	import LogoNavbar from './ui/LogoNavbar.svelte';
 	const dispatch = createEventDispatcher();
 
 	export let isEditable = false;
+	let init = false;
 	let openMenu = false;
 
 	$: route = $page.url.pathname;
@@ -20,10 +22,23 @@
 		}
 		goto(`${base}/home`);
 	};
+
+	onMount(() => {
+		setTimeout(() => {
+			init = true;
+		}, 100);
+	});
 </script>
 
-<nav class="w-full h-[12vh] p-4 text-grayPrimary">
-	<div class="flex border-b-[1px] border-green border-opacity-40 py-2">
+<nav
+	class={clsx(
+		'w-full px-4 text-grayPrimary bg-blackPrimary bg-opacity-60 backdrop-blur-md z-50 opacity-0 fixed top-0 left-0',
+		{
+			'opacity-100': init
+		}
+	)}
+>
+	<div class="flex border-b-[1px] border-green border-opacity-40 py-4">
 		<button on:click={() => goBackPage()}>
 			<LogoNavbar />
 		</button>
