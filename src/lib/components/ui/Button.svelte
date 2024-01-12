@@ -20,7 +20,7 @@
 		'w-full': spaceAll,
 		'text-grayPrimary rounded-[12px] py-8': chooseType == 'primary',
 		'text-white secondary rounded-[12px] py-8': chooseType == 'secondary',
-		'text-black border-b border-b-black py-8': chooseType == 'tertiary',
+		'text-blackPrimary font-[700] border-b border-b-black py-8': chooseType == 'tertiary',
 		'h-[56px] w-full absolute bottom-0 p-4 rounded-md bg-green bg-opacity-[10%] shadoww text-center text-white for-form':
 			chooseType == 'for-form',
 		'w-fit': chooseType == 'only-icon',

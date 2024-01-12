@@ -81,7 +81,6 @@ export const getMean = (selectedMean, mean) => {
 export const getTableValues = (tableValue, meanCorrected, lessRow, moreRow, draft, index) => {
 	let D_Draft = tableValue / draft;
 	let D_Mean = meanCorrected - lessRow[0];
-
 	let res = D_Draft * D_Mean;
 
 	if (lessRow[index] < moreRow[index]) {
