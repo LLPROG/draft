@@ -42,7 +42,7 @@
 				label={name}
 				type="number"
 				{disabled}
-				isError={!wasfocusedCount}
+				isError={!wasfocusedCount && isError}
 				bind:wasfocused={wasfocusedCount}
 				bind:valueN={value}
 			/>

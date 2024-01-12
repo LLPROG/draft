@@ -25,7 +25,7 @@ export const dictionary = {
 		"/home": [8],
 		"/tables": [9],
 		"/upload": [10],
-		"/vessel/[id]": [11,[3]],
+		"/vessel/[id]": [11,[3,4]],
 		"/vessel/[id]/survey": [12,[3,4]]
 	};
 

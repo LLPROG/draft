@@ -19,6 +19,9 @@
 	"/upload": [
 		"src/routes/+layout.js"
 	],
+	"/vessel": [
+		"src/routes/+layout.js"
+	],
 	"/vessel/[id]": [
 		"src/routes/vessel/[id]/+layout.js",
 		"src/routes/+layout.js",
@@ -26,8 +29,6 @@
 		"src/routes/+layout.js"
 	],
 	"/vessel/[id]/survey": [
-		"src/routes/vessel/[id]/+layout.js",
-		"src/routes/+layout.js",
 		"src/routes/vessel/[id]/+layout.js",
 		"src/routes/+layout.js"
 	]
