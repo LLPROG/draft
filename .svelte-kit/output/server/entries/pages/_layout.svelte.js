@@ -1,13 +1,10 @@
 import { c as create_ssr_component, v as validate_component, a as subscribe, b as createEventDispatcher, d as add_attribute, s as setContext } from "../../chunks/index2.js";
-import { p as page } from "../../chunks/stores.js";
-import { B as Button } from "../../chunks/Button.js";
-import { P as Popup } from "../../chunks/Popup.js";
 import { b as base } from "../../chunks/paths.js";
+import { p as page } from "../../chunks/stores.js";
+import clsx from "clsx";
+import { P as Popup } from "../../chunks/Popup.js";
+import { B as Button } from "../../chunks/Button.js";
 import { w as writable } from "../../chunks/index.js";
-const global = "";
-const LogoNavbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<svg width="28" height="34" viewBox="0 0 28 34" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_b_400_1185)"><path d="M26 32H11.3968V19.6395M26 7.27897H12.547C11.9118 7.27897 11.3968 7.79394 11.3968 8.42918V19.6395M11.3968 19.6395H26M11.3968 19.6395V2H2" stroke="#E0E7F1" stroke-opacity="0.5" stroke-width="3" stroke-miterlimit="16" stroke-linecap="square"></path></g><defs><filter id="filter0_b_400_1185" x="-49.5" y="-49.5" width="127" height="133" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feGaussianBlur in="BackgroundImageFix" stdDeviation="25"></feGaussianBlur><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_400_1185"></feComposite><feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_400_1185" result="shape"></feBlend></filter></defs></svg>`;
-});
 const Menu = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { openPopup = false } = $$props;
   if ($$props.openPopup === void 0 && $$bindings.openPopup && openPopup !== void 0)
@@ -73,12 +70,16 @@ const Menu = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   } while (!$$settled);
   return $$rendered;
 });
+const LogoNavbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  return `<svg width="28" height="34" viewBox="0 0 28 34" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_b_400_1185)"><path d="M26 32H11.3968V19.6395M26 7.27897H12.547C11.9118 7.27897 11.3968 7.79394 11.3968 8.42918V19.6395M11.3968 19.6395H26M11.3968 19.6395V2H2" stroke="#E0E7F1" stroke-opacity="0.5" stroke-width="3" stroke-miterlimit="16" stroke-linecap="square"></path></g><defs><filter id="filter0_b_400_1185" x="-49.5" y="-49.5" width="127" height="133" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feGaussianBlur in="BackgroundImageFix" stdDeviation="25"></feGaussianBlur><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_400_1185"></feComposite><feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_400_1185" result="shape"></feBlend></filter></defs></svg>`;
+});
 const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let route;
   let $page, $$unsubscribe_page;
   $$unsubscribe_page = subscribe(page, (value) => $page = value);
   createEventDispatcher();
   let { isEditable = false } = $$props;
+  let init = false;
   let openMenu = false;
   if ($$props.isEditable === void 0 && $$bindings.isEditable && isEditable !== void 0)
     $$bindings.isEditable(isEditable);
@@ -87,7 +88,7 @@ const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   do {
     $$settled = true;
     route = $page.url.pathname;
-    $$rendered = `<nav class="w-full h-[12vh] p-4 text-grayPrimary"><div class="flex border-b-[1px] border-green border-opacity-40 py-2"><button>${validate_component(LogoNavbar, "LogoNavbar").$$render($$result, {}, {}, {})}</button>
+    $$rendered = `<nav${add_attribute("class", clsx("w-full px-4 text-grayPrimary bg-blackPrimary bg-opacity-60 backdrop-blur-md z-50 opacity-0 fixed top-0 left-0", { "opacity-100": init }), 0)}><div class="flex border-b-[1px] border-green border-opacity-40 py-4"><button>${validate_component(LogoNavbar, "LogoNavbar").$$render($$result, {}, {}, {})}</button>
 
 		${route.includes("/home") ? `${validate_component(Button, "Button").$$render(
       $$result,
@@ -154,6 +155,7 @@ ${validate_component(Menu, "Menu").$$render(
   $$unsubscribe_page();
   return $$rendered;
 });
+const global = "";
 const BgVectorGreen = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { className = "" } = $$props;
   if ($$props.className === void 0 && $$bindings.className && className !== void 0)
@@ -166,17 +168,8 @@ const BgVectorViolet = create_ssr_component(($$result, $$props, $$bindings, slot
     $$bindings.className(className);
   return `<svg${add_attribute("class", className, 0)} width="124" height="147" viewBox="0 0 124 147" xmlns="http://www.w3.org/2000/svg"><path d="M112.849 38.4842C123.827 55.0023 125.957 81.4306 120.358 99.1167C114.76 116.803 96.3946 139.545 79.2585 144.601C62.1225 149.657 30.4191 144.763 17.5423 129.45C4.66541 114.137 -4.16042 74.2985 1.9975 52.7248C8.15542 31.151 36.0145 2.3812 54.4898 0.00776351" fill="url(#paint0_linear_410_528)"></path><defs><linearGradient id="paint0_linear_410_528" x1="1.46544" y1="90.1332" x2="120.88" y2="57.377" gradientUnits="userSpaceOnUse"><stop stop-color="#80FF82"></stop><stop offset="1" stop-color="#80FDFF"></stop></linearGradient></defs></svg>`;
 });
-const Transition_svelte_svelte_type_style_lang = "";
-const css = {
-  code: ".svelte-v3m6cj:blobal(.box){filter:blur(10px)}",
-  map: null
-};
-const Transition = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { key } = $$props;
-  if ($$props.key === void 0 && $$bindings.key && key !== void 0)
-    $$bindings.key(key);
-  $$result.css.add(css);
-  return `<main class="bg-blackPrimary h-fit min-h-[100svh] relative svelte-v3m6cj">${validate_component(BgVectorViolet, "BgVectorViolet").$$render(
+const Provider = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  return `<div class="bg-blackPrimary min-h-[100svh] relative pt-[10svh] z-50">${validate_component(BgVectorViolet, "BgVectorViolet").$$render(
     $$result,
     {
       className: "absolute top-[20%] left-[20%] z-0 blur-[120px]"
@@ -184,7 +177,7 @@ const Transition = create_ssr_component(($$result, $$props, $$bindings, slots) =
     {},
     {}
   )}
-		${validate_component(BgVectorGreen, "BgVectorGreen").$$render(
+	${validate_component(BgVectorGreen, "BgVectorGreen").$$render(
     $$result,
     {
       className: "absolute bottom-[20%] right-[20%] z-0 blur-[120px]"
@@ -192,7 +185,7 @@ const Transition = create_ssr_component(($$result, $$props, $$bindings, slots) =
     {},
     {}
   )}
-		${slots.default ? slots.default({}) : ``}</main>`;
+	${slots.default ? slots.default({}) : ``}</div>`;
 });
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $page, $$unsubscribe_page;
@@ -201,11 +194,8 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let selectedVessel = writable({ name: "defaultValue" });
   setContext("indexVelles", indexVelles);
   setContext("selectedVessel", selectedVessel);
-  let { data } = $$props;
-  if ($$props.data === void 0 && $$bindings.data && data !== void 0)
-    $$bindings.data(data);
   $$unsubscribe_page();
-  return `${validate_component(Transition, "Transition").$$render($$result, { key: data.url }, {}, {
+  return `${validate_component(Provider, "Provider").$$render($$result, {}, {}, {
     default: () => {
       return `${$page.url.pathname !== `${base}/` ? `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})}` : ``}
 	${slots.default ? slots.default({}) : ``}`;

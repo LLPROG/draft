@@ -1,7 +1,8 @@
 import { c as create_ssr_component, b as createEventDispatcher, e as escape, n as null_to_empty, d as add_attribute } from "./index2.js";
 import clsx from "clsx";
-/* empty css                                     */const css = {
-  code: ".disabled-custom.svelte-1y1wqz6{background:#e0e7f129;backdrop-filter:blur(10px)}.input.svelte-1y1wqz6{border-radius:12px;border:1px solid rgba(224, 231, 241, 0.5);background:rgba(224, 231, 241, 0.03);backdrop-filter:blur(10px);padding:20px 20px;text-align:center;font-size:20px}",
+const Input_svelte_svelte_type_style_lang = "";
+const css = {
+  code: ".input.svelte-8h8q1c{border-radius:12px;border:1px solid #e0e7f1;background:rgba(224, 231, 241, 0.03);backdrop-filter:blur(10px);padding:20px 20px;text-align:center;font-size:20px}.disabled-custom.svelte-8h8q1c{border:none;outline:none;opacity:0.8}",
   map: null
 };
 const Input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -43,8 +44,8 @@ const Input = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     "outline outline-[2px] outline-red-400": isError || isErrorName,
     "disabled-custom": disabled
   };
-  return `<div class="${escape(null_to_empty(clsx("flex flex-col gap-0 justify-start text-whitePrimary", className)), true) + " svelte-1y1wqz6"}">${label ? `<label${add_attribute("for", id, 0)}>${escape(label)}</label>` : ``}
-	${type === "text" ? `<input placeholder=""${add_attribute("id", id, 0)}${add_attribute("name", id, 0)} ${disabled ? "disabled" : ""}${add_attribute("value", valueT, 0)} class="${escape(null_to_empty(clsx(style)), true) + " svelte-1y1wqz6"}" type="text">` : `<input step="0.0001"${add_attribute("pattern", "d{(1, 10)}(?:.d{(1, 3)})?$", 0)} placeholder=""${add_attribute("id", id, 0)}${add_attribute("name", id, 0)} ${disabled ? "disabled" : ""}${add_attribute("value", valueN, 0)} class="${escape(null_to_empty(clsx(style)), true) + " svelte-1y1wqz6"}" type="number">`}
+  return `<div class="${escape(null_to_empty(clsx("flex flex-col gap-0 justify-start text-whitePrimary input-class", className)), true) + " svelte-8h8q1c"}">${label ? `<label${add_attribute("for", id, 0)}>${escape(label)}</label>` : ``}
+	${type === "text" ? `<input placeholder=""${add_attribute("id", id, 0)}${add_attribute("name", id, 0)} ${disabled ? "disabled" : ""} class="${escape(null_to_empty(clsx(style)), true) + " svelte-8h8q1c"}" type="text"${add_attribute("value", valueT, 0)}>` : `<input step="0.0001" placeholder=""${add_attribute("id", id, 0)}${add_attribute("name", id, 0)} ${disabled ? "disabled" : ""} class="${escape(null_to_empty(clsx(style)), true) + " svelte-8h8q1c"}" type="number"${add_attribute("value", valueN, 0)}>`}
 </div>`;
 });
 export {

@@ -1,117 +1,13 @@
-import { c as create_ssr_component, b as createEventDispatcher, d as add_attribute, f as each, v as validate_component, e as escape, n as null_to_empty, a as subscribe } from "../../../../../chunks/index2.js";
-import clsx from "clsx";
+import { c as create_ssr_component, f as each, e as escape, n as null_to_empty, d as add_attribute, a as subscribe, v as validate_component, b as createEventDispatcher } from "../../../../../chunks/index2.js";
+import { p as page } from "../../../../../chunks/stores.js";
+import { V as VesselsStorage, d as defaultValue } from "../../../../../chunks/store.js";
 import { B as Button } from "../../../../../chunks/Button.js";
 import { I as Input } from "../../../../../chunks/Input.js";
 import { L as LogoBigSheep } from "../../../../../chunks/LogoBigSheep.js";
-import { V as VesselsStorage, d as defaultValue } from "../../../../../chunks/store.js";
-import { p as page } from "../../../../../chunks/stores.js";
+import clsx from "clsx";
 import "papaparse";
-const Select = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  createEventDispatcher();
-  let { classProps = "" } = $$props;
-  let { value = "" } = $$props;
-  let { array = [""] } = $$props;
-  if ($$props.classProps === void 0 && $$bindings.classProps && classProps !== void 0)
-    $$bindings.classProps(classProps);
-  if ($$props.value === void 0 && $$bindings.value && value !== void 0)
-    $$bindings.value(value);
-  if ($$props.array === void 0 && $$bindings.array && array !== void 0)
-    $$bindings.array(array);
-  return `<div${add_attribute("class", clsx("w-full p-1 py-2 flex flex-col gap-2 rounded-xl px-1 bg-[#e0e7f14c] backdrop-blur-sm text-black", { [classProps]: true }), 0)}>${each(array, (el) => {
-    return `${validate_component(Button, "Button").$$render(
-      $$result,
-      {
-        message: el,
-        chooseType: "secondary",
-        icon: "",
-        size: "sm",
-        classProp: "!py-4 text-white !bg-blackPrimary"
-      },
-      {},
-      {}
-    )}`;
-  })}</div>`;
-});
-const Mean = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { selectedOption = "Quarter Mean" } = $$props;
-  let { openMean: openMean2 = false } = $$props;
-  let { array = ["Quarter Mean", "Mean of Mean", "Mean of Mean of mean"] } = $$props;
-  let { customClass = "" } = $$props;
-  if ($$props.selectedOption === void 0 && $$bindings.selectedOption && selectedOption !== void 0)
-    $$bindings.selectedOption(selectedOption);
-  if ($$props.openMean === void 0 && $$bindings.openMean && openMean2 !== void 0)
-    $$bindings.openMean(openMean2);
-  if ($$props.array === void 0 && $$bindings.array && array !== void 0)
-    $$bindings.array(array);
-  if ($$props.customClass === void 0 && $$bindings.customClass && customClass !== void 0)
-    $$bindings.customClass(customClass);
-  let $$settled;
-  let $$rendered;
-  do {
-    $$settled = true;
-    $$rendered = `<div${add_attribute("class", clsx("w-full relative", customClass), 0)}>${validate_component(Button, "Button").$$render(
-      $$result,
-      {
-        message: selectedOption,
-        chooseType: "secondary",
-        icon: "arrow",
-        size: "sm",
-        classProp: "w-full !py-4"
-      },
-      {},
-      {}
-    )}
-
-	${openMean2 ? `${validate_component(Select, "Select").$$render(
-      $$result,
-      {
-        classProps: "absolute top-18 z-50",
-        array,
-        value: selectedOption
-      },
-      {
-        array: ($$value) => {
-          array = $$value;
-          $$settled = false;
-        },
-        value: ($$value) => {
-          selectedOption = $$value;
-          $$settled = false;
-        }
-      },
-      {}
-    )}` : ``}</div>`;
-  } while (!$$settled);
-  return $$rendered;
-});
-const ResultCard_svelte_svelte_type_style_lang = "";
-const css$1 = {
-  code: ".result.svelte-l1y7jz{background:rgba(224, 231, 241, 0.02);box-shadow:0px 0px 4px 3px rgba(255, 255, 255, 0.05)}",
-  map: null
-};
-const ResultCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { options } = $$props;
-  let { unit } = $$props;
-  const addCaracter = (value) => {
-    let precise = value?.toPrecision(4);
-    var precValue = parseFloat(precise);
-    let result = `${precValue} ${unit}`;
-    return result;
-  };
-  if ($$props.options === void 0 && $$bindings.options && options !== void 0)
-    $$bindings.options(options);
-  if ($$props.unit === void 0 && $$bindings.unit && unit !== void 0)
-    $$bindings.unit(unit);
-  $$result.css.add(css$1);
-  return `<div class="w-full rounded-2xl result py-4 svelte-l1y7jz"><ul class="w-full">${each(options, (option) => {
-    return `<li class="w-full grid grid-cols-2 gap-2 text-[rgba(235,255,229,0.8)]"><label class="text-end w-full max-w-[11rem] truncate" for="name">${escape(`${option.label}:`)}</label>
-				<input${add_attribute("value", addCaracter(option.value), 0)} class="text-start bg-transparent" id="name" type="text" ${"disabled"}>
-			</li>`;
-  })}</ul>
-</div>`;
-});
 const RadioList_svelte_svelte_type_style_lang = "";
-const css = {
+const css$1 = {
   code: ".radio.svelte-vm48ny{border:5px solid #485544;box-shadow:inset 0px 4px 4px rgba(0, 0, 0, 0.25)}",
   map: null
 };
@@ -122,7 +18,7 @@ const RadioList = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     $$bindings.options(options);
   if ($$props.selectedOption === void 0 && $$bindings.selectedOption && selectedOption !== void 0)
     $$bindings.selectedOption(selectedOption);
-  $$result.css.add(css);
+  $$result.css.add(css$1);
   return `<div class="w-full flex flex-col gap-3 py-2">${each(options, (option) => {
     return `<button class="w-full flex justify-start items-center gap-2"><div class="${escape(
       null_to_empty(clsx("radio w-5 h-5 rounded-full border-[4px] border-gray-300 bg-[#485544] outline-none text-transparent", {
@@ -269,6 +165,110 @@ const InitSurvey = create_ssr_component(($$result, $$props, $$bindings, slots) =
   $$unsubscribe_page();
   return $$rendered;
 });
+const Select = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  createEventDispatcher();
+  let { classProps = "" } = $$props;
+  let { value = "" } = $$props;
+  let { array = [""] } = $$props;
+  if ($$props.classProps === void 0 && $$bindings.classProps && classProps !== void 0)
+    $$bindings.classProps(classProps);
+  if ($$props.value === void 0 && $$bindings.value && value !== void 0)
+    $$bindings.value(value);
+  if ($$props.array === void 0 && $$bindings.array && array !== void 0)
+    $$bindings.array(array);
+  return `<div${add_attribute("class", clsx("w-full p-1 py-2 flex flex-col gap-2 rounded-xl px-1 bg-[#e0e7f14c] backdrop-blur-sm text-black", { [classProps]: true }), 0)}>${each(array, (el) => {
+    return `${validate_component(Button, "Button").$$render(
+      $$result,
+      {
+        message: el,
+        chooseType: "secondary",
+        icon: "",
+        size: "sm",
+        classProp: "!py-4 text-white !bg-blackPrimary"
+      },
+      {},
+      {}
+    )}`;
+  })}</div>`;
+});
+const Mean = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { selectedOption = "Quarter Mean" } = $$props;
+  let { openMean: openMean2 = false } = $$props;
+  let { array = ["Quarter Mean", "Mean of Mean", "Mean of Mean of mean"] } = $$props;
+  let { customClass = "" } = $$props;
+  if ($$props.selectedOption === void 0 && $$bindings.selectedOption && selectedOption !== void 0)
+    $$bindings.selectedOption(selectedOption);
+  if ($$props.openMean === void 0 && $$bindings.openMean && openMean2 !== void 0)
+    $$bindings.openMean(openMean2);
+  if ($$props.array === void 0 && $$bindings.array && array !== void 0)
+    $$bindings.array(array);
+  if ($$props.customClass === void 0 && $$bindings.customClass && customClass !== void 0)
+    $$bindings.customClass(customClass);
+  let $$settled;
+  let $$rendered;
+  do {
+    $$settled = true;
+    $$rendered = `<div${add_attribute("class", clsx("w-full relative", customClass), 0)}>${validate_component(Button, "Button").$$render(
+      $$result,
+      {
+        message: selectedOption,
+        chooseType: "secondary",
+        icon: "arrow",
+        size: "sm",
+        classProp: "w-full !py-4"
+      },
+      {},
+      {}
+    )}
+
+	${openMean2 ? `${validate_component(Select, "Select").$$render(
+      $$result,
+      {
+        classProps: "absolute top-18 z-50",
+        array,
+        value: selectedOption
+      },
+      {
+        array: ($$value) => {
+          array = $$value;
+          $$settled = false;
+        },
+        value: ($$value) => {
+          selectedOption = $$value;
+          $$settled = false;
+        }
+      },
+      {}
+    )}` : ``}</div>`;
+  } while (!$$settled);
+  return $$rendered;
+});
+const ResultCard_svelte_svelte_type_style_lang = "";
+const css = {
+  code: ".result.svelte-l1y7jz{background:rgba(224, 231, 241, 0.02);box-shadow:0px 0px 4px 3px rgba(255, 255, 255, 0.05)}",
+  map: null
+};
+const ResultCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { options } = $$props;
+  let { unit } = $$props;
+  const addCaracter = (value) => {
+    let precise = value?.toPrecision(4);
+    var precValue = parseFloat(precise);
+    let result = `${precValue} ${unit}`;
+    return result;
+  };
+  if ($$props.options === void 0 && $$bindings.options && options !== void 0)
+    $$bindings.options(options);
+  if ($$props.unit === void 0 && $$bindings.unit && unit !== void 0)
+    $$bindings.unit(unit);
+  $$result.css.add(css);
+  return `<div class="w-full rounded-2xl result py-4 svelte-l1y7jz"><ul class="w-full">${each(options, (option) => {
+    return `<li class="w-full grid grid-cols-2 gap-2 text-[rgba(235,255,229,0.8)]"><label class="text-end w-full max-w-[11rem] truncate" for="name">${escape(`${option.label}:`)}</label>
+				<input${add_attribute("value", addCaracter(option.value), 0)} class="text-start bg-transparent" id="name" type="text" ${"disabled"}>
+			</li>`;
+  })}</ul>
+</div>`;
+});
 let openMean = false;
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let vessel;
@@ -312,13 +312,13 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     finalDisplacementResult = vessel?.results?.finalDisplacementResult || defaultValue.results.finalDisplacementResult;
     weightResult = vessel?.results?.weightResult || defaultValue.results.weightResult;
     constantR = vessel?.results?.constantR || defaultValue.results.constantR;
-    $$rendered = `${vesselStatus === "undefined" ? `${validate_component(InitSurvey, "InitSurvey").$$render($$result, {}, {}, {})}` : `<div class="w-full text-center text-whitePrimary bg-blackPrimary px-4 pb-56">
+    $$rendered = `${vesselStatus === "undefined" ? `${validate_component(InitSurvey, "InitSurvey").$$render($$result, {}, {}, {})}` : `<div class="w-full text-center text-whitePrimary px-4 pb-56">
 		<div class="w-full flex justify-around items-center"><button class="w-[6rem] py-1 font-bold bg-white rounded-xl text-black text-[1.5rem]">calc
 			</button>
 			<input placeholder="" type="file" accept=".csv"></div>
 
 		
-		<h2 class="text-[2em] py-4">Drafts</h2>
+		<h2 class="text-[2em] font-bold py-4">Drafts</h2>
 		<div class="w-full flex justify-around"><div class="flex flex-col gap-4">${each(draftLeft, (A) => {
       return `${validate_component(Input, "Input").$$render(
         $$result,
@@ -337,7 +337,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       )}`;
     })}</div>
 
-			<div>${validate_component(LogoBigSheep, "LogoBigSheep").$$render($$result, { divisor: 2 }, {}, {})}</div>
+			<div>${validate_component(LogoBigSheep, "LogoBigSheep").$$render($$result, { divisor: 1.5 }, {}, {})}</div>
 
 			<div class="flex flex-col gap-4">${each(draftRight, (B) => {
       return `${validate_component(Input, "Input").$$render(
@@ -358,7 +358,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     })}</div></div>
 
 		
-		<h2 class="text-[2em] py-4">Water Density</h2>
+		<h2 class="text-[2em] font-bold py-4">Water Density</h2>
 		<div class="w-full flex justify-center items-center gap-4">${validate_component(Button, "Button").$$render(
       $$result,
       {
@@ -400,7 +400,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     )}</div>
 
 		
-		<h2 class="text-[2em]">Weight</h2>
+		<h2 class="text-[2em] font-bold">Weight</h2>
 		<div class="w-full grid grid-cols-2 gap-4 place-items-center pb-4">${each(weight, (w) => {
       return `${validate_component(Input, "Input").$$render(
         $$result,

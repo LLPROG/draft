@@ -1,161 +1,63 @@
-import { c as create_ssr_component, f as each, e as escape, b as createEventDispatcher, v as validate_component, a as subscribe } from "../../../chunks/index2.js";
-import { I as Input } from "../../../chunks/Input.js";
-import { B as Button } from "../../../chunks/Button.js";
-import { d as defaultValue, V as VesselsStorage } from "../../../chunks/store.js";
-const VesselFormErrors = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { errors = [""] } = $$props;
-  if ($$props.errors === void 0 && $$bindings.errors && errors !== void 0)
-    $$bindings.errors(errors);
-  return `<div class="w-full p-2 flex flex-col gap-2 items-center">${each(errors, (error) => {
-    return `<p class="text-red-500 text-sm">${escape(error)}</p>`;
-  })}</div>`;
-});
-const VesselForm = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  createEventDispatcher();
-  let { vessel = defaultValue } = $$props;
-  let { isError = false } = $$props;
-  let { isErrorName = false } = $$props;
-  let { wasNameFocused = false } = $$props;
-  let { isCreate = false } = $$props;
-  let { redirect = "" } = $$props;
-  let { disabled = false } = $$props;
-  let { errors = [""] } = $$props;
-  if ($$props.vessel === void 0 && $$bindings.vessel && vessel !== void 0)
-    $$bindings.vessel(vessel);
-  if ($$props.isError === void 0 && $$bindings.isError && isError !== void 0)
-    $$bindings.isError(isError);
-  if ($$props.isErrorName === void 0 && $$bindings.isErrorName && isErrorName !== void 0)
-    $$bindings.isErrorName(isErrorName);
-  if ($$props.wasNameFocused === void 0 && $$bindings.wasNameFocused && wasNameFocused !== void 0)
-    $$bindings.wasNameFocused(wasNameFocused);
-  if ($$props.isCreate === void 0 && $$bindings.isCreate && isCreate !== void 0)
-    $$bindings.isCreate(isCreate);
-  if ($$props.redirect === void 0 && $$bindings.redirect && redirect !== void 0)
-    $$bindings.redirect(redirect);
-  if ($$props.disabled === void 0 && $$bindings.disabled && disabled !== void 0)
-    $$bindings.disabled(disabled);
-  if ($$props.errors === void 0 && $$bindings.errors && errors !== void 0)
-    $$bindings.errors(errors);
-  let $$settled;
-  let $$rendered;
-  do {
-    $$settled = true;
-    $$rendered = `<form class="w-full p-4">${validate_component(Input, "Input").$$render(
-      $$result,
-      {
-        id: "name",
-        label: "Vessel",
-        type: "text",
-        disabled,
-        wasfocused: wasNameFocused,
-        isError: isErrorName,
-        valueT: vessel.name
-      },
-      {
-        wasfocused: ($$value) => {
-          wasNameFocused = $$value;
-          $$settled = false;
-        },
-        isError: ($$value) => {
-          isErrorName = $$value;
-          $$settled = false;
-        },
-        valueT: ($$value) => {
-          vessel.name = $$value;
-          $$settled = false;
-        }
-      },
-      {}
-    )}
-	<div class="relative grid grid-cols-2 gap-4 pt-2">${each(vessel.start_value, ({ name, value, wasfocusedCount }) => {
-      return `${validate_component(Input, "Input").$$render(
-        $$result,
-        {
-          id: name,
-          label: name,
-          type: "number",
-          disabled,
-          wasfocused: wasfocusedCount,
-          isError,
-          valueN: value
-        },
-        {
-          wasfocused: ($$value) => {
-            wasfocusedCount = $$value;
-            $$settled = false;
-          },
-          isError: ($$value) => {
-            isError = $$value;
-            $$settled = false;
-          },
-          valueN: ($$value) => {
-            value = $$value;
-            $$settled = false;
-          }
-        },
-        {}
-      )}`;
-    })}
-
-		<div class="w-full relative">${isCreate ? `${validate_component(Button, "Button").$$render(
-      $$result,
-      {
-        spaceAll: false,
-        chooseType: "for-form",
-        message: "Save",
-        icon: ""
-      },
-      {},
-      {}
-    )}` : ``}
-
-			${redirect ? `${validate_component(Button, "Button").$$render(
-      $$result,
-      {
-        isButton: false,
-        spaceAll: false,
-        href: redirect,
-        chooseType: "for-form",
-        message: "Go back",
-        icon: ""
-      },
-      {},
-      {}
-    )}` : ``}</div></div>
-
-	${isError || isErrorName ? `${validate_component(VesselFormErrors, "VesselFormErrors").$$render(
-      $$result,
-      { errors },
-      {
-        errors: ($$value) => {
-          errors = $$value;
-          $$settled = false;
-        }
-      },
-      {}
-    )}` : ``}</form>`;
-  } while (!$$settled);
-  return $$rendered;
-});
+import { c as create_ssr_component, a as subscribe, v as validate_component } from "../../../chunks/index2.js";
+import { V as VesselForm } from "../../../chunks/VesselForm.js";
+import { V as VesselsStorage } from "../../../chunks/store.js";
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$unsubscribe_VesselsStorage;
   $$unsubscribe_VesselsStorage = subscribe(VesselsStorage, (value) => value);
   let isError = false;
   let isErrorName = false;
   let errors = [""];
-  let vessel = defaultValue;
+  let vesselName = "";
+  let start_value = [
+    {
+      name: "light-ship",
+      value: 0,
+      wasfocusedCount: false
+    },
+    {
+      name: "d-fwd-pp",
+      value: 0,
+      wasfocusedCount: false
+    },
+    {
+      name: "lbp",
+      value: 0,
+      wasfocusedCount: false
+    },
+    {
+      name: "d-mid-pp",
+      value: 0,
+      wasfocusedCount: false
+    },
+    {
+      name: "lbm",
+      value: 0,
+      wasfocusedCount: false
+    },
+    {
+      name: "d-aft-pp",
+      value: 0,
+      wasfocusedCount: false
+    },
+    {
+      name: "keel-thk",
+      value: 0,
+      wasfocusedCount: false
+    }
+  ];
   let $$settled;
   let $$rendered;
   do {
     $$settled = true;
-    vessel.start_value.every((v) => v.wasfocusedCount === true);
+    start_value.every((v) => v.wasfocusedCount === true);
     $$rendered = `${validate_component(VesselForm, "VesselForm").$$render(
       $$result,
       {
         isCreate: true,
         isError,
         isErrorName,
-        vessel,
+        vesselName,
+        start_value,
         errors
       },
       {
@@ -167,8 +69,12 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
           isErrorName = $$value;
           $$settled = false;
         },
-        vessel: ($$value) => {
-          vessel = $$value;
+        vesselName: ($$value) => {
+          vesselName = $$value;
+          $$settled = false;
+        },
+        start_value: ($$value) => {
+          start_value = $$value;
           $$settled = false;
         },
         errors: ($$value) => {

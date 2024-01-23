@@ -9,11 +9,11 @@ const css = {
 const LoadingPage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let logoRef;
   $$result.css.add(css);
-  return `<div class="${escape(null_to_empty(clsx("z-50 w-full h-[100vh] relative bg-blackPrimary")), true) + " svelte-1j25jg1"}"><div class="animate-in absolute origin-center left-[40%] top-[30%] svelte-1j25jg1"${add_attribute("this", logoRef, 0)}>${validate_component(LogoBigSheep, "LogoBigSheep").$$render($$result, {}, {}, {})}</div>
+  return `<div class="${escape(null_to_empty(clsx("w-full h-[100vh] relative")), true) + " svelte-1j25jg1"}"><div class="animate-in absolute origin-center left-[40%] top-[20%] z-50 svelte-1j25jg1"${add_attribute("this", logoRef, 0)}>${validate_component(LogoBigSheep, "LogoBigSheep").$$render($$result, {}, {}, {})}</div>
 </div>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<div class="w-full h-full flex flex-col items-center justify-center">${validate_component(LoadingPage, "LoadingPage").$$render($$result, {}, {}, {})}</div>`;
+  return `${validate_component(LoadingPage, "LoadingPage").$$render($$result, {}, {}, {})}`;
 });
 export {
   Page as default

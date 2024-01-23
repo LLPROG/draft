@@ -7,7 +7,7 @@
 
 <li class="w-full">
 	<input
-		class={clsx('bg-transparent w-16 px-2 py-1', {
+		class={clsx('bg-transparent w-full text-center px-2 py-1', {
 			'pointer-events-none': disabled
 		})}
 		type="number"

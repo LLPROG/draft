@@ -1,7 +1,7 @@
 <script>
 	import IconsRender from '@components/IconsRender.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import BotPlanIcon from './BotPlanIcon.svelte';
+	import BotPlanIcon from './icons/BotPlanIcon.svelte';
 	import clsx from 'clsx';
 	export let isActive = false;
 	const dispatch = createEventDispatcher();

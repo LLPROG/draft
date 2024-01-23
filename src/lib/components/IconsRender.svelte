@@ -1,20 +1,19 @@
 <script>
-	import ArrowIcon from './ui/ArrowIcon.svelte';
-	import ArrowIconBlack from './ui/ArrowIconBlack.svelte';
-	import LessIcon from './ui/LessIcon.svelte';
-	import PlusIcon from './ui/PlusIcon.svelte';
-	import ModifyIcon from './ui/ModifyIcon.svelte';
-	import StarIcon from './ui/StarIcon.svelte';
-	import SaveIcon from './ui/SaveIcon.svelte';
-	import HambIcon from './ui/HambIcon.svelte';
-	import UncheckIcon from './ui/UncheckIcon.svelte';
-	import CheckIcon from './ui/CheckIcon.svelte';
-	import EditRowIcon from './ui/EditRowIcon.svelte';
-	import DeleteRowIcon from './ui/DeleteRowIcon.svelte';
-	import LoadCsvIcon from './ui/LoadCsvIcon.svelte';
-	import AddRowIcon from './ui/AddRowIcon.svelte';
-	import CloseIcon from './ui/CloseIcon.svelte';
-
+	import ArrowIcon from './ui/icons/ArrowIcon.svelte';
+	import ArrowIconBlack from './ui/icons/ArrowIconBlack.svelte';
+	import LessIcon from './ui/icons/LessIcon.svelte';
+	import PlusIcon from './ui/icons/PlusIcon.svelte';
+	import ModifyIcon from './ui/icons/ModifyIcon.svelte';
+	import StarIcon from './ui/icons/StarIcon.svelte';
+	import SaveIcon from './ui/icons/SaveIcon.svelte';
+	import HambIcon from './ui/icons/HambIcon.svelte';
+	import UncheckIcon from './ui/icons/UncheckIcon.svelte';
+	import CheckIcon from './ui/icons/CheckIcon.svelte';
+	import EditRowIcon from './ui/icons/EditRowIcon.svelte';
+	import DeleteRowIcon from './ui/icons/DeleteRowIcon.svelte';
+	import LoadCsvIcon from './ui/icons/LoadCsvIcon.svelte';
+	import CloseIcon from './ui/icons/CloseIcon.svelte';
+	import AddRowIcon from './ui/icons/AddRowIcon.svelte';
 	export let icon = 'plus';
 </script>
 

@@ -1,7 +1,8 @@
 import { c as create_ssr_component, b as createEventDispatcher, e as escape, n as null_to_empty, v as validate_component, d as add_attribute } from "./index2.js";
 import clsx from "clsx";
 import { I as IconsRender } from "./IconsRender.js";
-/* empty css                                      */const css = {
+const Button_svelte_svelte_type_style_lang = "";
+const css = {
   code: ".secondary.svelte-piyljr{background:linear-gradient(\r\n			95.14deg,\r\n			rgba(133, 233, 108, 0.1) 0%,\r\n			rgba(61, 186, 111, 0.1) 100%\r\n		);box-shadow:0px 1px 3px rgba(0, 0, 0, 0.25)}.for-form.svelte-piyljr{background:linear-gradient(\r\n			95.14deg,\r\n			rgba(133, 233, 108, 0.7) 0%,\r\n			rgba(61, 186, 111, 0.7) 100%\r\n		);backdrop-filter:blur(10px);box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25), inset -4px -4px 4px rgba(0, 0, 0, 0.25),\r\n			inset 4px 4px 4px rgba(255, 255, 255, 0.25)}",
   map: null
 };
@@ -21,7 +22,7 @@ const Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     "w-full": spaceAll,
     "text-grayPrimary rounded-[12px] py-8": chooseType == "primary",
     "text-white secondary rounded-[12px] py-8": chooseType == "secondary",
-    "text-black border-b border-b-black py-8": chooseType == "tertiary",
+    "text-blackPrimary font-[700] border-b border-b-black py-8": chooseType == "tertiary",
     "h-[56px] w-full absolute bottom-0 p-4 rounded-md bg-green bg-opacity-[10%] shadoww text-center text-white for-form": chooseType == "for-form",
     "w-fit": chooseType == "only-icon",
     "text-[1em]": size == "sm",

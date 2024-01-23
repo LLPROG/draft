@@ -6,6 +6,7 @@
 	import { v4 as uuidv4 } from 'uuid';
 	import { onMount } from 'svelte';
 	import type { Vessel } from '../../types/types';
+	import Button from '@components/ui/Button.svelte';
 
 	let isError = false;
 	let isErrorName = false;
@@ -19,13 +20,13 @@
 	let vessel: Vessel = defaultValue;
 	let vesselName = '';
 	let start_value = [
-		{ name: 'light-ship', value: 0, wasfocusedCount: false },
-		{ name: 'd-fwd-pp', value: 0, wasfocusedCount: false },
-		{ name: 'lbp', value: 0, wasfocusedCount: false },
-		{ name: 'd-mid-pp', value: 0, wasfocusedCount: false },
-		{ name: 'lbm', value: 0, wasfocusedCount: false },
-		{ name: 'd-aft-pp', value: 0, wasfocusedCount: false },
-		{ name: 'keel-thk', value: 0, wasfocusedCount: false }
+		{ name: 'light-ship', value: NaN, wasfocusedCount: false },
+		{ name: 'd-fwd-pp', value: NaN, wasfocusedCount: false },
+		{ name: 'lbp', value: NaN, wasfocusedCount: false },
+		{ name: 'd-mid-pp', value: NaN, wasfocusedCount: false },
+		{ name: 'lbm', value: NaN, wasfocusedCount: false },
+		{ name: 'd-aft-pp', value: NaN, wasfocusedCount: false },
+		{ name: 'keel-thk', value: NaN, wasfocusedCount: false }
 	];
 
 	$: pass = start_value.every((v) => v.wasfocusedCount === true);
@@ -70,7 +71,7 @@
 
 	function resetData() {
 		start_value.forEach((v) => {
-			v.value = 0;
+			v.value = NaN;
 			v.wasfocusedCount = false;
 		});
 		vesselName = '';
@@ -95,6 +96,14 @@
 		bind:vesselName
 		bind:start_value
 		bind:errors
-		isCreate={true}
-	/>
+	>
+		<Button
+			on:click={handleClick}
+			isButton={true}
+			spaceAll={false}
+			chooseType="for-form"
+			message="Tables"
+			icon=""
+		/>
+	</VesselForm>
 {/key}

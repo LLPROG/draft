@@ -1,9 +1,7 @@
-import * as universal from '../entries/pages/vessel/_id_/_layout.js';
+
 
 export const index = 3;
-export const component = async () => (await import('../entries/fallbacks/layout.svelte.js')).default;
-export { universal };
-export const universal_id = "src/routes/vessel/[id]/+layout.js";
-export const imports = ["_app/immutable/nodes/3.aaeb242b.js","_app/immutable/chunks/index.d0e80578.js"];
-export const stylesheets = [];
+export const component = async () => (await import('../entries/pages/vessel/_layout.svelte.js')).default;
+export const imports = ["_app/immutable/nodes/3.f3de71a3.js","_app/immutable/chunks/index.d4a696fd.js","_app/immutable/chunks/Transition.9b8dbbaf.js","_app/immutable/chunks/clsx.1229b3e0.js"];
+export const stylesheets = ["_app/immutable/assets/Transition.3cc40354.css"];
 export const fonts = [];

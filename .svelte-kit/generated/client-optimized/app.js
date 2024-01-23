@@ -12,20 +12,21 @@ export const nodes = [
 	() => import('./nodes/8'),
 	() => import('./nodes/9'),
 	() => import('./nodes/10'),
-	() => import('./nodes/11')
+	() => import('./nodes/11'),
+	() => import('./nodes/12')
 ];
 
 export const server_loads = [];
 
 export const dictionary = {
-		"/": [4],
-		"/bot-plan": [5],
-		"/create-vessel": [6,[2]],
-		"/home": [7],
-		"/tables": [8],
-		"/upload": [9],
-		"/vessel/[id]": [10,[3]],
-		"/vessel/[id]/survey": [11,[3]]
+		"/": [5],
+		"/bot-plan": [6],
+		"/create-vessel": [7,[2]],
+		"/home": [8],
+		"/tables": [9],
+		"/upload": [10],
+		"/vessel/[id]": [11,[3,4]],
+		"/vessel/[id]/survey": [12,[3,4]]
 	};
 
 export const hooks = {

@@ -44,7 +44,7 @@ const InputTable = create_ssr_component(($$result, $$props, $$bindings, slots) =
     $$bindings.value(value);
   if ($$props.disabled === void 0 && $$bindings.disabled && disabled !== void 0)
     $$bindings.disabled(disabled);
-  return `<li class="w-full"><input${add_attribute("class", clsx("bg-transparent w-16 px-2 py-1", { "pointer-events-none": disabled }), 0)} type="number"${add_attribute("value", value, 0)}></li>`;
+  return `<li class="w-full"><input${add_attribute("class", clsx("bg-transparent w-full text-center px-2 py-1", { "pointer-events-none": disabled }), 0)} type="number"${add_attribute("value", value, 0)}></li>`;
 });
 const Table = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   createEventDispatcher();
