@@ -9,7 +9,7 @@
 	import LogoNavbar from './ui/LogoNavbar.svelte';
 	const dispatch = createEventDispatcher();
 
-	export let isEditable = false;
+	export let disabled = false;
 	let init = false;
 	let openMenu = false;
 
@@ -66,9 +66,12 @@
 		{/if}
 
 		{#if route.includes('/vessel')}
-			{#if !isEditable}
+			<div />
+			{#if disabled}
 				<Button
-					on:click={() => (isEditable = true)}
+					on:click={() => {
+						dispatch('modify');
+					}}
 					spaceAll={false}
 					chooseType="only-icon"
 					icon="modify"
@@ -77,7 +80,9 @@
 				/>
 			{:else}
 				<Button
-					on:click={() => (isEditable = false)}
+					on:click={() => {
+						dispatch('save');
+					}}
 					spaceAll={false}
 					chooseType="only-icon"
 					icon="save"

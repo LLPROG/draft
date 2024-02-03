@@ -6,8 +6,8 @@ export default {
 			colors: {
 				green: '#3DBA6F',
 				greenAccent: '#85E96C',
-				whitePrimary: '#E0E7F1',
-				blackPrimary: '#414540',
+				whitePrimary: '#EDEAEA',
+				blackPrimary: '#34373A',
 				grayPrimary: '#EBFFE5'
 			},
 			fontSize: {

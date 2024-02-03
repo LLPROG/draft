@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Input from '@components/ui/Input.svelte';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import VesselFormErrors from './VesselFormErrors.svelte';
 	const dispatch = createEventDispatcher();
 
@@ -17,8 +17,8 @@
 	export let isError = false;
 	export let isErrorName = false;
 	export let wasNameFocused = false;
-	export let disabled = false;
 	export let errors = [''];
+	export let disabled = false;
 </script>
 
 <form class="w-full p-4" on:submit|preventDefault>
@@ -26,7 +26,7 @@
 		id="name"
 		label="Vessel"
 		type="text"
-		{disabled}
+		bind:disabled
 		bind:wasfocused={wasNameFocused}
 		bind:isError={isErrorName}
 		bind:valueT={vesselName}
@@ -41,8 +41,8 @@
 				id={name}
 				label={name}
 				type="number"
-				{disabled}
 				isError={!wasfocusedCount && isError}
+				bind:disabled
 				bind:wasfocused={wasfocusedCount}
 				bind:valueN={value}
 				on:focus={() => {

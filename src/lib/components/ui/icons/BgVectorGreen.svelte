@@ -1,29 +1,37 @@
 <script>
+	import clsx from 'clsx';
+
 	export let className = '';
 </script>
 
 <svg
-	class={className}
+	class={clsx('fill-current', className)}
 	width="138"
 	height="153"
 	viewBox="0 0 138 153"
 	xmlns="http://www.w3.org/2000/svg"
 >
 	<path
-		d="M95.062 150.63C79.3181 158.674 58.9293 144.685 43.1672 131.992C27.4051 119.299 0.838988 95.3294 0.489387 74.4734C0.139786 53.6174 22.5742 17.2372 41.0696 6.85587C59.5651 -3.52548 95.3686 -0.626556 111.462 12.1853C127.556 24.9971 140.364 60.6526 137.631 83.7267"
-		fill="url(#paint0_linear_410_529)"
+		d="M113.725 49.02C124.703 69.6677 126.832 102.703 121.234 124.811C115.635 146.918 97.2698 175.347 80.1338 181.666C62.9978 187.985 31.2943 181.868 18.4175 162.728C5.54066 143.587 -3.28518 93.7879 2.87274 66.8207C9.03066 39.8536 36.8897 3.89127 55.365 0.924495"
+		fill="url(#paint0_linear_1178_11272)"
 	/>
 	<defs>
 		<linearGradient
-			id="paint0_linear_410_529"
-			x1="69.2427"
-			y1="0.551758"
-			x2="69.2427"
-			y2="153"
+			id="paint0_linear_1178_11272"
+			x1="2.34069"
+			y1="113.581"
+			x2="124.841"
+			y2="86.6991"
 			gradientUnits="userSpaceOnUse"
 		>
-			<stop stop-color="#9980FF" />
-			<stop offset="1" stop-color="#FF80E6" />
+			<stop stop-color="#80FF82" />
+			<stop offset="1" stop-color="#80FDFF" />
 		</linearGradient>
 	</defs>
 </svg>
+
+<style>
+	.fill-current {
+		fill: linear-gradient(180deg, #80ff82 0%, #80fdff 100%);
+	}
+</style>

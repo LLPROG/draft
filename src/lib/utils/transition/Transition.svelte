@@ -12,7 +12,7 @@
 </script>
 
 <main
-	class={clsx('opacity-0 transition-opacity duration-500', {
+	class={clsx('opacity-0 transition-opacity duration-500 relative', {
 		'opacity-100': init
 	})}
 >

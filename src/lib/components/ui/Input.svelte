@@ -19,8 +19,7 @@
 		input: true,
 		isNotDisabled: !disabled,
 		'outline outline-[2px] outline-red-400': isError || isErrorName,
-		'disabled-custom': disabled,
-		'opacity-50': !wasfocused
+		'disabled-custom': disabled
 	};
 </script>
 
@@ -114,10 +113,6 @@
 		backdrop-filter: blur(10px);
 		color: #85e96c;
 	}
-	.disabled-custom {
-		border: none;
-		opacity: 0.8;
-	}
 
 	.animate-label-static {
 		font-size: 0.9em;
@@ -133,5 +128,10 @@
 		left: 50%;
 		transition: all 0.1s ease-in-out;
 		transform: translate(-50%, -15%);
+	}
+
+	.disabled-custom {
+		border: none;
+		opacity: 0.8;
 	}
 </style>

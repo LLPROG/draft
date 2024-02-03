@@ -18,8 +18,8 @@
 	const style = {
 		'px-4 flex justify-center items-center z-20 outline-none': true,
 		'w-full': spaceAll,
-		'text-grayPrimary rounded-[12px] py-8': chooseType === 'primary',
-		'text-white secondary rounded-[12px] py-8': chooseType === 'secondary',
+		'text-whitePrimary py-8 uppercase': chooseType === 'primary',
+		'text-whitePrimary secondary bg-blackPrimary py-8': chooseType === 'secondary',
 		'text-blackPrimary font-[700] border-b border-b-black py-8': chooseType === 'tertiary',
 		'h-[56px] w-full absolute bottom-0 p-9 text-center text-text-blackPrimary for-form':
 			chooseType === 'for-form',
@@ -27,13 +27,12 @@
 		'text-[1em]': size === 'sm',
 		'text-[1.5em]': size === 'md',
 		'text-[2.5em]': size === 'lg',
-		'pointer-events-none': disabled,
-		[classProp]: true
+		'pointer-events-none': disabled
 	};
 </script>
 
 {#if isButton}
-	<button {disabled} class={clsx(style)} on:click={() => dispatch('click')}>
+	<button {disabled} class={clsx(classProp, style)} on:click={() => dispatch('click')}>
 		<span class={clsx({ hidden: chooseType == 'only-icon' })}>{message}</span>
 		<IconsRender {icon} />
 	</button>
@@ -46,12 +45,8 @@
 
 <style>
 	.secondary {
-		background: linear-gradient(
-			95.14deg,
-			rgba(133, 233, 108, 0.1) 0%,
-			rgba(61, 186, 111, 0.1) 100%
-		);
-		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+		border-radius: 12px;
+		box-shadow: 0px 0px 10px 1px rgba(67, 186, 138, 0.25);
 	}
 
 	.for-form {

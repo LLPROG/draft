@@ -4,8 +4,8 @@
 	import BgVectorViolet from './ui/icons/BgVectorViolet.svelte';
 </script>
 
-<div class="bg-blackPrimary min-h-[100svh] relative pt-[10svh] z-50">
-	<BgVectorViolet className="absolute top-[20%] left-[20%] z-0 blur-[120px]" />
-	<BgVectorGreen className="absolute bottom-[20%] right-[20%] z-0 blur-[120px]" />
+<main class="bg-blackPrimary min-h-[100svh] overflow-y-auto relative pt-[12svh] z-50 px-5">
+	<BgVectorGreen className="absolute top-[15%] left-[20%] z-0 blur-[70px]" />
+	<BgVectorViolet className="absolute bottom-[40%] right-[20%] z-0 blur-[70px]" />
 	<slot />
-</div>
+</main>
