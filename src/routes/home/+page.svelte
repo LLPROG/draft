@@ -1,18 +1,20 @@
 <script>
 	import { base } from '$app/paths';
+	import Menu from '@components/Menu.svelte';
+	import Navbar from '@components/Navbar.svelte';
 	import Popup from '@components/Popup.svelte';
+	import Wrapper from '@components/Wrapper.svelte';
 	import Button from '@components/ui/Button.svelte';
 	import LogoMain from '@components/ui/LogoMain.svelte';
 	import Transition from '@lib/utils/transition/Transition.svelte';
-	import clsx from 'clsx';
 	import { getContext, onMount } from 'svelte';
 	import { VesselsStorage, mockData } from '../../store/store';
-	import Wrapper from '@components/Wrapper.svelte';
 
 	export let openPopup = false;
 
 	let indexVelles = getContext('indexVelles');
 	let selectedVessel = getContext('selectedVessel');
+	let openMenu = false;
 
 	const handleDelete = () => {
 		$VesselsStorage.splice($indexVelles, 1);
@@ -29,12 +31,17 @@
 </script>
 
 <Transition>
-	<div class="flex flex-col m-1 h-[90svh]">
-		<div class="top-section flex justify-center items-center py-[10svh]">
+	<div class="flex flex-col">
+		<Navbar>
+			<div slot="action">
+				<Button chooseType="only-icon" icon="hamb" size="md" on:click={() => (openMenu = true)} />
+			</div>
+		</Navbar>
+		<div class="top-section flex justify-center items-center py-[12svh]">
 			<LogoMain />
 		</div>
 		<Wrapper
-			wrapperClass={'w-full'}
+			wrapperClass={'w-full flex-1'}
 			title="fleet"
 			disabled={false}
 			hasTitleAction={true}
@@ -43,7 +50,7 @@
 		>
 			<div
 				slot="content"
-				class="w-full overflow-y-scroll max-h-[43svh] py-1 gap-2 px-5 flex flex-col justfy-start"
+				class="w-full overflow-y-scroll max-h-[35svh] py-1 max-h-100 gap-2 px-5 flex flex-col justfy-start"
 			>
 				{#each $VesselsStorage as vessel, i}
 					<Button
@@ -86,3 +93,5 @@
 		</Popup>
 	{/if}
 </Transition>
+
+<Menu bind:openPopup={openMenu} />

@@ -21,7 +21,7 @@
 			x: variant === 'menu' ? 500 : 0
 		}}
 		class={clsx('fixed px-4 w-full rounded-t-3xl popup z-50', {
-			'min-h-[50vh] bottom-0 left-0 ': variant === 'classic',
+			'bottom-0 left-0 ': variant === 'classic',
 			'min-h-[90svh] bottom-0 left-5': variant === 'menu'
 		})}
 		use:clickOutside={() => (isOpen = false)}

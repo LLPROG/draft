@@ -26,11 +26,14 @@
 <div class={clsx('relative pt-6 flex flex-col gap-0 justify-start text-whitePrimary', className)}>
 	{#if label}
 		<label
-			class={clsx('animate-label-static w-fit z-20 transition absolute top-[0%] left-[0%]', {
-				'animate-label text-[#e0e7f180]': isNaN(valueN) && valueT === '' && !isFocus,
-				'text-[#85e96c]': isFocus,
-				'text-red-400': isError || isErrorName
-			})}
+			class={clsx(
+				'animate-label-static w-fit z-20 transition absolute top-[0%] left-[0%] whitespace-nowrap',
+				{
+					'animate-label text-[#e0e7f180]': isNaN(valueN) && valueT === '' && !isFocus,
+					'text-[#85e96c]': isFocus,
+					'text-red-400': isError || isErrorName
+				}
+			)}
 			for={id}>{label}</label
 		>
 	{/if}
@@ -96,12 +99,12 @@
 	.input {
 		border-inline: none;
 		border-radius: 12px;
-		border: 1px solid rgba(224, 231, 241, 0.5);
-		background: rgba(224, 231, 241, 0.03);
+		border: 1px solid rgba(237, 234, 234, 0.5);
+		background: rgba(237, 234, 234, 0.03);
 		backdrop-filter: blur(10px);
 		border-radius: 12px;
 		backdrop-filter: blur(10px);
-		padding: 20px 20px;
+		padding: 16px 16px;
 		text-align: center;
 		font-size: 20px;
 	}

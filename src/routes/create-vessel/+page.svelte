@@ -7,6 +7,8 @@
 	import { onMount } from 'svelte';
 	import type { Vessel } from '../../types/types';
 	import Button from '@components/ui/Button.svelte';
+	import Wrapper from '@components/Wrapper.svelte';
+	import Navbar from '@components/Navbar.svelte';
 
 	let isError = false;
 	let isErrorName = false;
@@ -89,21 +91,33 @@
 </script>
 
 {#key vessel.id}
-	<VesselForm
-		on:click={() => handleClick()}
-		bind:isError
-		bind:isErrorName
-		bind:vesselName
-		bind:start_value
-		bind:errors
-	>
-		<Button
-			on:click={handleClick}
-			isButton={true}
-			spaceAll={false}
-			chooseType="for-form"
-			message="Tables"
-			icon=""
-		/>
-	</VesselForm>
+	<Navbar>
+		<div slot="content">
+			<p>{vessel.name}</p>
+		</div>
+		<div slot="action">
+			<Button chooseType="only-icon" icon="hamb" size="md" on:click />
+		</div>
+	</Navbar>
+	<Wrapper wrapperClass={'w-full mt-4'} disabled={false}>
+		<div slot="content">
+			<VesselForm
+				on:click={() => handleClick()}
+				bind:isError
+				bind:isErrorName
+				bind:vesselName
+				bind:start_value
+				bind:errors
+			>
+				<Button
+					on:click={handleClick}
+					isButton={true}
+					spaceAll={false}
+					chooseType="for-form"
+					message="Tables"
+					icon=""
+				/>
+			</VesselForm>
+		</div>
+	</Wrapper>
 {/key}

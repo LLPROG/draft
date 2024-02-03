@@ -196,7 +196,7 @@ export const defaultValue = {
 
 export const mockData = {
 	id: uuidv4(),
-	name: 'mockData',
+	name: 'M/V Hermana',
 	wasNameFocused: true,
 	start_value: [
 		{ name: 'light-ship', value: 12, wasfocusedCount: true },

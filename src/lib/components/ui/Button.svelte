@@ -16,12 +16,12 @@
 	const dispatch = createEventDispatcher();
 
 	const style = {
-		'px-4 flex justify-center items-center z-20 outline-none': true,
+		'flex justify-center items-center z-20 outline-none': true,
 		'w-full': spaceAll,
-		'text-whitePrimary py-8 uppercase': chooseType === 'primary',
-		'text-whitePrimary secondary bg-blackPrimary py-8': chooseType === 'secondary',
-		'text-blackPrimary font-[700] border-b border-b-black py-8': chooseType === 'tertiary',
-		'h-[56px] w-full absolute bottom-0 p-9 text-center text-text-blackPrimary for-form':
+		'text-whitePrimary py-8 uppercase px-4 ': chooseType === 'primary',
+		'text-whitePrimary secondary bg-blackPrimary py-8 px-4 ': chooseType === 'secondary',
+		'text-blackPrimary font-[700] border-b border-b-black py-8 px-4 ': chooseType === 'tertiary',
+		'h-[56px] w-full absolute bottom-0 p-9 text-center text-text-blackPrimary for-form ':
 			chooseType === 'for-form',
 		'w-fit': chooseType === 'only-icon',
 		'text-[1em]': size === 'sm',

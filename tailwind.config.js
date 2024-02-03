@@ -5,7 +5,7 @@ export default {
 		extend: {
 			colors: {
 				green: '#3DBA6F',
-				greenAccent: '#85E96C',
+				greenAccent: '#43BA8A',
 				whitePrimary: '#EDEAEA',
 				blackPrimary: '#34373A',
 				grayPrimary: '#EBFFE5'

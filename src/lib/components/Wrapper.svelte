@@ -12,25 +12,27 @@
 </script>
 
 <div class={clsx('wrapper pb-4', wrapperClass)}>
-	<div class="flex">
-		{#if hasTitleAction}
-			<Button
-				classProp="flex w-full title text-whitePrimary p-8"
-				chooseType="primary"
-				message={title}
-				{href}
-				{icon}
-				size="md"
-				{isButton}
-				bind:disabled
-				on:click
-			/>
-		{:else}
-			<h2 class={clsx('title text-center w-full text-whitePrimary py-6', titleClass)}>
-				{title}
-			</h2>
-		{/if}
-	</div>
+	{#if title}
+		<div class="flex">
+			{#if hasTitleAction}
+				<Button
+					classProp="flex w-full title text-whitePrimary p-8"
+					chooseType="primary"
+					message={title}
+					{href}
+					{icon}
+					size="md"
+					{isButton}
+					bind:disabled
+					on:click
+				/>
+			{:else}
+				<h2 class={clsx('title text-center w-full text-whitePrimary py-6', titleClass)}>
+					{title}
+				</h2>
+			{/if}
+		</div>
+	{/if}
 
 	<div>
 		<slot name="content" />
