@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import Navbar from '@components/Navbar.svelte';
@@ -6,15 +6,29 @@
 	import Wrapper from '@components/Wrapper.svelte';
 	import Button from '@components/ui/Button.svelte';
 	import Transition from '@lib/utils/transition/Transition.svelte';
-	import { VesselsStorage, defaultValue } from '../../../store/store';
+	import { VesselsStorage, defaultValue, mockData } from '../../../store/store';
+
+	type InitialSurvey = {
+		voy: number;
+		year: number;
+		Port: string;
+	};
+
+	type Vessel = typeof mockData;
 
 	const vesselId = $page.params.id;
+	const surveyId = 1;
+
 	let isError = false;
 	let isErrorName = false;
 	let errors = [''];
 	let disabled = true;
 
-	let vessel = $VesselsStorage.find((v) => v.id === vesselId) || defaultValue;
+	let vessel: Vessel = $VesselsStorage.find((v) => v.id === vesselId) || defaultValue;
+
+	const surveyName = (survey: InitialSurvey) => {
+		return `${survey.year} - ${survey.Port} - ${survey.voy}`;
+	};
 
 	const onSave = () => {
 		$VesselsStorage = $VesselsStorage.map((v) => (v.id === vesselId ? vessel : v));
@@ -60,9 +74,24 @@
 			disabled={false}
 			hasTitleAction={true}
 			icon="plus"
-			href={`${base}/vessel/${vesselId}/survey`}
+			href={`${base}/vessel/${vesselId}/survey/${surveyId}`}
 		>
-			<div slot="content">no content</div>
+			<div
+				slot="content"
+				class="w-full overflow-y-scroll max-h-[35svh] py-1 max-h-100 gap-2 px-5 flex flex-col justfy-start"
+			>
+				{#each vessel.surveys as survey, i}
+					{#if survey.initialData}
+						<Button
+							on:click
+							chooseType="secondary"
+							icon="arrow"
+							size="md"
+							message={surveyName(survey.initialData)}
+						/>
+					{/if}
+				{/each}
+			</div>
 		</Wrapper>
 	</div>
 </Transition>

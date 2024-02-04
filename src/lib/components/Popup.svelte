@@ -26,10 +26,10 @@
 		})}
 		use:clickOutside={() => (isOpen = false)}
 	>
-		<div class="w-full py-4">
+		<div class="w-full">
 			<slot name="header" />
 		</div>
-		<div class="w-full py-2">
+		<div class="w-full">
 			<slot name="body" />
 		</div>
 	</div>
@@ -38,9 +38,8 @@
 <style>
 	.popup {
 		border-radius: 12px 0px 0px 0px;
-		background: linear-gradient(95deg, rgba(133, 233, 108, 0.9) 0%, rgba(61, 186, 111, 0.8) 100%);
-
-		/* vetro */
-		backdrop-filter: blur(20px);
+		background: var(--opacity-primary-g-75, rgba(67, 186, 138, 0.897));
+		box-shadow: 0px 4px 1px 0px rgba(255, 255, 255, 0.25) inset,
+			4px 0px 1px 0px rgba(255, 255, 255, 0.25) inset;
 	}
 </style>

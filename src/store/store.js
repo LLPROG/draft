@@ -176,22 +176,26 @@ export const defaultValue = {
 		{ name: 'd-aft-pp', value: 0, wasfocusedCount: false },
 		{ name: 'keel-thk', value: 0, wasfocusedCount: false }
 	],
-	status: 'undefined',
-	initialData: { ...defaultInitialData },
-	categories: [...defaultCategories],
-	draftLeft: [...defaultDraftsLeft],
-	draftRight: [...defaultDraftsRight],
-	weight: [...defaultWeight],
-	waterDensityValue: 0,
-	tables: [],
-	results: {
-		trimResult: [...trimR],
-		displacementResult: [...displacementR],
-		correctionsResult: [...correctionsR],
-		finalDisplacementResult: [...finalDisplacementR],
-		weightResult: [...weigthR],
-		constantR: [{ label: 'Costant', value: 0 }]
-	}
+	surveys: [
+		{
+			status: 'undefined',
+			initialData: { ...defaultInitialData },
+			categories: [...defaultCategories],
+			draftLeft: [...defaultDraftsLeft],
+			draftRight: [...defaultDraftsRight],
+			weight: [...defaultWeight],
+			waterDensityValue: 0,
+			tables: [],
+			results: {
+				trimResult: [...trimR],
+				displacementResult: [...displacementR],
+				correctionsResult: [...correctionsR],
+				finalDisplacementResult: [...finalDisplacementR],
+				weightResult: [...weigthR],
+				constantR: [{ label: 'Costant', value: 0 }]
+			}
+		}
+	]
 };
 
 export const mockData = {
@@ -207,81 +211,85 @@ export const mockData = {
 		{ name: 'd-aft-pp', value: 8.7, wasfocusedCount: true },
 		{ name: 'keel-thk', value: 0.014, wasfocusedCount: true }
 	],
-	status: 'initial',
-	initialData: { ...defaultInitialData },
-	categories: [...defaultCategories],
-	draftLeft: [
+	surveys: [
 		{
-			name: 'Fwd',
-			value: 6.54
-		},
-		{
-			name: 'Mid',
-			value: 7.27
-		},
-		{
-			name: 'Aft',
-			value: 7.85
+			status: 'initial',
+			initialData: { ...defaultInitialData },
+			categories: [...defaultCategories],
+			draftLeft: [
+				{
+					name: 'Fwd',
+					value: 6.54
+				},
+				{
+					name: 'Mid',
+					value: 7.27
+				},
+				{
+					name: 'Aft',
+					value: 7.85
+				}
+			],
+			draftRight: [
+				{
+					name: 'Fwd',
+					value: 6.56
+				},
+				{
+					name: 'Mid',
+					value: 7.29
+				},
+				{
+					name: 'Aft',
+					value: 7.87
+				}
+			],
+			weight: [
+				{
+					name: 'Ballast',
+					value: 1374
+				},
+				{
+					name: 'Fresh water',
+					value: 55
+				},
+				{
+					name: 'Fuel Oil',
+					value: 88.5
+				},
+				{
+					name: 'Diesel Oil',
+					value: 21
+				},
+				{
+					name: 'Lube Oil',
+					value: 5.05
+				},
+				{
+					name: 'Other',
+					value: 34
+				},
+				{
+					name: 'Other Cargo',
+					value: 0
+				},
+				{
+					name: 'Constant',
+					value: 82
+				}
+			],
+			waterDensityValue: 1.025,
+			tables: [],
+			results: {
+				trimResult: [...trimR],
+				displacementResult: [...displacementR],
+				correctionsResult: [...correctionsR],
+				finalDisplacementResult: [...finalDisplacementR],
+				weightResult: [...weigthR],
+				constantR: [{ label: 'Costant', value: 0 }]
+			}
 		}
-	],
-	draftRight: [
-		{
-			name: 'Fwd',
-			value: 6.56
-		},
-		{
-			name: 'Mid',
-			value: 7.29
-		},
-		{
-			name: 'Aft',
-			value: 7.87
-		}
-	],
-	weight: [
-		{
-			name: 'Ballast',
-			value: 1374
-		},
-		{
-			name: 'Fresh water',
-			value: 55
-		},
-		{
-			name: 'Fuel Oil',
-			value: 88.5
-		},
-		{
-			name: 'Diesel Oil',
-			value: 21
-		},
-		{
-			name: 'Lube Oil',
-			value: 5.05
-		},
-		{
-			name: 'Other',
-			value: 34
-		},
-		{
-			name: 'Other Cargo',
-			value: 0
-		},
-		{
-			name: 'Constant',
-			value: 82
-		}
-	],
-	waterDensityValue: 1.025,
-	tables: [],
-	results: {
-		trimResult: [...trimR],
-		displacementResult: [...displacementR],
-		correctionsResult: [...correctionsR],
-		finalDisplacementResult: [...finalDisplacementR],
-		weightResult: [...weigthR],
-		constantR: [{ label: 'Costant', value: 0 }]
-	}
+	]
 };
 export const VesselsStorage = persistent({
 	/**

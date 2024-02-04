@@ -28,7 +28,7 @@
 		"src/routes/vessel/[id]/+layout.js",
 		"src/routes/+layout.js"
 	],
-	"/vessel/[id]/survey": [
+	"/vessel/[id]/survey/[id]": [
 		"src/routes/vessel/[id]/+layout.js",
 		"src/routes/+layout.js"
 	]

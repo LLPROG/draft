@@ -7,14 +7,13 @@
 
 {#if openPopup}
 	<Popup variant="menu" bind:isOpen={openPopup}>
-		<div slot="header" class="flex items-center">
-			<h2 class="text-blackPrimary text-base font-bold text-center">Menu</h2>
+		<div slot="header" class="w-full">
 			<Button
 				on:click={() => (openPopup = false)}
-				chooseType="only-icon"
+				chooseType="primary"
+				message="menu"
 				icon="close"
 				size="sm"
-				classProp="ms-auto !w-fit"
 			/>
 		</div>
 

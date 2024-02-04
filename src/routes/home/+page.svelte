@@ -10,11 +10,10 @@
 	import { getContext, onMount } from 'svelte';
 	import { VesselsStorage, mockData } from '../../store/store';
 
-	export let openPopup = false;
-
 	let indexVelles = getContext('indexVelles');
 	let selectedVessel = getContext('selectedVessel');
 	let openMenu = false;
+	let openPopup = false;
 
 	const handleDelete = () => {
 		$VesselsStorage.splice($indexVelles, 1);
@@ -73,6 +72,15 @@
 
 	{#if openPopup && selectedVessel}
 		<Popup bind:isOpen={openPopup}>
+			<div slot="header" class="w-full">
+				<Button
+					on:click={() => (openPopup = false)}
+					chooseType="primary"
+					message={$selectedVessel.name}
+					icon="close"
+					size="sm"
+				/>
+			</div>
 			<div class="w-full" slot="body">
 				<Button
 					href={`${base}/vessel/${$selectedVessel?.id}`}

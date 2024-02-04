@@ -15,7 +15,7 @@
 		getTableResult
 	} from '@lib/utils/calculation';
 	import { uploadCVS } from '@lib/utils/uploadCSV';
-	import { VesselsStorage, defaultValue } from '../../../../store/store';
+	import { VesselsStorage, defaultValue } from '../../../../../store/store';
 
 	let waterDensityValue = 0;
 	let openMean = false;
